@@ -17,14 +17,14 @@ List<UnbordingContent> contents = [
           "matters."),
   UnbordingContent(
       title: 'GROW',
-      image: 'assets/a.svg',
+      image: 'assets/b.svg',
       discription:
           "A comprehensive suite of resources with an easy-to-navigate interface, and "
           "cradle of horticulture opportunities that allow self growth and help keep our "
           "planet clean and green."),
   UnbordingContent(
       title: 'EARN',
-      image: 'assets/a.svg',
+      image: 'assets/c.svg',
       discription:
           "Best time to start learning and being activated about climate change. With the"
           "app, you can earn vouchers and coupons to demonstrate your progress and "

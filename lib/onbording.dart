@@ -30,6 +30,7 @@ class _OnbordingState extends State<Onbording> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Expanded(
             child: PageView.builder(
@@ -44,6 +45,7 @@ class _OnbordingState extends State<Onbording> {
                 return Padding(
                   padding: const EdgeInsets.all(40),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SvgPicture.asset(
                         contents[i].image,
@@ -87,9 +89,9 @@ class _OnbordingState extends State<Onbording> {
               borderRadius: BorderRadius.circular(20),
               color: Theme.of(context).primaryColor,
             ),
-            height: 45,
+            height: 50,
             margin: EdgeInsets.all(40),
-            width: 100,
+            width: 120,
             child: TextButton(
               onPressed: () {
                 if (currentIndex == contents.length - 1) {
@@ -113,7 +115,7 @@ class _OnbordingState extends State<Onbording> {
               ),
               child: Text(
                 currentIndex == contents.length - 1 ? "Continue" : "Next",
-                style: const TextStyle(color: Color.fromRGBO(0, 0, 0, 1)),
+                style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
               ),
             ),
           )
