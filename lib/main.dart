@@ -1,3 +1,4 @@
+import 'package:climate_care/splash.dart';
 import 'package:flutter/material.dart';
 
 import 'onbording.dart';
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: Onbording(),
+      home: SplashScreen(),
     );
   }
 }
