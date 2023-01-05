@@ -103,7 +103,7 @@ class _OnbordingState extends State<Onbording> {
                   );
                 }
                 _controller.nextPage(
-                  duration: Duration(milliseconds: 80),
+                  duration: Duration(milliseconds: 120),
                   curve: Curves.bounceIn,
                 );
               },
@@ -115,7 +115,8 @@ class _OnbordingState extends State<Onbording> {
               ),
               child: Text(
                 currentIndex == contents.length - 1 ? "Continue" : "Next",
-                style: const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+                style:
+                    const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
               ),
             ),
           )

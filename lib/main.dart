@@ -1,8 +1,6 @@
 import 'package:climate_care/splash.dart';
 import 'package:flutter/material.dart';
 
-import 'onbording.dart';
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
