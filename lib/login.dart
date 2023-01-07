@@ -10,7 +10,7 @@ const users = {
 };
 
 class LoginScreen extends StatelessWidget {
-  Duration get loginTime => Duration(milliseconds: 2250);
+  Duration get loginTime => const Duration(milliseconds: 2250);
 
   Future<String?> _authUser(LoginData data) {
     debugPrint('Name: ${data.name}, Password: ${data.password}');
@@ -45,6 +45,9 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
+      additionalSignupFields: [
+        UserFormField(keyName: "Full Name",icon: Icon(Icons.person))
+      ],
       //title: 'Climate Care',
       logo: const AssetImage('assets/logo.png'),
       onLogin: _authUser,
