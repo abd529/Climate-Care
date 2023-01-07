@@ -1,3 +1,4 @@
+import 'package:climate_care/login.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -98,7 +99,7 @@ class _OnbordingState extends State<Onbording> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => Home(),
+                      builder: (_) => LoginScreen(),
                     ),
                   );
                 }

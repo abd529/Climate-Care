@@ -13,9 +13,9 @@ class SplashScreen extends StatelessWidget {
       duration: 3000,
       backgroundColor: Colors.green,
       splash: Container(
-        height: size.height/3,
-        width: size.height/3,
-        child: Image.asset("assets/logo.png")),
+          height: size.height / 3,
+          width: size.height / 3,
+          child: Image.asset("assets/logo.png")),
       splashIconSize: 500,
       nextScreen: Onbording(),
       splashTransition: SplashTransition.fadeTransition,
