@@ -11,7 +11,7 @@ class SplashScreen extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     return AnimatedSplashScreen(
       duration: 3000,
-      backgroundColor: Colors.green,
+      backgroundColor: Theme.of(context).primaryColor,
       splash: Container(
           height: size.height / 3,
           width: size.height / 3,
