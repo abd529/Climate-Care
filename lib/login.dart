@@ -45,8 +45,8 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
-      additionalSignupFields: [
-        UserFormField(keyName: "Full Name",icon: Icon(Icons.person))
+      additionalSignupFields: const [
+        UserFormField(keyName: "Full Name", icon: Icon(Icons.person))
       ],
       //title: 'Climate Care',
       logo: const AssetImage('assets/logo.png'),
@@ -91,7 +91,9 @@ class LoginScreen extends StatelessWidget {
         ),
       ],
       onRecoverPassword: _recoverPassword,
-      theme: LoginTheme(primaryColor: Theme.of(context).primaryColor),
+      theme: LoginTheme(
+        primaryColor: Theme.of(context).primaryColor,
+        accentColor: Theme.of(context).primaryColor),
     );
   }
 }

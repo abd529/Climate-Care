@@ -1,10 +1,8 @@
-import 'package:climate_care/login.dart';
+import 'package:climate_care/lsoption.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:flutter_svg/flutter_svg.dart';
 import 'content_model.dart';
-import 'home.dart';
 
 class Onbording extends StatefulWidget {
   @override
@@ -29,6 +27,7 @@ class _OnbordingState extends State<Onbording> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -44,11 +43,11 @@ class _OnbordingState extends State<Onbording> {
               },
               itemBuilder: (_, i) {
                 return Padding(
-                  padding: const EdgeInsets.all(40),
+                  padding: const EdgeInsets.all(35),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SvgPicture.asset(
+                      Image.asset(
                         contents[i].image,
                         height: 300,
                       ),
@@ -61,15 +60,21 @@ class _OnbordingState extends State<Onbording> {
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      Text(
-                        contents[i].discription,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Color.fromARGB(255, 73, 73, 73),
+                      SizedBox(
+                        height: 100,
+                        width: 300,
+                        child: Text(
+                          contents[i].discription,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.raleway(
+                            textStyle: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                              color: Color.fromARGB(255, 105, 105, 105),
+                            ),
+                          ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 );
@@ -99,7 +104,7 @@ class _OnbordingState extends State<Onbording> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => LoginScreen(),
+                      builder: (_) => Option(),
                     ),
                   );
                 }
