@@ -1,4 +1,4 @@
-import 'package:climate_care/lsoption.dart';
+import 'package:climate_care/login_screens/lsoption.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -81,51 +81,64 @@ class _OnbordingState extends State<Onbording> {
               },
             ),
           ),
-          Container(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                contents.length,
-                (index) => buildDot(index, context),
-              ),
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Theme.of(context).primaryColor,
-            ),
-            height: 50,
-            margin: EdgeInsets.all(40),
-            width: 120,
-            child: TextButton(
-              onPressed: () {
-                if (currentIndex == contents.length - 1) {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => Option(),
-                    ),
-                  );
-                }
-                _controller.nextPage(
-                  duration: Duration(milliseconds: 120),
-                  curve: Curves.bounceIn,
-                );
-              },
-              style: TextButton.styleFrom(
-                foregroundColor: Theme.of(context).primaryColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
+          Row(
+            children: [
+              Container(
+                margin: const EdgeInsets.only(left: 30),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: List.generate(
+                    contents.length,
+                    (index) => buildDot(index, context),
+                  ),
                 ),
               ),
-              child: Text(
-                currentIndex == contents.length - 1 ? "Continue" : "Next",
-                style:
-                    const TextStyle(color: Color.fromARGB(255, 255, 255, 255)),
+              const Spacer(),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: Theme.of(context).primaryColor,
+                ),
+                height: 55,
+                margin: const EdgeInsets.all(40),
+                width: 55,
+                child: TextButton(
+                  onPressed: () {
+                    if (currentIndex == contents.length - 1) {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => Option(),
+                        ),
+                      );
+                    }
+                    _controller.nextPage(
+                      duration: const Duration(milliseconds: 120),
+                      curve: Curves.bounceIn,
+                    );
+                  },
+                  style: TextButton.styleFrom(
+                    backgroundColor: Theme.of(context).primaryColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                    ),
+                  ),
+                  child: Stack(
+                    children: const <Widget>[
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Icon(
+                          Icons.arrow_forward_rounded,
+                          size: 38,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ),
-          )
+            ],
+          ),
         ],
       ),
     );
@@ -135,7 +148,7 @@ class _OnbordingState extends State<Onbording> {
     return Container(
       height: 10,
       width: currentIndex == index ? 25 : 10,
-      margin: EdgeInsets.only(right: 5),
+      margin: EdgeInsets.only(right: 6),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Theme.of(context).primaryColor,

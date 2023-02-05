@@ -1,4 +1,4 @@
-import 'package:climate_care/splash.dart';
+import 'package:climate_care/onboarding/splash.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
