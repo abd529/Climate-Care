@@ -41,6 +41,7 @@ dependencies:
   flutter_login: ^4.1.1
   font_awesome_flutter: ^10.3.0
   percent_indicator: ^4.2.2
+  dots_indicator: ^2.1.0
 
 dev_dependencies:
   flutter_test:

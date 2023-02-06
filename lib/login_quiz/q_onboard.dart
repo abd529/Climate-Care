@@ -1,6 +1,3 @@
-import 'dart:ffi';
-
-import 'package:climate_care/login_quiz/quiz_design.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -19,24 +16,25 @@ class qBoard extends StatelessWidget {
             child: RichText(
               textAlign: TextAlign.left,
               text: TextSpan(
-                  text: ('Are you from '),
-                  style: GoogleFonts.poppins(
-                    textStyle: const TextStyle(fontSize: 38),
-                    color: Colors.black,
-                    fontWeight: FontWeight.w600,
-                    decoration: TextDecoration.none,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: ('Pakistan?'),
-                      style: GoogleFonts.poppins(
-                        textStyle: const TextStyle(fontSize: 38),
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.w600,
-                        decoration: TextDecoration.none,
-                      ),
+                text: ('Are you from '),
+                style: GoogleFonts.poppins(
+                  textStyle: const TextStyle(fontSize: 38),
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                  decoration: TextDecoration.none,
+                ),
+                children: [
+                  TextSpan(
+                    text: ('Pakistan?'),
+                    style: GoogleFonts.poppins(
+                      textStyle: const TextStyle(fontSize: 38),
+                      color: Theme.of(context).primaryColor,
+                      fontWeight: FontWeight.w600,
+                      decoration: TextDecoration.none,
                     ),
-                  ],),
+                  ),
+                ],
+              ),
             ),
           ),
           Container(

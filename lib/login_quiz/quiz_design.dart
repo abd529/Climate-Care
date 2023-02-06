@@ -6,7 +6,7 @@ import 'package:climate_care/login_quiz/answer.dart';
 
 class quizDesign extends StatelessWidget {
   final List<Map<String, Object>> questions;
-  final int questionIndex;
+  var questionIndex;
   final Function answerQuestion;
 
   quizDesign({

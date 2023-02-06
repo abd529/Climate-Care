@@ -1,3 +1,4 @@
+import 'package:climate_care/login_quiz/index_dots.dart';
 import 'package:flutter/material.dart';
 
 import 'package:climate_care/login_quiz/quiz_design.dart';
@@ -12,6 +13,7 @@ class logQuiz extends StatefulWidget {
 // ignore: camel_case_types
 class _logQuizState extends State<logQuiz> {
   var _questionindex = 0;
+  double _dotindex = 0.0;
   var _progressindex = 0.0;
   final _questions = const [
     {
@@ -70,7 +72,10 @@ class _logQuizState extends State<logQuiz> {
 
   void _answerQuestion() {
     setState(() {
-      _questionindex = _questionindex + 1;
+      _questionindex++;
+      if (_dotindex < _questions.length) {
+        _dotindex++;
+      }
       _progressindex = _progressindex + 0.25;
     });
   }
@@ -88,6 +93,7 @@ class _logQuizState extends State<logQuiz> {
                   questionIndex: _questionindex,
                   questions: _questions,
                 ),
+                indexDots(_dotindex, _questions.length)
               ],
             )
           : Home(),
