@@ -9,8 +9,8 @@ class Answer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
-      margin: EdgeInsets.all(15),
+      width: 225,
+      margin: const EdgeInsets.all(15),
       height: 50,
       child: ElevatedButton(
         onPressed: selectHandler,

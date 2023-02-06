@@ -39,7 +39,7 @@ class qBoard extends StatelessWidget {
           ),
           Container(
             margin: const EdgeInsets.all(20),
-            width: 200,
+            width: 225,
             height: 50,
             child: ElevatedButton(
               onPressed: () {
@@ -61,7 +61,7 @@ class qBoard extends StatelessWidget {
             ),
           ),
           SizedBox(
-            width: 200,
+            width: 225,
             height: 50,
             child: ElevatedButton(
               onPressed: null,
