@@ -82,9 +82,13 @@ class _OnbordingState extends State<Onbording> {
             ),
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                margin: const EdgeInsets.only(left: 30),
+                margin: const EdgeInsets.only(
+                  left: 30,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(
@@ -93,15 +97,14 @@ class _OnbordingState extends State<Onbording> {
                   ),
                 ),
               ),
-              const Spacer(),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
                   color: Theme.of(context).primaryColor,
                 ),
-                height: 55,
-                margin: const EdgeInsets.all(40),
-                width: 55,
+                height: 53,
+                margin: const EdgeInsets.only(top: 40, bottom: 45, right: 30),
+                width: 53,
                 child: TextButton(
                   onPressed: () {
                     if (currentIndex == contents.length - 1) {
@@ -126,10 +129,10 @@ class _OnbordingState extends State<Onbording> {
                   child: Stack(
                     children: const <Widget>[
                       Align(
-                        alignment: Alignment.centerLeft,
+                        alignment: Alignment(-30, 0),
                         child: Icon(
-                          Icons.arrow_forward_rounded,
-                          size: 38,
+                          Icons.arrow_forward_sharp,
+                          size: 36,
                           color: Colors.white,
                         ),
                       ),
@@ -148,7 +151,7 @@ class _OnbordingState extends State<Onbording> {
     return Container(
       height: 10,
       width: currentIndex == index ? 25 : 10,
-      margin: EdgeInsets.only(right: 6),
+      margin: EdgeInsets.only(right: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Theme.of(context).primaryColor,
