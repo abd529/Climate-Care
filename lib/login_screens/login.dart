@@ -4,6 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:climate_care/login_quiz/q_onboard.dart';
 
+import '../home.dart';
+
 
 const users = {
   'abdullahayaz529@gmail.com': '12345',
@@ -11,6 +13,7 @@ const users = {
 };
 
 class LoginScreen extends StatelessWidget {
+  static const routeName = "login-screen";
   Duration get loginTime => const Duration(milliseconds: 2250);
 
   Future<String?> _authUser(LoginData data) {
@@ -47,16 +50,15 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterLogin(
       additionalSignupFields: const [
-        UserFormField(keyName: "Full Name", icon: Icon(Icons.person))
+        UserFormField(keyName: "Full Name", icon: Icon(Icons.person)),
+        UserFormField(keyName: "Roll Num", icon: Icon(Icons.person))
       ],
       //title: 'Climate Care',
       logo: const AssetImage('assets/logo.png'),
       onLogin: _authUser,
       onSignup: _signupUser,
       onSubmitAnimationCompleted: () {
-        Navigator.of(context).pushReplacement(MaterialPageRoute(
-          builder: (context) => qBoard(),
-        ));
+     Navigator.of(context).pushNamedAndRemoveUntil(Home.routeName, (route) => false);
       },
 
       loginProviders: <LoginProvider>[
