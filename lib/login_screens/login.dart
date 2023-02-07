@@ -6,7 +6,6 @@ import 'package:climate_care/login_quiz/q_onboard.dart';
 
 import '../home.dart';
 
-
 const users = {
   'abdullahayaz529@gmail.com': '12345',
   'alirazamunir2003@gmail.com': 'not12345',
@@ -58,7 +57,8 @@ class LoginScreen extends StatelessWidget {
       onLogin: _authUser,
       onSignup: _signupUser,
       onSubmitAnimationCompleted: () {
-     Navigator.of(context).pushNamedAndRemoveUntil(Home.routeName, (route) => false);
+        Navigator.of(context)
+            .pushNamedAndRemoveUntil(Home.routeName, (route) => false);
       },
 
       loginProviders: <LoginProvider>[
@@ -95,8 +95,8 @@ class LoginScreen extends StatelessWidget {
       ],
       onRecoverPassword: _recoverPassword,
       theme: LoginTheme(
-        primaryColor: Theme.of(context).primaryColor,
-        accentColor: Theme.of(context).primaryColor),
+          primaryColor: Theme.of(context).primaryColor,
+          accentColor: Theme.of(context).primaryColor),
     );
   }
 }

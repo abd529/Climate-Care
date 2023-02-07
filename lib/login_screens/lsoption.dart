@@ -38,19 +38,19 @@ class Option extends StatelessWidget {
           //     ),
           //   ),
           // ),
-          const SizedBox(height: 50,),
+          const Spacer(),
           Container(
             width: size.width / 2,
-            height: 60,
-            margin: const EdgeInsets.only(bottom: 20.0),
+            height: 50,
+            margin: const EdgeInsets.only(bottom: 40),
             child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pushNamed(LoginScreen.routeName);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
+                backgroundColor: const Color.fromRGBO(255, 255, 255, 1.0),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
+                  borderRadius: BorderRadius.circular(50),
                 ),
               ),
               child: const Text(

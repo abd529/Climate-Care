@@ -12,13 +12,16 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: const Color.fromRGBO(71, 191, 83, 1.0),
-        appBarTheme: AppBarTheme(backgroundColor: Colors.green, elevation: 0, titleTextStyle: GoogleFonts.poppins(fontSize: 18))
-      ),
+          primaryColor: const Color.fromRGBO(71, 191, 83, 1.0),
+          primarySwatch: Colors.green,
+          appBarTheme: AppBarTheme(
+              backgroundColor: Colors.green,
+              elevation: 0,
+              titleTextStyle: GoogleFonts.poppins(fontSize: 18))),
       home: const SplashScreen(),
       routes: {
         LoginScreen.routeName: (ctx) => LoginScreen(),
-        Home.routeName: (ctx)=> Home(),
+        Home.routeName: (ctx) => Home(),
       },
     );
   }
