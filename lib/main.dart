@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       home: Home(),
       routes: {
         LoginScreen.routeName: (ctx) => LoginScreen(),
-        Home.routeName: (ctx)=> Home(),
+        Home.routeName: (ctx) => Home(),
       },
     );
   }
