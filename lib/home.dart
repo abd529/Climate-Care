@@ -1,3 +1,4 @@
+import 'package:climate_care/Screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -9,12 +10,19 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
    var _selectedTab = _SelectedTab.home;
-   List<Widget> pages = const [
-    Text("text1"),
-    Text("text2"),
-    Text("text3"),
-    Text("text4"),
-    Text("text5"),
+   List<Widget> pages =  [
+     HomeScreen(),
+    const Text("Activities"),
+    const Text("Progress"),
+    const Text("Community"),
+    const Text("Settings"),
+   ];
+   List<Widget> appBarText = [
+    const Text("Home"),
+    const Text("Activities"),
+    const Text("Progress"),
+    const Text("Community"),
+    const Text("Settings"),
    ];
    int _currentIndex = 0;
   void _handleIndexChanged(int i) {
@@ -28,7 +36,7 @@ class _HomeState extends State<Home> {
     //_currentPage = pages[0];
     return Scaffold(
       appBar: AppBar(
-        title: pages[_currentIndex],
+        title: appBarText[_currentIndex],
       ),
        bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 0),
