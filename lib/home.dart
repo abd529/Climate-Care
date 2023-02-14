@@ -22,9 +22,9 @@ class _HomeState extends State<Home> {
     const Text("Settings"),
    ];
    List<Widget> appBarText = [
-    const Text("Home"),
     const Text("Activities"),
     const Text("Progress"),
+    const Text("Home"),
     const Text("Community"),
     const Text("Settings"),
    ];
