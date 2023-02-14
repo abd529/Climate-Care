@@ -76,7 +76,7 @@ class _HomeState extends State<Home> {
                   text: 'Community',
                 ),
                 GButton(
-                  icon: Icons.settings,
+                  icon: Icons.settings_outlined ,
                   text: 'Settings',
                 ),
               ],
