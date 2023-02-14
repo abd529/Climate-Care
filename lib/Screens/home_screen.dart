@@ -18,22 +18,13 @@ class HomeScreenState extends State<HomeScreen> {
     String text;
     switch (value.toInt()) {
       case 0:
-        text = 'Apr';
+        text = 'Your';
         break;
       case 1:
-        text = 'May';
-        break;
-      case 2:
-        text = 'Jun';
-        break;
-      case 3:
-        text = 'Jul';
-        break;
-      case 4:
-        text = 'Aug';
+        text = 'Global';
         break;
       default:
-        text = '';
+        text = 'Country';
         break;
     }
     return SideTitleWidget(
