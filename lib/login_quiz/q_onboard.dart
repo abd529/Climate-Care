@@ -1,9 +1,13 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'quiz_screen.dart';
 
 class qBoard extends StatelessWidget {
+  const qBoard({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,7 +50,7 @@ class qBoard extends StatelessWidget {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => logQuiz(),
+                    builder: (_) => const logQuiz(),
                   ),
                 );
               },

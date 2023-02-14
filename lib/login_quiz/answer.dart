@@ -1,10 +1,12 @@
+// ignore_for_file: must_be_immutable, prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 
 class Answer extends StatelessWidget {
   var selectHandler;
   final String answerText;
 
-  Answer(this.selectHandler, this.answerText);
+  Answer(this.selectHandler, this.answerText, {super.key});
 
   @override
   Widget build(BuildContext context) {

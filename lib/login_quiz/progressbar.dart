@@ -1,10 +1,12 @@
+// ignore_for_file: camel_case_types, must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class proBar extends StatelessWidget {
   var proindex = 0.0;
 
-  proBar(this.proindex);
+  proBar(this.proindex, {super.key});
   @override
   Widget build(BuildContext context) {
     return Container(

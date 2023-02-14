@@ -5,7 +5,7 @@ class Question extends StatelessWidget {
   final String questionText1;
   final String questionText2;
   final String questionText3;
-  Question(this.questionText1, this.questionText2, this.questionText3);
+  const Question(this.questionText1, this.questionText2, this.questionText3, {super.key});
 
   @override
   Widget build(BuildContext context) {

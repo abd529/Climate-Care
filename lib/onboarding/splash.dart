@@ -12,12 +12,12 @@ class SplashScreen extends StatelessWidget {
     return AnimatedSplashScreen(
       duration: 3000,
       backgroundColor: Theme.of(context).primaryColor,
-      splash: Container(
+      splash: SizedBox(
           height: size.height / 3,
           width: size.height / 3,
           child: Image.asset("assets/logo.png")),
       splashIconSize: 500,
-      nextScreen: Onbording(),
+      nextScreen: const Onbording(),
       splashTransition: SplashTransition.fadeTransition,
     );
   }

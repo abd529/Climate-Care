@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'package:climate_care/login_quiz/q_onboard.dart';
 
 import '../home.dart';
 
@@ -13,6 +12,8 @@ const users = {
 
 class LoginScreen extends StatelessWidget {
   static const routeName = "login-screen";
+
+  const LoginScreen({super.key});
   Duration get loginTime => const Duration(milliseconds: 2250);
 
   Future<String?> _authUser(LoginData data) {

@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:climate_care/login_quiz/index_dots.dart';
 import 'package:flutter/material.dart';
 
@@ -6,11 +8,12 @@ import 'package:climate_care/home.dart';
 import 'package:climate_care/login_quiz/progressbar.dart';
 
 class logQuiz extends StatefulWidget {
+  const logQuiz({super.key});
+
   @override
   State<logQuiz> createState() => _logQuizState();
 }
 
-// ignore: camel_case_types
 class _logQuizState extends State<logQuiz> {
   var _questionindex = 0;
   double _dotindex = 0.0;
@@ -96,7 +99,7 @@ class _logQuizState extends State<logQuiz> {
                 indexDots(_dotindex, _questions.length)
               ],
             )
-          : Home(),
+          : const Home(),
     );
   }
 }

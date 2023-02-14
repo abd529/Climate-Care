@@ -1,3 +1,5 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:climate_care/login_screens/lsoption.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,6 +7,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'content_model.dart';
 
 class Onbording extends StatefulWidget {
+  const Onbording({super.key});
+
   @override
   _OnbordingState createState() => _OnbordingState();
 }
@@ -27,7 +31,6 @@ class _OnbordingState extends State<Onbording> {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -111,7 +114,7 @@ class _OnbordingState extends State<Onbording> {
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => Option(),
+                          builder: (_) => const Option(),
                         ),
                       );
                     }
@@ -151,7 +154,7 @@ class _OnbordingState extends State<Onbording> {
     return Container(
       height: 10,
       width: currentIndex == index ? 25 : 10,
-      margin: EdgeInsets.only(right: 15),
+      margin: const EdgeInsets.only(right: 15),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         color: Theme.of(context).primaryColor,

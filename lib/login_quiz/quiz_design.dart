@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, must_be_immutable, prefer_typing_uninitialized_variables
+
 import 'package:flutter/material.dart';
 
 import 'lastbutton.dart';
@@ -9,7 +11,7 @@ class quizDesign extends StatelessWidget {
   var questionIndex;
   final Function answerQuestion;
 
-  quizDesign({
+  quizDesign({super.key, 
     required this.questions,
     required this.answerQuestion,
     required this.questionIndex,

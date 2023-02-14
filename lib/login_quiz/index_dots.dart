@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 
@@ -5,7 +7,7 @@ class indexDots extends StatelessWidget {
   double dotindex;
   int qlength;
 
-  indexDots(this.dotindex, this.qlength);
+  indexDots(this.dotindex, this.qlength, {super.key});
   @override
   Widget build(BuildContext context) {
     return DotsIndicator(
