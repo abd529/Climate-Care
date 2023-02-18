@@ -11,7 +11,8 @@ class quizDesign extends StatelessWidget {
   var questionIndex;
   final Function answerQuestion;
 
-  quizDesign({super.key, 
+  quizDesign({
+    super.key,
     required this.questions,
     required this.answerQuestion,
     required this.questionIndex,
@@ -28,13 +29,14 @@ class quizDesign extends StatelessWidget {
         ),
         ...(questions[questionIndex]['answers'] as List<Map<String, Object>>)
             .map((answer) {
-          return Answer(() => answerQuestion(), answer['text'] as String);
+          return Answer(
+              () => answerQuestion(answer['score']), answer['text'] as String);
         }).toList(),
         ...(questions[questionIndex]['lastbutton'] as List<Map<String, Object>>)
             .map((answer) {
-          return lastButton(() => answerQuestion(), answer['textn'] as String);
+          return lastButton(
+              () => answerQuestion(answer['score']), answer['textn'] as String);
         }).toList(),
-        
       ],
     );
   }

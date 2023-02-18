@@ -15,17 +15,15 @@ class Answer extends StatelessWidget {
       margin: const EdgeInsets.all(15),
       height: 50,
       child: ElevatedButton(
-        onPressed: selectHandler,
+        onPressed: () => selectHandler(),
         style: ElevatedButton.styleFrom(
           backgroundColor: Theme.of(context).primaryColor,
           elevation: 3,
           shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-         ),
+            borderRadius: BorderRadius.circular(8),
+          ),
         ),
-        child: Text(answerText, 
-          style: 
-            const TextStyle(fontSize: 12)),
+        child: Text(answerText, style: const TextStyle(fontSize: 12)),
       ),
     );
   }

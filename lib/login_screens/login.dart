@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
 import '../home.dart';
+import 'package:climate_care/login_quiz/quiz_screen.dart';
 
 const users = {
   'abdullahayaz529@gmail.com': '12345',
@@ -59,7 +59,7 @@ class LoginScreen extends StatelessWidget {
       onSignup: _signupUser,
       onSubmitAnimationCompleted: () {
         Navigator.of(context)
-            .pushNamedAndRemoveUntil(Home.routeName, (route) => false);
+            .pushNamedAndRemoveUntil(logQuiz.routeName, (route) => true);
       },
 
       loginProviders: <LoginProvider>[

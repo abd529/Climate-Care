@@ -4,7 +4,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
 class Home extends StatefulWidget {
-  static const routeName="home";
+  static const routeName = "home";
 
   const Home({super.key});
 
@@ -14,20 +14,20 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 2;
-   List<Widget> pages =  [
+  List<Widget> pages = [
     const Text("Activities"),
     const Text("Progress"),
     const HomeScreen(),
     const Text("Community"),
     const Text("Settings"),
-   ];
-   List<Widget> appBarText = [
+  ];
+  List<Widget> appBarText = [
     const Text("Activities"),
     const Text("Progress"),
     const Text("Home"),
     const Text("Community"),
     const Text("Settings"),
-   ];
+  ];
   @override
   Widget build(BuildContext context) {
     //_currentPage = pages[0];
@@ -35,7 +35,7 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         title: appBarText[_selectedIndex],
       ),
-       bottomNavigationBar: Container(
+      bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -49,14 +49,14 @@ class _HomeState extends State<Home> {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
             child: GNav(
-              rippleColor: Colors.green,
-              hoverColor: Colors.green,
+              rippleColor: Theme.of(context).primaryColor,
+              hoverColor: Theme.of(context).primaryColor,
               gap: 8,
               activeColor: Colors.white,
               iconSize: 24,
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
               duration: const Duration(milliseconds: 400),
-              tabBackgroundColor: Colors.green,
+              tabBackgroundColor: Theme.of(context).primaryColor,
               color: Colors.black,
               tabs: const [
                 GButton(
@@ -72,11 +72,11 @@ class _HomeState extends State<Home> {
                   text: 'Home',
                 ),
                 GButton(
-                  icon: Icons.people_alt_outlined ,
+                  icon: Icons.people_alt_outlined,
                   text: 'Community',
                 ),
                 GButton(
-                  icon: Icons.settings_outlined ,
+                  icon: Icons.settings_outlined,
                   text: 'Settings',
                 ),
               ],
