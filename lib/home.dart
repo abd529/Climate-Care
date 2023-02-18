@@ -17,7 +17,7 @@ class _HomeState extends State<Home> {
    List<Widget> pages =  [
     const Text("Activities"),
     const Text("Progress"),
-    HomeScreen(),
+    const HomeScreen(),
     const Text("Community"),
     const Text("Settings"),
    ];

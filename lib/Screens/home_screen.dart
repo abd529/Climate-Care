@@ -1,8 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   final Color dark = Colors.deepPurpleAccent;
   final Color normal = Colors.cyan;
@@ -13,26 +16,27 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
-  Widget bottomTitles(double value, TitleMeta meta) {
-    const style = TextStyle(fontSize: 10);
+ Widget bottomTitles(double value, TitleMeta meta) {
+    TextStyle style = GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.bold);
     String text;
     switch (value.toInt()) {
       case 0:
-        text = 'Your';
+        text = 'Your Emissions';
         break;
       case 1:
-        text = 'Global';
+        text = 'Global Emissions';
+        break;
+      case 2:
+        text = 'PAK Emissions';
         break;
       default:
-        text = 'Country';
-        break;
+        text = '';
     }
     return SideTitleWidget(
       axisSide: meta.axisSide,
       child: Text(text, style: style),
     );
   }
-
   Widget leftTitles(double value, TitleMeta meta) {
     if (value == meta.max) {
       return Container();
@@ -51,61 +55,88 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 1.66,
-      child: Padding(
-        padding: const EdgeInsets.only(top: 16),
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final barsSpace = 4.0 * constraints.maxWidth / 400;
-            final barsWidth = 8.0 * constraints.maxWidth / 400;
-            return BarChart(
-              BarChartData(
-                alignment: BarChartAlignment.center,
-                barTouchData: BarTouchData(
-                  enabled: false,
-                ),
-                titlesData: FlTitlesData(
-                  show: true,
-                  bottomTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      reservedSize: 28,
-                      getTitlesWidget: bottomTitles,
-                    ),
-                  ),
-                  leftTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      reservedSize: 40,
-                      getTitlesWidget: leftTitles,
-                    ),
-                  ),
-                  topTitles: AxisTitles(
-                    sideTitles: SideTitles(showTitles: false),
-                  ),
-                  rightTitles: AxisTitles(
-                    sideTitles: SideTitles(showTitles: false),
-                  ),
-                ),
-                gridData: FlGridData(
-                  show: true,
-                  checkToShowHorizontalLine: (value) => value % 10 == 0,
-                  getDrawingHorizontalLine: (value) => FlLine(
-                    //color: AppColors.borderColor.withOpacity(0.1),
-                    strokeWidth: 1,
-                  ),
-                  drawVerticalLine: false,
-                ),
-                borderData: FlBorderData(
-                  show: false,
-                ),
-                groupsSpace: barsSpace,
-                barGroups: getData(barsWidth, barsSpace),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 14,vertical: 10),
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Hello ", textAlign: TextAlign.start, style: GoogleFonts.poppins(fontSize: 18 )),
+              Text("Abdullah!",style: GoogleFonts.poppins(fontWeight: FontWeight.bold ,fontSize: 22, color: Colors.green ))
+            ],
+          ),
+          SizedBox(height: 10,),
+          Text("Carbon Emissions"),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: const [BoxShadow(color: Colors.black38, blurRadius: 5.2, blurStyle: BlurStyle.outer),],
+              borderRadius: BorderRadius.circular(15),
               ),
-            );
-          },
-        ),
+            child: AspectRatio(
+              aspectRatio: 1.36,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 16),
+                child: LayoutBuilder(
+                  builder: (context, constraints) {
+                    final barsSpace = 92.0 * constraints.maxWidth / 400;
+                    final barsWidth = 4.0 * constraints.maxWidth / 400;
+                    return BarChart(
+                       swapAnimationDuration: Duration(milliseconds: 150), // Optional
+  swapAnimationCurve: Curves.linear,
+                      BarChartData(
+                        alignment: BarChartAlignment.center,
+                        barTouchData: BarTouchData(
+                          enabled: true,
+                        ),
+                        titlesData: FlTitlesData(
+                          show: true,
+                          bottomTitles: AxisTitles(
+                      sideTitles: SideTitles(
+                        showTitles: true,
+                        getTitlesWidget: bottomTitles,
+                        reservedSize: 28,
+                      ),
+                    ),
+                          leftTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              reservedSize: 40,
+                              getTitlesWidget: leftTitles,
+                            ),
+                          ),
+                          topTitles: AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                          rightTitles: AxisTitles(
+                            sideTitles: SideTitles(showTitles: false),
+                          ),
+                        ),
+                        gridData: FlGridData(
+                          show: true,
+                          checkToShowHorizontalLine: (value) => value % 10 == 0,
+                          getDrawingHorizontalLine: (value) => FlLine(
+                            //color: AppColors.borderColor.withOpacity(0.1),
+                            strokeWidth: 1,
+                          ),
+                          drawVerticalLine: false,
+                        ),
+                        borderData: FlBorderData(
+                          show: false,
+                        ),
+                        groupsSpace: barsSpace,
+                        barGroups: getData(barsWidth, barsSpace)
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -114,227 +145,52 @@ class HomeScreenState extends State<HomeScreen> {
     return [
       BarChartGroupData(
         x: 0,
-        barsSpace: barsSpace,
+        barsSpace: 30,
         barRods: [
           BarChartRodData(
-            toY: 17000000000,
+            toY: 170,
+            color: Colors.blue,
             rodStackItems: [
-              BarChartRodStackItem(0, 2000000000, widget.dark),
-              BarChartRodStackItem(2000000000, 12000000000, widget.normal),
-              BarChartRodStackItem(12000000000, 17000000000, widget.light),
+              BarChartRodStackItem(0, 30, widget.dark,),
+              BarChartRodStackItem(20, 120, widget.normal),
+              BarChartRodStackItem(120, 170, widget.light),
             ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(05) , topRight: Radius.circular(05) ),
+            width: 30,
           ),
-          BarChartRodData(
-            toY: 24000000000,
-            rodStackItems: [
-              BarChartRodStackItem(0, 13000000000, widget.dark),
-              BarChartRodStackItem(13000000000, 14000000000, widget.normal),
-              BarChartRodStackItem(14000000000, 24000000000, widget.light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            toY: 23000000000.5,
-            rodStackItems: [
-              BarChartRodStackItem(0, 6000000000.5, widget.dark),
-              BarChartRodStackItem(6000000000.5, 18000000000, widget.normal),
-              BarChartRodStackItem(18000000000, 23000000000.5, widget.light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            toY: 29000000000,
-            rodStackItems: [
-              BarChartRodStackItem(0, 9000000000, widget.dark),
-              BarChartRodStackItem(9000000000, 15000000000, widget.normal),
-              BarChartRodStackItem(15000000000, 29000000000, widget.light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            toY: 32000000000,
-            rodStackItems: [
-              BarChartRodStackItem(0, 2000000000.5, widget.dark),
-              BarChartRodStackItem(2000000000.5, 17000000000.5, widget.normal),
-              BarChartRodStackItem(17000000000.5, 32000000000, widget.light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-        ],
+         ],
       ),
       BarChartGroupData(
         x: 1,
-        barsSpace: barsSpace,
+        barsSpace: 30,
         barRods: [
           BarChartRodData(
-            toY: 31000000000,
+            toY: 240,
             rodStackItems: [
-              BarChartRodStackItem(0, 11000000000, widget.dark),
-              BarChartRodStackItem(11000000000, 18000000000, widget.normal),
-              BarChartRodStackItem(18000000000, 31000000000, widget.light),
+              BarChartRodStackItem(0, 130, widget.dark),
+              BarChartRodStackItem(130, 140, widget.normal),
+              BarChartRodStackItem(140, 240, widget.light),
             ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(05) , topRight: Radius.circular(05) ),
+            width: 30,
           ),
-          BarChartRodData(
-            toY: 35000000000,
-            rodStackItems: [
-              BarChartRodStackItem(0, 14000000000, widget.dark),
-              BarChartRodStackItem(14000000000, 27000000000, widget.normal),
-              BarChartRodStackItem(27000000000, 35000000000, widget.light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            toY: 31000000000,
-            rodStackItems: [
-              BarChartRodStackItem(0, 8000000000, widget.dark),
-              BarChartRodStackItem(8000000000, 24000000000, widget.normal),
-              BarChartRodStackItem(24000000000, 31000000000, widget.light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            toY: 15000000000,
-            rodStackItems: [
-              BarChartRodStackItem(0, 6000000000.5, widget.dark),
-              BarChartRodStackItem(6000000000.5, 12000000000.5, widget.normal),
-              BarChartRodStackItem(12000000000.5, 15000000000, widget.light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            toY: 17000000000,
-            rodStackItems: [
-              BarChartRodStackItem(0, 9000000000, widget.dark),
-              BarChartRodStackItem(9000000000, 15000000000, widget.normal),
-              BarChartRodStackItem(15000000000, 17000000000, widget.light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-        ],
+         ],
       ),
       BarChartGroupData(
         x: 2,
-        barsSpace: barsSpace,
+        barsSpace: 30,
         barRods: [
           BarChartRodData(
-            toY: 34000000000,
+            toY: 230.5,
             rodStackItems: [
-              BarChartRodStackItem(0, 6000000000, widget.dark),
-              BarChartRodStackItem(6000000000, 23000000000, widget.normal),
-              BarChartRodStackItem(23000000000, 34000000000, widget.light),
+              BarChartRodStackItem(0, 60.5, widget.dark),
+              BarChartRodStackItem(60.5, 180, widget.normal),
+              BarChartRodStackItem(180, 230.5, widget.light),
             ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
+            borderRadius: BorderRadius.only(topLeft: Radius.circular(05) , topRight: Radius.circular(05)),
+            width: 30,
           ),
-          BarChartRodData(
-            toY: 32000000000,
-            rodStackItems: [
-              BarChartRodStackItem(0, 7000000000, widget.dark),
-              BarChartRodStackItem(7000000000, 24000000000, widget.normal),
-              BarChartRodStackItem(24000000000, 32000000000, widget.light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            toY: 14000000000.5,
-            rodStackItems: [
-              BarChartRodStackItem(0, 1000000000.5, widget.dark),
-              BarChartRodStackItem(1000000000.5, 12000000000, widget.normal),
-              BarChartRodStackItem(12000000000, 14000000000.5, widget.light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            toY: 20000000000,
-            rodStackItems: [
-              BarChartRodStackItem(0, 4000000000, widget.dark),
-              BarChartRodStackItem(4000000000, 15000000000, widget.normal),
-              BarChartRodStackItem(15000000000, 20000000000, widget.light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            toY: 24000000000,
-            rodStackItems: [
-              BarChartRodStackItem(0, 4000000000, widget.dark),
-              BarChartRodStackItem(4000000000, 15000000000, widget.normal),
-              BarChartRodStackItem(15000000000, 24000000000, widget.light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-        ],
-      ),
-      BarChartGroupData(
-        x: 3,
-        barsSpace: barsSpace,
-        barRods: [
-          BarChartRodData(
-            toY: 14000000000,
-            rodStackItems: [
-              BarChartRodStackItem(0, 1000000000.5, widget.dark),
-              BarChartRodStackItem(1000000000.5, 12000000000, widget.normal),
-              BarChartRodStackItem(12000000000, 14000000000, widget.light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            toY: 27000000000,
-            rodStackItems: [
-              BarChartRodStackItem(0, 7000000000, widget.dark),
-              BarChartRodStackItem(7000000000, 25000000000, widget.normal),
-              BarChartRodStackItem(25000000000, 27000000000, widget.light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            toY: 29000000000,
-            rodStackItems: [
-              BarChartRodStackItem(0, 6000000000, widget.dark),
-              BarChartRodStackItem(6000000000, 23000000000, widget.normal),
-              BarChartRodStackItem(23000000000, 29000000000, widget.light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            toY: 16000000000.5,
-            rodStackItems: [
-              BarChartRodStackItem(0, 9000000000, widget.dark),
-              BarChartRodStackItem(9000000000, 15000000000, widget.normal),
-              BarChartRodStackItem(15000000000, 16000000000.5, widget.light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-          BarChartRodData(
-            toY: 15000000000,
-            rodStackItems: [
-              BarChartRodStackItem(0, 7000000000, widget.dark),
-              BarChartRodStackItem(7000000000, 12000000000.5, widget.normal),
-              BarChartRodStackItem(12000000000.5, 15000000000, widget.light),
-            ],
-            borderRadius: BorderRadius.zero,
-            width: barsWidth,
-          ),
-        ],
+         ],
       ),
     ];
   }

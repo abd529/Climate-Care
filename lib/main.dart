@@ -17,9 +17,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: const Color.fromRGBO(71, 191, 83, 1.0),
+        textTheme: TextTheme(bodyLarge: GoogleFonts.poppins()),
         appBarTheme: AppBarTheme(backgroundColor: Colors.green, elevation: 0, titleTextStyle: GoogleFonts.poppins(fontSize: 18))
       ),
-      home: const Home(),
+      home:  const Home(),
       routes: {
         LoginScreen.routeName: (ctx) => const LoginScreen(),
         Home.routeName: (ctx) => const Home(),
