@@ -5,7 +5,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  final double em;
+   const HomeScreen(this.em,{super.key});
 
   final Color dark = Colors.deepPurpleAccent;
   final Color normal = Colors.cyan;
@@ -148,7 +149,7 @@ class HomeScreenState extends State<HomeScreen> {
         barsSpace: 30,
         barRods: [
           BarChartRodData(
-            toY: 170,
+            toY: widget.em,
             color: Colors.blue,
             rodStackItems: [
               BarChartRodStackItem(0, 30, widget.dark,),
@@ -165,7 +166,7 @@ class HomeScreenState extends State<HomeScreen> {
         barsSpace: 30,
         barRods: [
           BarChartRodData(
-            toY: 240,
+            toY: 7000,
             rodStackItems: [
               BarChartRodStackItem(0, 130, widget.dark),
               BarChartRodStackItem(130, 140, widget.normal),
@@ -181,7 +182,7 @@ class HomeScreenState extends State<HomeScreen> {
         barsSpace: 30,
         barRods: [
           BarChartRodData(
-            toY: 230.5,
+            toY: 5000,
             rodStackItems: [
               BarChartRodStackItem(0, 60.5, widget.dark),
               BarChartRodStackItem(60.5, 180, widget.normal),

@@ -123,6 +123,7 @@ class _logQuizState extends State<logQuiz> {
     if (_questionindex <= 7 && _questionindex > 4) {
       finalscore += score;
     }
+    print(finalscore);
   }
 
   @override
@@ -141,7 +142,7 @@ class _logQuizState extends State<logQuiz> {
                 indexDots(_dotindex, _questions.length),
               ],
             )
-          : const Home(),
+          : Home(emissions:finalscore),
     );
   }
 }

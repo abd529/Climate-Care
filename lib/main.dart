@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           const logQuiz(), //change this to Home screen the score value is in quiz_screen.dart>>finalscore
       routes: {
         LoginScreen.routeName: (ctx) => const LoginScreen(),
-        Home.routeName: (ctx) => const Home(),
+        //Home.routeName: (ctx) => const Home(),
         logQuiz.routeName: (ctx) => const logQuiz(),
       },
     );

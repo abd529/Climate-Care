@@ -5,8 +5,8 @@ import 'package:line_icons/line_icons.dart';
 
 class Home extends StatefulWidget {
   static const routeName = "home";
-
-  const Home({super.key});
+  final double emissions;
+  const Home({super.key, required this.emissions});
 
   @override
   State<Home> createState() => _HomeState();
@@ -14,13 +14,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedIndex = 2;
-  List<Widget> pages = [
-    const Text("Activities"),
-    const Text("Progress"),
-    const HomeScreen(),
-    const Text("Community"),
-    const Text("Settings"),
-  ];
+
   List<Widget> appBarText = [
     const Text("Activities"),
     const Text("Progress"),
@@ -30,7 +24,13 @@ class _HomeState extends State<Home> {
   ];
   @override
   Widget build(BuildContext context) {
-    //_currentPage = pages[0];
+     List<Widget> pages = [
+    const Text("Activities"),
+    const Text("Progress"),
+    HomeScreen(widget.emissions),
+    const Text("Community"),
+    const Text("Settings"),
+  ];
     return Scaffold(
       appBar: AppBar(
         title: appBarText[_selectedIndex],
