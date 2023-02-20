@@ -17,7 +17,7 @@ class lastButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: buttonfun,
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.white,
+          backgroundColor: Theme.of(context).primaryColor,
           elevation: 3,
           shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
@@ -25,7 +25,7 @@ class lastButton extends StatelessWidget {
         ),
         child: Text(buttontext, 
           style: 
-             TextStyle(fontSize: 12, color: Theme.of(context).primaryColor)),
+             const TextStyle(fontSize: 12, color: Colors.white)),
       ),
     );
   }
