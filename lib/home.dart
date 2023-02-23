@@ -5,8 +5,11 @@ import 'package:line_icons/line_icons.dart';
 
 class Home extends StatefulWidget {
   static const routeName = "home";
-  final double emissions;
-  const Home({super.key, required this.emissions});
+  final double emissions = 6000;
+  const Home({
+    super.key,
+    //required this.emissions
+  });
 
   @override
   State<Home> createState() => _HomeState();
@@ -24,17 +27,14 @@ class _HomeState extends State<Home> {
   ];
   @override
   Widget build(BuildContext context) {
-     List<Widget> pages = [
-    const Text("Activities"),
-    const Text("Progress"),
-    HomeScreen(widget.emissions),
-    const Text("Community"),
-    const Text("Settings"),
-  ];
+    List<Widget> pages = [
+      const Text("Activities"),
+      const Text("Progress"),
+      HomeScreen(widget.emissions),
+      const Text("Community"),
+      const Text("Settings"),
+    ];
     return Scaffold(
-      appBar: AppBar(
-        title: appBarText[_selectedIndex],
-      ),
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
                 ),
                 GButton(
                   icon: LineIcons.home,
-                  text: 'Home',
+                  text: 'HOME',
                 ),
                 GButton(
                   icon: Icons.people_alt_outlined,
@@ -90,9 +90,12 @@ class _HomeState extends State<Home> {
           ),
         ),
       ),
-      body: Column(children: [
-        pages[_selectedIndex],
-      ]),
+      body: SingleChildScrollView(
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          pages[_selectedIndex],
+          //Text("hh"),
+        ]),
+      ),
     );
   }
 }
