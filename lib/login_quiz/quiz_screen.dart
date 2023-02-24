@@ -129,22 +129,29 @@ class _logQuizState extends State<logQuiz> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        //height: MediaQuery.of(context).size.height,
-        color: Colors.white,
-        child: _questionindex < _questions.length
-            ? Column(
-                children: [
-                  proBar(_progressindex),
-                  quizDesign(
-                    answerQuestion: _answerQuestion,
-                    questionIndex: _questionindex,
-                    questions: _questions,
-                  ),
-                  indexDots(_dotindex, _questions.length),
-                ],
-              )
-            : const Home(),
+      body: SafeArea(
+        child: Container(
+          //height: MediaQuery.of(context).size.height,
+          color: Colors.white,
+          child: _questionindex < _questions.length
+              ? Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 10,
+                      ),
+                      child: proBar(_progressindex, true),
+                    ),
+                    quizDesign(
+                      answerQuestion: _answerQuestion,
+                      questionIndex: _questionindex,
+                      questions: _questions,
+                    ),
+                    indexDots(_dotindex, _questions.length),
+                  ],
+                )
+              : const Home(),
+        ),
       ),
     );
   }

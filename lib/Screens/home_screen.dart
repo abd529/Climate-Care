@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:climate_care/login_quiz/progressbar.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:line_icons/line_icons.dart';
 
 class HomeScreen extends StatefulWidget {
   final double em;
@@ -17,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
+  bool value = false;
   Widget bottomTitles(double value, TitleMeta meta) {
     TextStyle style =
         GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.bold);
@@ -67,7 +70,7 @@ class HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text("Hello ",
                     textAlign: TextAlign.start,
@@ -87,13 +90,7 @@ class HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 15,
             ),
-            Text(
-              "Carbon Emissions Level",
-              style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.green),
-            ),
+            heading("Carbon Emissions Level"),
             AspectRatio(
               aspectRatio: 1.26,
               child: Padding(
@@ -155,11 +152,139 @@ class HomeScreenState extends State<HomeScreen> {
               ),
             ),
             SizedBox(
-              height: 300,
-            )
+              height: 20,
+            ),
+            heading("Weekly Steps to be Eco Friendly"),
+            SizedBox(
+              height: 5,
+            ),
+            Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 3,
+                    blurRadius: 5,
+                    offset: Offset(0, 0), // changes position of shadow
+                  ),
+                ],
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Plant a seed"),
+                        Checkbox(
+                          value: value,
+                          onChanged: (bool? newValue) {
+                            setState(() {});
+                          },
+                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Recycle a news paper"),
+                        Checkbox(
+                          value: value,
+                          onChanged: (bool? newValue) {
+                            setState(() {});
+                          },
+                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Use eco friendly product"),
+                        Checkbox(
+                          value: value,
+                          onChanged: (bool? newValue) {
+                            setState(() {});
+                          },
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            Container(
+              child: Stack(
+                children: [Text("\"Quotation\"")],
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            heading("My Progress"),
+            SizedBox(
+              height: 5,
+            ),
+            Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.5),
+                      spreadRadius: 3,
+                      blurRadius: 5,
+                      offset: Offset(0, 0), // changes position of shadow
+                    ),
+                  ],
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Icon(
+                            LineIcons.tree,
+                            size: 35,
+                            fill: 1.0,
+                            color: Color.fromARGB(255, 1, 106, 5),
+                          ),
+                          Text(
+                            "20%",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            "2/10",
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      proBar(0.2, false),
+                    ],
+                  ),
+                ))
           ],
         ),
       ),
+    );
+  }
+
+  Text heading(String text) {
+    return Text(
+      text,
+      style: TextStyle(
+          fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green),
     );
   }
 

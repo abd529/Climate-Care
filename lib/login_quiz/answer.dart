@@ -13,7 +13,7 @@ class Answer extends StatelessWidget {
     return Container(
       width: 225,
       margin: const EdgeInsets.all(15),
-      height: 50,
+      height: 30,
       child: ElevatedButton(
         onPressed: () => selectHandler(),
         style: ElevatedButton.styleFrom(
