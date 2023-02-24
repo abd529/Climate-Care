@@ -22,7 +22,7 @@ class HomeScreenState extends State<HomeScreen> {
   bool value = false;
   Widget bottomTitles(double value, TitleMeta meta) {
     TextStyle style =
-        GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.bold);
+        GoogleFonts.poppins(fontSize: 9.25, fontWeight: FontWeight.bold);
     String text;
     switch (value.toInt()) {
       case 0:
