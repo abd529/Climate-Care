@@ -150,7 +150,9 @@ class _logQuizState extends State<logQuiz> {
                     indexDots(_dotindex, _questions.length),
                   ],
                 )
-              : const Home(),
+              : Home(
+                  emissions: finalscore,
+                ),
         ),
       ),
     );

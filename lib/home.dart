@@ -5,11 +5,8 @@ import 'package:line_icons/line_icons.dart';
 
 class Home extends StatefulWidget {
   static const routeName = "home";
-  final double emissions = 6000;
-  const Home({
-    super.key,
-    //required this.emissions
-  });
+  final double emissions;
+  const Home({super.key, required this.emissions});
 
   @override
   State<Home> createState() => _HomeState();
