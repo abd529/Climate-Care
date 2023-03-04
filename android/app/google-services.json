@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "759656238296",
+    "project_id": "climate-care-fa06f",
+    "storage_bucket": "climate-care-fa06f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759656238296:android:c1c09c0c096c13187a5bad",
+        "android_client_info": {
+          "package_name": "com.example.climate_care"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759656238296-l11d2lfpvn28gt3lf6mqmvtcjhn10ous.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCL9rRnKIDVRWQCJetz4AY7w2kxPaE-ATk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759656238296-l11d2lfpvn28gt3lf6mqmvtcjhn10ous.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

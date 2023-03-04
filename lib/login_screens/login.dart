@@ -1,8 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import '../home.dart';
+import '../Models/register_view_model.dart';
 import 'package:climate_care/login_quiz/quiz_screen.dart';
 
 const users = {
@@ -10,10 +11,18 @@ const users = {
   'alirazamunir2003@gmail.com': 'not12345',
 };
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   static const routeName = "login-screen";
 
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool isRegistered = false;
+  late RegisterViewModel _registerVM;
   Duration get loginTime => const Duration(milliseconds: 2250);
 
   Future<String?> _authUser(LoginData data) {
@@ -29,11 +38,12 @@ class LoginScreen extends StatelessWidget {
     });
   }
 
-  Future<String?> _signupUser(SignupData data) {
-    debugPrint('Signup Name: ${data.name}, Password: ${data.password}');
-    return Future.delayed(loginTime).then((_) {
-      return null;
-    });
+  Future<String?> register(SignupData data) async {
+    // debugPrint(
+    //     'Signup Name: ${data.name}, Password: ${data.password}, FullName: ${data.additionalSignupData![0]}');
+    // return Future.delayed(loginTime).then((_) {
+    //   return null;
+    // });
   }
 
   Future<String> _recoverPassword(String name) {
@@ -56,7 +66,8 @@ class LoginScreen extends StatelessWidget {
       //title: 'Climate Care',
       logo: const AssetImage('assets/logo.png'),
       onLogin: _authUser,
-      onSignup: _signupUser,
+      onSignup: register,
+      // onConfirmSignup: ,
       onSubmitAnimationCompleted: () {
         Navigator.of(context)
             .pushNamedAndRemoveUntil(logQuiz.routeName, (route) => true);
