@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 class RegisterViewModel extends ChangeNotifier {
   String message = "";
 
-  Future<bool> register(String email, String password, String name) async {
+  Future<bool> register(
+      String email, String password, String name, String pic) async {
     bool isRegistered = false;
 
     try {
@@ -14,6 +15,7 @@ class RegisterViewModel extends ChangeNotifier {
         email: email,
         password: password,
       );
+      await FirebaseAuth.instance.currentUser!.updateDisplayName(name);
       isRegistered = userCredential != null;
     } on FirebaseAuthException catch (e) {
       if (e.code == "weak-password") {
@@ -21,9 +23,7 @@ class RegisterViewModel extends ChangeNotifier {
       } else if (e.code == "email-already-in-use") {
         message = Constants.EMAIL_ALREADY_IN_USE;
       }
-
-      await FirebaseAuth.instance.currentUser!.updateDisplayName(name);
-      //await FirebaseAuth.instance.currentUser!.updatePhotoURL("photoURL");
+      //await FirebaseAuth.instance.currentUser!.updatePhotoURL(pic);
 
       notifyListeners();
     } catch (e) {

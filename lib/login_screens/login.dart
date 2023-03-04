@@ -11,16 +11,16 @@ const users = {
   'alirazamunir2003@gmail.com': 'not12345',
 };
 
-class LoginScreen extends StatefulWidget {
+class Login extends StatefulWidget {
   static const routeName = "login-screen";
 
-  const LoginScreen({super.key});
+  const Login({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<Login> createState() => _LoginState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginState extends State<Login> {
   bool isRegistered = false;
   late RegisterViewModel _registerVM;
   Duration get loginTime => const Duration(milliseconds: 2250);

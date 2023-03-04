@@ -1,6 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:climate_care/login_quiz/progressbar.dart';
+import 'package:climate_care/login_screens/login.dart';
+import 'package:climate_care/login_screens/login_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter_svg/svg.dart';
@@ -21,6 +24,7 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   bool value = false;
+
   Widget bottomTitles(double value, TitleMeta meta) {
     TextStyle style =
         GoogleFonts.poppins(fontSize: 9.25, fontWeight: FontWeight.bold);
@@ -63,6 +67,8 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final name = FirebaseAuth.instance.currentUser!.displayName;
+    final user_id = FirebaseAuth.instance.currentUser!.uid;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
@@ -78,7 +84,7 @@ class HomeScreenState extends State<HomeScreen> {
                     Text("Hello ",
                         textAlign: TextAlign.start,
                         style: GoogleFonts.poppins(fontSize: 18)),
-                    Text("Abdullah!",
+                    Text(" $name!",
                         style: GoogleFonts.poppins(
                             fontWeight: FontWeight.bold,
                             fontSize: 22,
@@ -91,7 +97,28 @@ class HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 IconButton(
-                    onPressed: () {},
+                    onPressed: () async {
+                      //inal st = FirebaseAuth.instance.currentUser!.uid;
+                      await FirebaseAuth.instance.currentUser!.reload();
+                      FirebaseAuth.instance
+                          .authStateChanges()
+                          .listen((User? user) {
+                        if (user != null) {
+                          print(user.uid);
+                          print(user.displayName);
+                        }
+                      });
+                      // print(name);
+                      // print(user_id);
+                      // await FirebaseAuth.instance.signOut();
+                      // if (user_id != null) {
+                      //   print("logged out");
+                      // } else {
+                      //   print("null");
+                      // }
+                      // Navigator.push(context,
+                      //     MaterialPageRoute(builder: (ctx) => LoginScreen()));
+                    },
                     icon: Icon(
                       Icons.menu_rounded,
                       size: 40,

@@ -8,6 +8,7 @@ import 'package:climate_care/login_screens/login.dart';
 import 'package:climate_care/onboarding/splash.dart';
 import 'Screens/plants_growth_screen.dart';
 import 'login_quiz/quiz_screen.dart';
+import 'login_screens/login_screen.dart';
 import 'login_screens/signup_screen.dart';
 import 'robo/sumbit_screen.dart';
 
@@ -33,9 +34,10 @@ class MyApp extends StatelessWidget {
               elevation: 0,
               titleTextStyle: GoogleFonts.poppins(fontSize: 18))),
       home:
-          const logQuiz(), //change this to Home screen the score value is in quiz_screen.dart>>finalscore
+          SplashScreen(), //change this to Home screen the score value is in quiz_screen.dart>>finalscore
       routes: {
-        LoginScreen.routeName: (ctx) => const LoginScreen(),
+        Signup.routeName: (ctx) => const Signup(),
+        LoginScreen.routeName: (ctx) => LoginScreen(),
         logQuiz.routeName: (ctx) => const logQuiz(),
       },
     );

@@ -1,4 +1,5 @@
 import 'package:climate_care/Screens/home_screen.dart';
+import 'package:climate_care/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
@@ -29,7 +30,7 @@ class _HomeState extends State<Home> {
       const Text("Progress"),
       HomeScreen(widget.emissions),
       const Text("Community"),
-      const Text("Settings"),
+      const ProfileScreen(),
     ];
     return Scaffold(
       bottomNavigationBar: Container(
