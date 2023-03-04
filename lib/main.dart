@@ -9,7 +9,7 @@ import 'package:climate_care/onboarding/splash.dart';
 import 'Screens/plants_growth_screen.dart';
 import 'login_quiz/quiz_screen.dart';
 import 'login_screens/signup_screen.dart';
-import 'robo/robo.dart';
+import 'robo/sumbit_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -32,9 +32,8 @@ class MyApp extends StatelessWidget {
               backgroundColor: const Color.fromRGBO(71, 191, 83, 1.0),
               elevation: 0,
               titleTextStyle: GoogleFonts.poppins(fontSize: 18))),
-      home: Home(
-          emissions:
-              6000), //change this to Home screen the score value is in quiz_screen.dart>>finalscore
+      home:
+          const logQuiz(), //change this to Home screen the score value is in quiz_screen.dart>>finalscore
       routes: {
         LoginScreen.routeName: (ctx) => const LoginScreen(),
         logQuiz.routeName: (ctx) => const logQuiz(),
