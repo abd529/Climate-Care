@@ -13,8 +13,8 @@ class SplashScreen extends StatelessWidget {
       duration: 3000,
       backgroundColor: Theme.of(context).primaryColor,
       splash: SizedBox(
-          height: size.height / 3,
-          width: size.height / 3,
+          height: size.height / 3.5,
+          width: size.height / 3.5,
           child: Image.asset("assets/logo.png")),
       splashIconSize: 500,
       nextScreen: const Onbording(),

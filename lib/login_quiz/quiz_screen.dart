@@ -50,7 +50,7 @@ class _logQuizState extends State<logQuiz> {
     {
       'questionText1': 'How many Km do you ',
       'questionText2': 'Drive',
-      'questionText3': 'in a year?',
+      'questionText3': ' in a year?',
       'answers': [
         {'text': '1000-5000 Km', 'score': 2500},
         {'text': '5000-10000 Km', 'score': 7500},
@@ -63,7 +63,7 @@ class _logQuizState extends State<logQuiz> {
     {
       'questionText1': 'How many ',
       'questionText2': 'Flights',
-      'questionText3': 'have you taken last year?',
+      'questionText3': ' have you taken last year?',
       'answers': [
         {'text': 'Less than 5', 'score': 4},
         {'text': 'Less than 10', 'score': 12},
@@ -87,7 +87,7 @@ class _logQuizState extends State<logQuiz> {
     {
       'questionText1': 'Do you ',
       'questionText2': 'Recycle',
-      'questionText3': 'aluminumor or tin?',
+      'questionText3': ' aluminum or tin?',
       'answers': [
         {'text': 'Yes', 'score': 0},
       ],

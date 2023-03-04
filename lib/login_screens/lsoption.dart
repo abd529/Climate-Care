@@ -17,50 +17,52 @@ class Option extends StatelessWidget {
           Container(
             height: 200,
             width: 200,
-            margin: EdgeInsets.only(top: size.height / 4),
+            margin: EdgeInsets.only(
+              top: size.height / 4,
+              bottom: 25,
+            ),
             child: Image.asset('assets/logo.png'),
           ),
           Container(
-            width: size.width / 2,
-            height: 60,
-            margin: const EdgeInsets.all(20.0),
+            width: size.width / 1.75,
+            height: 50,
+            margin: const EdgeInsets.all(30),
             child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).pushNamed(Signup.routeName);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromRGBO(255, 255, 255, 1.0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-              child: const Text(
-                'Create An Account',
-                style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 1.0),
-                ),
-              ),
-            ),
-          ),
-          //const Spacer(),
-          Container(
-            width: size.width / 2,
-            height: 50,
-            margin: const EdgeInsets.only(bottom: 40),
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pushNamed(LoginScreen.routeName);
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromRGBO(255, 255, 255, 1.0),
+                backgroundColor: Colors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50),
                 ),
               ),
               child: const Text(
-                'Get Started',
+                'Create Account',
                 style: TextStyle(
-                  color: Color.fromRGBO(0, 0, 0, 1.0),
+                  color: Colors.black,
+                ),
+              ),
+            ),
+          ),
+          //const Spacer(),
+          SizedBox(
+            width: size.width / 1.75,
+            height: 50,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(LoginScreen.routeName);
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50),
+                ),
+              ),
+              child: const Text(
+                'Login',
+                style: TextStyle(
+                  color: Colors.black,
                 ),
               ),
             ),

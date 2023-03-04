@@ -36,7 +36,11 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Login")),
+        backgroundColor: Theme.of(context).primaryColor,
+        appBar: AppBar(
+          title: const Text("Login"),
+          backgroundColor: Colors.black,
+        ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
@@ -44,39 +48,103 @@ class _LoginScreenState extends State<LoginScreen> {
                 key: _formKey,
                 child: Column(
                   children: [
-                    const CircleAvatar(
-                        maxRadius: 150,
-                        backgroundImage: AssetImage("assets/logo.png")),
-                    TextFormField(
-                      controller: _emailController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Email is required!";
-                        }
-                        return null;
-                      },
-                      decoration: const InputDecoration(hintText: "Email"),
+                    Container(
+                      width: 200,
+                      height: 200,
+                      margin: const EdgeInsets.all(40),
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                        image: AssetImage(
+                          'assets/logo.png',
+                        ),
+                      )),
                     ),
-                    TextFormField(
-                      controller: _passwordController,
-                      obscureText: true,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Password is required!";
-                        }
-                        return null;
-                      },
-                      decoration: const InputDecoration(hintText: "Password"),
+                    Container(
+                      height: 50,
+                      margin: const EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(50)),
+                      child: TextFormField(
+                        controller: _emailController,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Email is required!";
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                              strokeAlign: BorderSide.strokeAlignOutside,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                              color: Colors.black,
+                            ),
+                          ),
+                          hintText: 'Mail',
+                          hintStyle: const TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
                     ),
-                    ElevatedButton(
-                      child: const Text("Login",
-                          style: TextStyle(color: Colors.white)),
-                      onPressed: () {
-                        _login(context);
-                      },
-                      //color: Colors.blue
+                    Container(
+                      height: 50,
+                      margin: const EdgeInsets.all(15),
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(50)),
+                      child: TextFormField(
+                        controller: _passwordController,
+                        obscureText: true,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Password is required!";
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(
+                              strokeAlign: BorderSide.strokeAlignOutside,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(30),
+                            borderSide: const BorderSide(color: Colors.black),
+                          ),
+                          hintText: 'Password',
+                          hintStyle: const TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
                     ),
-                    const Text("")
+                    Container(
+                      width: 180,
+                      height: 50,
+                      margin: const EdgeInsets.all(40),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                          ),
+                        ),
+                        child: const Text("Login",
+                            style: TextStyle(color: Colors.white)),
+                        onPressed: () {
+                          _login(context);
+                        },
+                        //color: Colors.blue
+                      ),
+                    ),
                   ],
                 )),
           ),

@@ -52,55 +52,133 @@ class _SignupState extends State<Signup> {
             child: Column(
               children: [
                 Container(
-                    height: 80,
-                    width: 80,
+                    height: 100,
+                    width: 100,
+                    margin: const EdgeInsets.all(50),
                     child: Image.asset('assets/logo.png')),
                 Container(
-                  color: Colors.white,
                   width: double.infinity,
                   child: Form(
                     key: _formKey,
                     child: Column(
                       children: [
-                        TextFormField(
-                          controller: _nameController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Name is is required!";
-                            }
-                            return null;
-                          },
-                          decoration:
-                              const InputDecoration(hintText: "Full Name"),
+                        Container(
+                          height: 50,
+                          margin: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(50)),
+                          child: TextFormField(
+                            controller: _nameController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Required!";
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide: const BorderSide(
+                                  strokeAlign: BorderSide.strokeAlignOutside,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide:
+                                    const BorderSide(color: Colors.black),
+                              ),
+                              hintText: 'Full Name',
+                              hintStyle: const TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
                         ),
-                        TextFormField(
-                          controller: _emailController,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Email is required!";
-                            }
-                            return null;
-                          },
-                          decoration: const InputDecoration(hintText: "Email"),
+                        Container(
+                          height: 50,
+                          margin: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(50)),
+                          child: TextFormField(
+                            controller: _emailController,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Required!";
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide: const BorderSide(
+                                  strokeAlign: BorderSide.strokeAlignOutside,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide:
+                                    const BorderSide(color: Colors.black),
+                              ),
+                              hintText: 'Email',
+                              hintStyle: const TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
                         ),
-                        TextFormField(
-                          controller: _passwordController,
-                          obscureText: true,
-                          validator: (value) {
-                            if (value!.isEmpty) {
-                              return "Password is required!";
-                            }
-                            return null;
-                          },
-                          decoration:
-                              const InputDecoration(hintText: "Password"),
+                        Container(
+                          height: 50,
+                          margin: const EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(50)),
+                          child: TextFormField(
+                            controller: _passwordController,
+                            obscureText: true,
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Required!";
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide: const BorderSide(
+                                  strokeAlign: BorderSide.strokeAlignOutside,
+                                ),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide:
+                                    const BorderSide(color: Colors.black),
+                              ),
+                              hintText: 'Password',
+                              hintStyle: const TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
                         ),
-                        ElevatedButton(
-                          child: const Text("Register",
-                              style: TextStyle(color: Colors.white)),
-                          onPressed: () {
-                            _registerUser(context);
-                          },
+                        Container(
+                          width: 180,
+                          height: 50,
+                          margin: const EdgeInsets.all(40),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.black,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(50),
+                              ),
+                            ),
+                            child: const Text("Register",
+                                style: TextStyle(color: Colors.white)),
+                            onPressed: () {
+                              _registerUser(context);
+                            },
+                          ),
                         ),
                         Text(_registerVM.message)
                       ],
