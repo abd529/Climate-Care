@@ -1,18 +1,19 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:climate_care/home.dart';
+import 'package:climate_care/login_quiz/quiz_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../Models/register_view_model.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class Signup extends StatefulWidget {
+  const Signup({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Signup> createState() => _SignupState();
 }
 
-class _LoginState extends State<Login> {
+class _SignupState extends State<Signup> {
   final _formKey = GlobalKey<FormState>();
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
@@ -28,8 +29,8 @@ class _LoginState extends State<Login> {
       isRegistered = await _registerVM.register(_emailController.text,
           _passwordController.text, _nameController.text);
       if (isRegistered) {
-        Navigator.push(context,
-            MaterialPageRoute(builder: (ctx) => const Home(emissions: 5000)));
+        Navigator.push(
+            context, MaterialPageRoute(builder: (ctx) => const logQuiz()));
       }
     }
 
