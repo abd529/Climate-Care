@@ -15,11 +15,12 @@ class Signup extends StatefulWidget {
 
 class _SignupState extends State<Signup> {
   String profilePicLink = "";
-  var _image = null;
+  //var _image = null;
   int num = 0;
 
   final _formKey = GlobalKey<FormState>();
-  final _nameController = TextEditingController();
+  final _fNameController = TextEditingController();
+  final _LNameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -31,7 +32,7 @@ class _SignupState extends State<Signup> {
       final email = _emailController.text;
       final password = _emailController.text;
       isRegistered = await _registerVM.register(_emailController.text,
-          _passwordController.text, _nameController.text, profilePicLink);
+          _passwordController.text, _fNameController.text, profilePicLink);
       if (isRegistered) {
         Navigator.push(
             context, MaterialPageRoute(builder: (ctx) => const logQuiz()));
@@ -44,152 +45,175 @@ class _SignupState extends State<Signup> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
-      body: SingleChildScrollView(
-        child: SafeArea(
-          child: Container(
-            width: double.infinity,
-            child: Column(
-              children: [
-                Container(
-                    height: 100,
-                    width: 100,
-                    margin: const EdgeInsets.all(50),
-                    child: Image.asset('assets/logo.png')),
-                Container(
-                  width: double.infinity,
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        Container(
-                          height: 50,
-                          margin: const EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(50)),
-                          child: TextFormField(
-                            controller: _nameController,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Required!";
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
-                                borderSide: const BorderSide(
-                                  strokeAlign: BorderSide.strokeAlignOutside,
+        backgroundColor: Colors.green,
+        body: SingleChildScrollView(
+            child: SafeArea(
+                child: Container(
+                    width: double.infinity,
+                    child: Column(children: [
+                      Container(
+                          height: 150,
+                          width: 150,
+                          //margin: const EdgeInsets.all(50),
+                          child: Image.asset('assets/logo.png')),
+                      Container(
+                        width: double.infinity,
+                        child: Form(
+                          key: _formKey,
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                  controller: _fNameController,
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Required!";
+                                    }
+                                    return null;
+                                  },
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    focusColor: Colors.white,
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                      borderSide: const BorderSide(
+                                        strokeAlign:
+                                            BorderSide.strokeAlignOutside,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                      borderSide:
+                                          const BorderSide(color: Colors.white),
+                                    ),
+                                    hintText: 'First Name',
+                                    hintStyle: const TextStyle(
+                                        fontSize: 14, color: Colors.grey),
+                                  ),
                                 ),
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
-                                borderSide:
-                                    const BorderSide(color: Colors.black),
-                              ),
-                              hintText: 'Full Name',
-                              hintStyle: const TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 50,
-                          margin: const EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(50)),
-                          child: TextFormField(
-                            controller: _emailController,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Required!";
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
-                                borderSide: const BorderSide(
-                                  strokeAlign: BorderSide.strokeAlignOutside,
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                  controller: _LNameController,
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Required!";
+                                    }
+                                    return null;
+                                  },
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    focusColor: Colors.white,
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                      borderSide: const BorderSide(
+                                        strokeAlign:
+                                            BorderSide.strokeAlignOutside,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                      borderSide:
+                                          const BorderSide(color: Colors.white),
+                                    ),
+                                    hintText: 'Last Name',
+                                    hintStyle: const TextStyle(
+                                        fontSize: 14, color: Colors.grey),
+                                  ),
                                 ),
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
-                                borderSide:
-                                    const BorderSide(color: Colors.black),
-                              ),
-                              hintText: 'Email',
-                              hintStyle: const TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          height: 50,
-                          margin: const EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(50)),
-                          child: TextFormField(
-                            controller: _passwordController,
-                            obscureText: true,
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Required!";
-                              }
-                              return null;
-                            },
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
-                                borderSide: const BorderSide(
-                                  strokeAlign: BorderSide.strokeAlignOutside,
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                  controller: _emailController,
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Required!";
+                                    }
+                                    return null;
+                                  },
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    focusColor: Colors.white,
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                      borderSide: const BorderSide(
+                                        strokeAlign:
+                                            BorderSide.strokeAlignOutside,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                      borderSide:
+                                          const BorderSide(color: Colors.white),
+                                    ),
+                                    hintText: 'Email',
+                                    hintStyle: const TextStyle(
+                                        fontSize: 14, color: Colors.grey),
+                                  ),
                                 ),
                               ),
-                              focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
-                                borderSide:
-                                    const BorderSide(color: Colors.black),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextFormField(
+                                  controller: _passwordController,
+                                  obscureText: true,
+                                  validator: (value) {
+                                    if (value!.isEmpty) {
+                                      return "Required!";
+                                    }
+                                    return null;
+                                  },
+                                  decoration: InputDecoration(
+                                    filled: true,
+                                    fillColor: Colors.white,
+                                    focusColor: Colors.white,
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                      borderSide: const BorderSide(
+                                        strokeAlign:
+                                            BorderSide.strokeAlignOutside,
+                                      ),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(30),
+                                      borderSide:
+                                          const BorderSide(color: Colors.white),
+                                    ),
+                                    hintText: 'Password',
+                                    hintStyle: const TextStyle(
+                                        fontSize: 14, color: Colors.grey),
+                                  ),
+                                ),
                               ),
-                              hintText: 'Password',
-                              hintStyle: const TextStyle(
-                                fontSize: 14,
+                              Container(
+                                width: 180,
+                                height: 50,
+                                margin: const EdgeInsets.all(40),
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.black,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                  ),
+                                  child: const Text("Register",
+                                      style: TextStyle(color: Colors.white)),
+                                  onPressed: () {
+                                    _registerUser(context);
+                                  },
+                                ),
                               ),
-                            ),
+                              Text(_registerVM.message)
+                            ],
                           ),
                         ),
-                        Container(
-                          width: 180,
-                          height: 50,
-                          margin: const EdgeInsets.all(40),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.black,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(50),
-                              ),
-                            ),
-                            child: const Text("Register",
-                                style: TextStyle(color: Colors.white)),
-                            onPressed: () {
-                              _registerUser(context);
-                            },
-                          ),
-                        ),
-                        Text(_registerVM.message)
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
+                      )
+                    ])))));
   }
 }

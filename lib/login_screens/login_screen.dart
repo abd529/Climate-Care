@@ -21,15 +21,17 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordController = TextEditingController();
 
   void _login(BuildContext context) async {
-    isLoggedIn =
-        await _loginVM.login(_emailController.text, _passwordController.text);
-    if (isLoggedIn) {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (ctx) => const Home(
-                    emissions: 8000,
-                  )));
+    if (_formKey.currentState!.validate()) {
+      isLoggedIn =
+          await _loginVM.login(_emailController.text, _passwordController.text);
+      if (isLoggedIn) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (ctx) => const Home(
+                      emissions: 8000,
+                    )));
+      }
     }
   }
 
@@ -37,10 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
-        appBar: AppBar(
-          title: const Text("Login"),
-          backgroundColor: Colors.black,
-        ),
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: SingleChildScrollView(
@@ -49,8 +47,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: Column(
                   children: [
                     Container(
-                      width: 200,
-                      height: 200,
+                      width: 150,
+                      height: 150,
                       margin: const EdgeInsets.all(40),
                       decoration: const BoxDecoration(
                           image: DecorationImage(
@@ -59,12 +57,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       )),
                     ),
-                    Container(
-                      height: 50,
-                      margin: const EdgeInsets.all(15),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(50)),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
                         controller: _emailController,
                         validator: (value) {
@@ -74,6 +68,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           return null;
                         },
                         decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          focusColor: Colors.white,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: const BorderSide(
@@ -82,23 +79,16 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
-                            borderSide: const BorderSide(
-                              color: Colors.black,
-                            ),
+                            borderSide: const BorderSide(color: Colors.white),
                           ),
-                          hintText: 'Mail',
-                          hintStyle: const TextStyle(
-                            fontSize: 14,
-                          ),
+                          hintText: 'Email',
+                          hintStyle:
+                              const TextStyle(fontSize: 14, color: Colors.grey),
                         ),
                       ),
                     ),
-                    Container(
-                      height: 50,
-                      margin: const EdgeInsets.all(15),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(50)),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
                         controller: _passwordController,
                         obscureText: true,
@@ -109,6 +99,9 @@ class _LoginScreenState extends State<LoginScreen> {
                           return null;
                         },
                         decoration: InputDecoration(
+                          filled: true,
+                          fillColor: Colors.white,
+                          focusColor: Colors.white,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
                             borderSide: const BorderSide(
@@ -117,12 +110,11 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(30),
-                            borderSide: const BorderSide(color: Colors.black),
+                            borderSide: const BorderSide(color: Colors.white),
                           ),
                           hintText: 'Password',
-                          hintStyle: const TextStyle(
-                            fontSize: 14,
-                          ),
+                          hintStyle:
+                              const TextStyle(fontSize: 14, color: Colors.grey),
                         ),
                       ),
                     ),
