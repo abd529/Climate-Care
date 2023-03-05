@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 
 import '../Models/login_view_model.dart';
@@ -26,11 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
           await _loginVM.login(_emailController.text, _passwordController.text);
       if (isLoggedIn) {
         Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (ctx) => const Home(
-                      emissions: 8000,
-                    )));
+            context, MaterialPageRoute(builder: (ctx) => const Home()));
       }
     }
   }

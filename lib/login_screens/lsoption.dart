@@ -5,6 +5,7 @@ import 'login.dart';
 import 'login_screen.dart';
 
 class Option extends StatelessWidget {
+  static const routeName = "option-screen";
   const Option({super.key});
 
   @override

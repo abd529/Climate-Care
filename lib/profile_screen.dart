@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:climate_care/home.dart';
+import 'package:climate_care/login_screens/lsoption.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -55,15 +56,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ? Image.file(_image, fit: BoxFit.cover)
               : const Text('Please select an image'),
         ),
-        ElevatedButton(
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (ctx) => Home(emissions: 6000)));
-            },
-            child: Text("Done")),
+        ElevatedButton(onPressed: () {}, child: Text("Done")),
         ElevatedButton(
             onPressed: () async {
               await FirebaseAuth.instance.signOut();
+              Navigator.of(context).pushNamed(Option.routeName);
             },
             child: Text("Log out"))
       ],

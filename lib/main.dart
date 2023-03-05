@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
         Signup.routeName: (ctx) => const Signup(),
         LoginScreen.routeName: (ctx) => LoginScreen(),
         logQuiz.routeName: (ctx) => const logQuiz(),
+        Option.routeName: (ctx) => const Option(),
       },
     );
   }

@@ -6,8 +6,7 @@ import 'package:line_icons/line_icons.dart';
 
 class Home extends StatefulWidget {
   static const routeName = "home";
-  final double emissions;
-  const Home({super.key, required this.emissions});
+  const Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -28,7 +27,7 @@ class _HomeState extends State<Home> {
     List<Widget> pages = [
       const Text("Activities"),
       const Text("Progress"),
-      HomeScreen(widget.emissions),
+      const HomeScreen(),
       const Text("Community"),
       const ProfileScreen(),
     ];

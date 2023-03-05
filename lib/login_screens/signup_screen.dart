@@ -206,6 +206,9 @@ class _SignupState extends State<Signup> {
                                       style: TextStyle(color: Colors.white)),
                                   onPressed: () {
                                     _registerUser(context);
+                                    // setState(() {
+                                    //   print(_registerVM.message);
+                                    // });
                                   },
                                 ),
                               ),

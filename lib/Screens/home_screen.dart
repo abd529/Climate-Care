@@ -1,8 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:climate_care/login_quiz/progressbar.dart';
-import 'package:climate_care/login_screens/login.dart';
-import 'package:climate_care/login_screens/login_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
@@ -11,8 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class HomeScreen extends StatefulWidget {
-  final double em;
-  const HomeScreen(this.em, {super.key});
+  const HomeScreen({super.key});
 
   final Color dark = Colors.green;
   final Color normal = Colors.orange;
@@ -23,6 +21,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
+  var userId = FirebaseAuth.instance.currentUser!.uid;
+  double emission = 0;
+  int num = 0;
+  void getEmissionLevel(BuildContext context) async {
+    //double emission = 0;
+    var collection = FirebaseFirestore.instance.collection('EmissionLevel');
+    var docSnapshot = await collection.doc(userId).get();
+    if (docSnapshot.exists) {
+      Map<String, dynamic>? data = docSnapshot.data();
+      var value = data?['Emission'];
+      print(value);
+      setState(() {
+        emission = value;
+      });
+    }
+  }
+
   bool value = false;
 
   Widget bottomTitles(double value, TitleMeta meta) {
@@ -67,6 +82,11 @@ class HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (num == 0) {
+      WidgetsBinding.instance
+          .addPostFrameCallback((_) => getEmissionLevel(context));
+      num++;
+    }
     final name = FirebaseAuth.instance.currentUser!.displayName;
     final user_id = FirebaseAuth.instance.currentUser!.uid;
     return SingleChildScrollView(
@@ -97,27 +117,11 @@ class HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 IconButton(
-                    onPressed: () async {
-                      //inal st = FirebaseAuth.instance.currentUser!.uid;
-                      await FirebaseAuth.instance.currentUser!.reload();
-                      FirebaseAuth.instance
-                          .authStateChanges()
-                          .listen((User? user) {
-                        if (user != null) {
-                          print(user.uid);
-                          print(user.displayName);
-                        }
+                    onPressed: () {
+                      setState(() {
+                        //getEmissionLevel();
+                        //emission = 0;
                       });
-                      // print(name);
-                      // print(user_id);
-                      // await FirebaseAuth.instance.signOut();
-                      // if (user_id != null) {
-                      //   print("logged out");
-                      // } else {
-                      //   print("null");
-                      // }
-                      // Navigator.push(context,
-                      //     MaterialPageRoute(builder: (ctx) => LoginScreen()));
                     },
                     icon: Icon(
                       Icons.menu_rounded,
@@ -451,7 +455,7 @@ class HomeScreenState extends State<HomeScreen> {
         barsSpace: 0,
         barRods: [
           BarChartRodData(
-            toY: widget.em,
+            toY: emission,
             color: Colors.blue,
             rodStackItems: [
               BarChartRodStackItem(
@@ -460,7 +464,7 @@ class HomeScreenState extends State<HomeScreen> {
                 widget.dark,
               ),
               BarChartRodStackItem(20, 120, widget.dark),
-              BarChartRodStackItem(120, widget.em, widget.dark),
+              BarChartRodStackItem(120, emission, widget.dark),
             ],
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(05), topRight: Radius.circular(05)),

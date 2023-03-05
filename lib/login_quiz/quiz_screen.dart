@@ -1,6 +1,8 @@
 // ignore_for_file: camel_case_types
 
 import 'package:climate_care/login_quiz/index_dots.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:climate_care/login_quiz/quiz_design.dart';
@@ -124,6 +126,14 @@ class _logQuizState extends State<logQuiz> {
       finalscore += score;
     }
     print(finalscore);
+    if (_questionindex >= 6) {
+      final userId = FirebaseAuth.instance.currentUser!.uid;
+
+      FirebaseFirestore.instance
+          .collection("EmissionLevel")
+          .doc(userId)
+          .set({"Emission": finalscore});
+    }
   }
 
   @override
@@ -150,9 +160,7 @@ class _logQuizState extends State<logQuiz> {
                     indexDots(_dotindex, _questions.length),
                   ],
                 )
-              : Home(
-                  emissions: finalscore,
-                ),
+              : const Home(),
         ),
       ),
     );
