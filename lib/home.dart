@@ -1,5 +1,6 @@
 import 'package:climate_care/Screens/home_screen.dart';
 import 'package:climate_care/Screens/profile_screen.dart';
+import 'package:climate_care/Screens/settings.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
@@ -25,11 +26,11 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     List<Widget> pages = [
-      const Text("Activities"),
+      const ProfileScreen(),
       const Text("Progress"),
       const HomeScreen(),
       const Text("Community"),
-      const ProfileScreen(),
+      const Settings(),
     ];
     return Scaffold(
       bottomNavigationBar: Container(

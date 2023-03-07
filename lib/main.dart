@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:climate_care/home.dart';
 import 'package:climate_care/onboarding/splash.dart';
-import 'Screens/plants_growth_screen.dart';
+import 'Screens/settings.dart';
 import 'CO2 Emission Calulator/quiz_screen.dart';
 import 'Authentication/login_screen.dart';
 import 'Authentication/lsoption.dart';
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
               elevation: 0,
               titleTextStyle: GoogleFonts.poppins(fontSize: 18))),
       home:
-          const Home(), //change this to Home screen the score value is in quiz_screen.dart>>finalscore
+          const SplashScreen(), //change this to Home screen the score value is in quiz_screen.dart>>finalscore
       routes: {
         Signup.routeName: (ctx) => const Signup(),
         LoginScreen.routeName: (ctx) => const LoginScreen(),
