@@ -7,6 +7,8 @@ import '../home.dart';
 
 class LoginScreen extends StatefulWidget {
   static const routeName = "log-in";
+
+  const LoginScreen({super.key});
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
@@ -14,7 +16,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool isLoggedIn = false;
 
-  LoginViewModel _loginVM = LoginViewModel();
+  final LoginViewModel _loginVM = LoginViewModel();
 
   final _formKey = GlobalKey<FormState>();
 

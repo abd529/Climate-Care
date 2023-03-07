@@ -1,13 +1,13 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, avoid_print
 
-import 'package:climate_care/login_quiz/index_dots.dart';
+import 'package:climate_care/CO2%20Emission%20Calulator/index_dots.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import 'package:climate_care/login_quiz/quiz_design.dart';
+import 'package:climate_care/CO2%20Emission%20Calulator/quiz_design.dart';
 import 'package:climate_care/home.dart';
-import 'package:climate_care/login_quiz/progressbar.dart';
+import 'package:climate_care/CO2%20Emission%20Calulator/progressbar.dart';
 
 class logQuiz extends StatefulWidget {
   static const routeName = "quiz";

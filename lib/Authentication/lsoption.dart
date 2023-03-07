@@ -1,7 +1,5 @@
-import 'package:climate_care/login_screens/signup_screen.dart';
+import 'package:climate_care/Authentication/signup_screen.dart';
 import 'package:flutter/material.dart';
-
-import 'login.dart';
 import 'login_screen.dart';
 
 class Option extends StatelessWidget {

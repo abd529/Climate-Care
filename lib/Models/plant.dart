@@ -1,3 +1,5 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class Plant {

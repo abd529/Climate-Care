@@ -1,6 +1,6 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_print
 
-import 'package:climate_care/login_quiz/progressbar.dart';
+import 'package:climate_care/CO2%20Emission%20Calulator/progressbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -88,7 +88,6 @@ class HomeScreenState extends State<HomeScreen> {
       num++;
     }
     final name = FirebaseAuth.instance.currentUser!.displayName;
-    final user_id = FirebaseAuth.instance.currentUser!.uid;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
@@ -299,17 +298,17 @@ class HomeScreenState extends State<HomeScreen> {
               child: Stack(children: [
                 Padding(
                   padding: const EdgeInsets.all(0),
-                  child: Container(
+                  child: SizedBox(
                       height: 200,
                       width: double.infinity,
                       child: Stack(
-                        children: [
+                        children: const [
                           Positioned(
                             bottom: 0,
-                            child: Container(
+                            child: SizedBox(
                               width: 300,
                               child: Padding(
-                                padding: const EdgeInsets.only(
+                                padding: EdgeInsets.only(
                                     right: 0, left: 5, bottom: 5),
                                 child: Text(
                                   "This is a very motivational quote for a climate change movement",
@@ -402,9 +401,7 @@ class HomeScreenState extends State<HomeScreen> {
                       )
                     ],
                   ),
-                  Container(
-                    child: proBar(0.2, false),
-                  ),
+                  proBar(0.2, false),
                   SizedBox(
                     height: 5,
                   )

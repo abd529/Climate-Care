@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 
 import 'lastbutton.dart';
-import 'package:climate_care/login_quiz/question.dart';
-import 'package:climate_care/login_quiz/answer.dart';
+import 'package:climate_care/CO2%20Emission%20Calulator/question.dart';
+import 'package:climate_care/CO2%20Emission%20Calulator/answer.dart';
 
 class quizDesign extends StatelessWidget {
   final List<Map<String, Object>> questions;

@@ -1,9 +1,8 @@
-// ignore_for_file: use_build_context_synchronously
+// ignore_for_file: use_build_context_synchronously, non_constant_identifier_names
 
-import 'package:climate_care/login_quiz/quiz_screen.dart';
+import 'package:climate_care/CO2%20Emission%20Calulator/quiz_screen.dart';
 import 'package:flutter/material.dart';
 import '../Models/register_view_model.dart';
-import '../profile_screen.dart';
 
 class Signup extends StatefulWidget {
   static const routeName = "sign-up";
@@ -29,8 +28,6 @@ class _SignupState extends State<Signup> {
   Future<bool> _registerUser(BuildContext context) async {
     bool isRegistered = false;
     if (_formKey.currentState!.validate()) {
-      final email = _emailController.text;
-      final password = _emailController.text;
       isRegistered = await _registerVM.register(_emailController.text,
           _passwordController.text, _fNameController.text, profilePicLink);
       if (isRegistered) {
@@ -48,15 +45,15 @@ class _SignupState extends State<Signup> {
         backgroundColor: Colors.green,
         body: SingleChildScrollView(
             child: SafeArea(
-                child: Container(
+                child: SizedBox(
                     width: double.infinity,
                     child: Column(children: [
-                      Container(
+                      SizedBox(
                           height: 150,
                           width: 150,
                           //margin: const EdgeInsets.all(50),
                           child: Image.asset('assets/logo.png')),
-                      Container(
+                      SizedBox(
                         width: double.infinity,
                         child: Form(
                           key: _formKey,

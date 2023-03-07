@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 class Constants {
   static String REGISTER_PAGE_HERO_IMAGE = "assets/images/city_care.jpg";
   static String LOGIN_PAGE_HERO_IMAGE =
