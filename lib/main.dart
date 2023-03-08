@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
               elevation: 0,
               titleTextStyle: GoogleFonts.poppins(fontSize: 18))),
       home:
-          const SplashScreen(), //change this to Home screen the score value is in quiz_screen.dart>>finalscore
+          const Home(), //change this to Home screen the score value is in quiz_screen.dart>>finalscore
       routes: {
         Signup.routeName: (ctx) => const Signup(),
         LoginScreen.routeName: (ctx) => const LoginScreen(),

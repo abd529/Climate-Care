@@ -132,7 +132,7 @@ class HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 15,
             ),
-            heading("Carbon Emissions Level"),
+            heading("Carbon Footprint Tracker"),
             AspectRatio(
               aspectRatio: 1.26,
               child: Padding(
@@ -411,26 +411,28 @@ class HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 20,
             ),
-            // heading("Why we need to care about Climate Change?"),
+            heading("Awareness Guide"),
             CarouselSlider(
-              options: CarouselOptions(height: 400.0),
-              items: [1, 2, 3, 4, 5].map((i) {
+              options: CarouselOptions(
+                enableInfiniteScroll: false,
+              ),
+              items: [
+                "assets/aware_1.png",
+                "assets/aware_2.png",
+                "assets/aware_3.png",
+                "assets/aware_4.png",
+                "assets/aware_5.png"
+              ].map((i) {
                 return Builder(
                   builder: (BuildContext context) {
-                    return Container(
-                        width: MediaQuery.of(context).size.width,
-                        margin: EdgeInsets.symmetric(horizontal: 5.0),
-                        decoration: BoxDecoration(color: Colors.lightGreen),
-                        child: Center(
-                          child: Text(
-                            'image $i',
-                            style: TextStyle(fontSize: 16.0),
-                          ),
-                        ));
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Image.asset(i),
+                    );
                   },
                 );
               }).toList(),
-            )
+            ),
           ],
         ),
       ),
