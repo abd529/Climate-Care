@@ -30,7 +30,8 @@ class _HomeState extends State<Home> {
       const Text("Progress"),
       const HomeScreen(),
       const Text("Community"),
-      const Settings(),
+      Settings(),
+      //const Text("heh")
     ];
     return Scaffold(
       bottomNavigationBar: Container(

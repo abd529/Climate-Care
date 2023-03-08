@@ -46,8 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Column(
+    return Column(
       children: [
         ElevatedButton(
             onPressed: _openImagePicker, child: const Text("Pick Image")),
@@ -75,6 +74,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
             child: const Text("Waste Reduction Tool"))
       ],
-    ));
+    );
   }
 }

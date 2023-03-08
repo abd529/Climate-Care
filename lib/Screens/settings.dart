@@ -1,17 +1,16 @@
+// ignore_for_file: avoid_print
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class Settings extends StatelessWidget {
-  const Settings({super.key});
-
+  Settings({super.key});
+  final name = FirebaseAuth.instance.currentUser!.displayName;
   @override
   Widget build(BuildContext context) {
-    void nothing() {
-      print('Does not do anything'); // Remove this useless
-    }
-
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(left: 12, right: 12),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -24,14 +23,14 @@ class Settings extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.only(bottom: 8),
                       width: 200,
-                      height: 80,
+                      height: 100,
                       child: const CircleAvatar(
                         backgroundImage: AssetImage('assets/cli-mate.png'),
                       ),
                     ),
-                    const Text(
-                      'Ali Raza',
-                      style: TextStyle(
+                    Text(
+                      '$name',
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
@@ -71,7 +70,7 @@ class Settings extends StatelessWidget {
                           TextButton(
                             style: TextButton.styleFrom(
                                 foregroundColor: Colors.black),
-                            onPressed: nothing,
+                            onPressed: () {},
                             child: const Text('Edit Profile'),
                           ),
                           const Spacer(),
@@ -93,7 +92,7 @@ class Settings extends StatelessWidget {
                           TextButton(
                             style: TextButton.styleFrom(
                                 foregroundColor: Colors.black),
-                            onPressed: nothing,
+                            onPressed: () {},
                             child: const Text('Change Location'),
                           ),
                           const Spacer(),
@@ -107,7 +106,7 @@ class Settings extends StatelessWidget {
                           TextButton(
                             style: TextButton.styleFrom(
                                 foregroundColor: Colors.black),
-                            onPressed: nothing,
+                            onPressed: () {},
                             child: const Text('Change Language'),
                           ),
                           const Spacer(),
@@ -149,7 +148,7 @@ class Settings extends StatelessWidget {
                           TextButton(
                             style: TextButton.styleFrom(
                                 foregroundColor: Colors.black),
-                            onPressed: nothing,
+                            onPressed: () {},
                             child: const Text('Change Password'),
                           ),
                           const Spacer(),
@@ -163,7 +162,7 @@ class Settings extends StatelessWidget {
                           TextButton(
                             style: TextButton.styleFrom(
                                 foregroundColor: Colors.black),
-                            onPressed: nothing,
+                            onPressed: () {},
                             child: const Text('Change Account'),
                           ),
                           const Spacer(),
@@ -205,7 +204,7 @@ class Settings extends StatelessWidget {
                           TextButton(
                             style: TextButton.styleFrom(
                                 foregroundColor: Colors.black),
-                            onPressed: nothing,
+                            onPressed: () {},
                             child: const Text('Terms and conditions'),
                           ),
                           const Spacer(),
@@ -227,7 +226,7 @@ class Settings extends StatelessWidget {
                           TextButton(
                             style: TextButton.styleFrom(
                                 foregroundColor: Colors.black),
-                            onPressed: nothing,
+                            onPressed: () {},
                             child: const Text('Privacy policy'),
                           ),
                           const Spacer(),
@@ -241,7 +240,7 @@ class Settings extends StatelessWidget {
                           TextButton(
                             style: TextButton.styleFrom(
                                 foregroundColor: Colors.black),
-                            onPressed: nothing,
+                            onPressed: () {},
                             child: const Text('Support'),
                           ),
                           const Spacer(),
@@ -253,29 +252,35 @@ class Settings extends StatelessWidget {
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: SizedBox(
-                height: 35,
-                width: 115,
-                child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10))),
-                    onPressed: nothing,
-                    child: Row(
-                      children: const [
-                        Icon(
-                          Icons.logout_rounded,
-                          color: Colors.black,
-                        ),
-                        Text(
-                          'Log out',
-                          style: TextStyle(color: Colors.black),
-                        )
-                      ],
-                    )),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SizedBox(
+                      height: 50,
+                      width: 110,
+                      child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green,
+                            shape: RoundedRectangleBorder(
+                                //to set border radius to button
+                                borderRadius: BorderRadius.circular(30)),
+                          ),
+                          onPressed: () {},
+                          child: Row(
+                            children: const [
+                              Icon(
+                                Icons.logout_rounded,
+                                color: Colors.white,
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              Text("Logout"),
+                            ],
+                          )))
+                ],
               ),
             )
           ],
