@@ -1,10 +1,13 @@
 // ignore_for_file: unused_import
 import 'package:climate_care/Screens/home_screen.dart';
+import 'package:climate_care/Screens/garden_screen.dart';
+import 'package:climate_care/map_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:climate_care/home.dart';
 import 'package:climate_care/onboarding/splash.dart';
+import 'Screens/add_plant_screen.dart';
 import 'Screens/settings.dart';
 import 'CO2 Emission Calulator/quiz_screen.dart';
 import 'Authentication/login_screen.dart';
@@ -39,6 +42,8 @@ class MyApp extends StatelessWidget {
         LoginScreen.routeName: (ctx) => const LoginScreen(),
         logQuiz.routeName: (ctx) => const logQuiz(),
         Option.routeName: (ctx) => const Option(),
+        AddPlantScreen.routeName: (ctx) => const AddPlantScreen(),
+        GardenScreen.routeName: (ctx) => const GardenScreen()
       },
     );
   }
