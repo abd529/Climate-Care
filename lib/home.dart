@@ -72,7 +72,7 @@ class _HomeState extends State<Home> {
                 ),
                 GButton(
                   icon: Icons.people_alt_outlined,
-                  text: 'Community',
+                  text: 'Social',
                 ),
                 GButton(
                   icon: Icons.settings_outlined,

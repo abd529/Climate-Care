@@ -3,9 +3,61 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import 'package:climate_care/Authentication/lsoption.dart';
+
 class Settings extends StatelessWidget {
   Settings({super.key});
   final name = FirebaseAuth.instance.currentUser!.displayName;
+
+  Widget headText(String head) {
+    return Text(
+      head,
+      style: const TextStyle(
+        fontSize: 22,
+        fontWeight: FontWeight.bold,
+      ),
+    );
+  }
+
+  Widget settingButton(String btext, int check) {
+    if (check == 1) {
+      return Container(
+        decoration: const BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              width: 1,
+              color: Colors.black26,
+            ),
+          ),
+        ),
+        child: Row(
+          children: [
+            TextButton(
+              style: TextButton.styleFrom(foregroundColor: Colors.black),
+              onPressed: () {},
+              child: Text(btext),
+            ),
+            const Spacer(),
+            const Icon(Icons.arrow_forward_ios_rounded)
+          ],
+        ),
+      );
+    }
+    return SizedBox(
+      child: Row(
+        children: [
+          TextButton(
+            style: TextButton.styleFrom(foregroundColor: Colors.black),
+            onPressed: () {},
+            child: const Text('Change Language'),
+          ),
+          const Spacer(),
+          const Icon(Icons.arrow_forward_ios_rounded)
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -24,9 +76,18 @@ class Settings extends StatelessWidget {
                       margin: const EdgeInsets.only(bottom: 8),
                       width: 200,
                       height: 100,
-                      child: const CircleAvatar(
-                        backgroundImage: AssetImage('assets/cli-mate.png'),
-                      ),
+                      child: CircleAvatar(
+                          backgroundImage:
+                              const AssetImage('assets/cli-mate.png'),
+                          child: TextButton(
+                            onPressed: () {},
+                            child: Container(
+                              width: 200,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(100)),
+                            ),
+                          )),
                     ),
                     Text(
                       '$name',
@@ -40,13 +101,7 @@ class Settings extends StatelessWidget {
                 ),
               ),
             ),
-            const Text(
-              'General',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            headText('General'),
             Container(
               margin: const EdgeInsets.only(top: 5, bottom: 20),
               child: Card(
@@ -56,75 +111,14 @@ class Settings extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            width: 1,
-                            color: Colors.black26,
-                          ),
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          TextButton(
-                            style: TextButton.styleFrom(
-                                foregroundColor: Colors.black),
-                            onPressed: () {},
-                            child: const Text('Edit Profile'),
-                          ),
-                          const Spacer(),
-                          const Icon(Icons.arrow_forward_ios_rounded)
-                        ],
-                      ),
-                    ),
-                    Container(
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            width: 1,
-                            color: Colors.black26,
-                          ),
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          TextButton(
-                            style: TextButton.styleFrom(
-                                foregroundColor: Colors.black),
-                            onPressed: () {},
-                            child: const Text('Change Location'),
-                          ),
-                          const Spacer(),
-                          const Icon(Icons.arrow_forward_ios_rounded)
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      child: Row(
-                        children: [
-                          TextButton(
-                            style: TextButton.styleFrom(
-                                foregroundColor: Colors.black),
-                            onPressed: () {},
-                            child: const Text('Change Language'),
-                          ),
-                          const Spacer(),
-                          const Icon(Icons.arrow_forward_ios_rounded)
-                        ],
-                      ),
-                    ),
+                    settingButton('Edit Profile', 1),
+                    settingButton('Change Location', 1),
+                    settingButton('Change Language', 0)
                   ],
                 ),
               ),
             ),
-            const Text(
-              'Privacy',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            headText('Privacy'),
             Container(
               margin: const EdgeInsets.only(top: 5, bottom: 20),
               child: Card(
@@ -134,53 +128,13 @@ class Settings extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            width: 1,
-                            color: Colors.black26,
-                          ),
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          TextButton(
-                            style: TextButton.styleFrom(
-                                foregroundColor: Colors.black),
-                            onPressed: () {},
-                            child: const Text('Change Password'),
-                          ),
-                          const Spacer(),
-                          const Icon(Icons.arrow_forward_ios_rounded)
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      child: Row(
-                        children: [
-                          TextButton(
-                            style: TextButton.styleFrom(
-                                foregroundColor: Colors.black),
-                            onPressed: () {},
-                            child: const Text('Change Account'),
-                          ),
-                          const Spacer(),
-                          const Icon(Icons.arrow_forward_ios_rounded)
-                        ],
-                      ),
-                    ),
+                    settingButton('Change Password', 1),
+                    settingButton('Change Account', 0)
                   ],
                 ),
               ),
             ),
-            const Text(
-              'Terms And Support',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
+            headText('Terms And Support'),
             Container(
               margin: const EdgeInsets.only(top: 5, bottom: 10),
               child: Card(
@@ -190,64 +144,9 @@ class Settings extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            width: 1,
-                            color: Colors.black26,
-                          ),
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          TextButton(
-                            style: TextButton.styleFrom(
-                                foregroundColor: Colors.black),
-                            onPressed: () {},
-                            child: const Text('Terms and conditions'),
-                          ),
-                          const Spacer(),
-                          const Icon(Icons.arrow_forward_ios_rounded)
-                        ],
-                      ),
-                    ),
-                    Container(
-                      decoration: const BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            width: 1,
-                            color: Colors.black26,
-                          ),
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          TextButton(
-                            style: TextButton.styleFrom(
-                                foregroundColor: Colors.black),
-                            onPressed: () {},
-                            child: const Text('Privacy policy'),
-                          ),
-                          const Spacer(),
-                          const Icon(Icons.arrow_forward_ios_rounded)
-                        ],
-                      ),
-                    ),
-                    SizedBox(
-                      child: Row(
-                        children: [
-                          TextButton(
-                            style: TextButton.styleFrom(
-                                foregroundColor: Colors.black),
-                            onPressed: () {},
-                            child: const Text('Support'),
-                          ),
-                          const Spacer(),
-                          const Icon(Icons.arrow_forward_ios_rounded)
-                        ],
-                      ),
-                    ),
+                    settingButton('Terms and Condition', 1),
+                    settingButton('Privacy policy', 1),
+                    settingButton('Support', 0)
                   ],
                 ),
               ),
@@ -258,26 +157,33 @@ class Settings extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   SizedBox(
-                      height: 50,
+                      height: 40,
                       width: 110,
                       child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.green,
                             shape: RoundedRectangleBorder(
                                 //to set border radius to button
-                                borderRadius: BorderRadius.circular(30)),
+                                borderRadius: BorderRadius.circular(20)),
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const Option(),
+                              ),
+                            );
+                          },
                           child: Row(
                             children: const [
                               Icon(
                                 Icons.logout_rounded,
                                 color: Colors.white,
                               ),
-                              SizedBox(
-                                width: 5,
+                              Text(
+                                "Logout",
+                                textAlign: TextAlign.right,
                               ),
-                              Text("Logout"),
                             ],
                           )))
                 ],
