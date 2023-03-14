@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
+import 'Screens/garden_screen.dart';
+
 class Home extends StatefulWidget {
   static const routeName = "home";
   const Home({super.key});
@@ -26,10 +28,10 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     List<Widget> pages = [
-      const ProfileScreen(),
+      const GardenScreen(),
       const Text("Progress"),
       const HomeScreen(),
-      const Text("Community"),
+      const ProfileScreen(),
       Settings(),
       //const Text("heh")
     ];

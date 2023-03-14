@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import
 import 'package:climate_care/Screens/home_screen.dart';
 import 'package:climate_care/Screens/garden_screen.dart';
+import 'package:climate_care/Screens/plant_detail_screen.dart';
 import 'package:climate_care/map_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -13,6 +14,7 @@ import 'CO2 Emission Calulator/quiz_screen.dart';
 import 'Authentication/login_screen.dart';
 import 'Authentication/lsoption.dart';
 import 'Authentication/signup_screen.dart';
+import 'Waste Reduction/modules/chat_text/views/shop_assist.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -43,7 +45,7 @@ class MyApp extends StatelessWidget {
         logQuiz.routeName: (ctx) => const logQuiz(),
         Option.routeName: (ctx) => const Option(),
         AddPlantScreen.routeName: (ctx) => const AddPlantScreen(),
-        GardenScreen.routeName: (ctx) => const GardenScreen()
+        GardenScreen.routeName: (ctx) => const GardenScreen(),
       },
     );
   }

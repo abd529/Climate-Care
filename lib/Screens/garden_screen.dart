@@ -1,6 +1,9 @@
+import 'package:climate_care/Screens/add_plant_screen.dart';
+import 'package:climate_care/Screens/plant_detail_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../Models/plant.dart';
 
 class GardenScreen extends StatefulWidget {
@@ -15,20 +18,6 @@ class _GardenScreenState extends State<GardenScreen> {
   final userId = FirebaseAuth.instance.currentUser!.uid;
 
   final TextEditingController _controller = TextEditingController();
-
-  void _addTask() {
-    Duration sprouting = Duration(days: 90);
-    final today = DateTime.now();
-    final DateTime sproutDate = today.add(sprouting);
-    final todayDate = DateTime(2023, 3, 12);
-    print(daysBetween(todayDate, sproutDate));
-  }
-
-  int daysBetween(DateTime from, DateTime to) {
-    from = DateTime(from.year, from.month, from.day);
-    to = DateTime(to.year, to.month, to.day);
-    return (to.difference(from).inHours / 24).round();
-  }
 
   Widget _buildList(QuerySnapshot<Object?>? snapshot) {
     if (snapshot!.docs.isEmpty) {
@@ -46,53 +35,198 @@ class _GardenScreenState extends State<GardenScreen> {
   }
 
   Widget _buildListItem(Plant plant) {
-    return Container(
-        color: Colors.red,
-        child: ListTile(
-          title: Text(plant.name),
-        ));
+    String name = plant.nickName;
+    String plantName = plant.name;
+    return Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+      Container(
+        width: MediaQuery.of(context).size.width - 30,
+        height: MediaQuery.of(context).size.height / 3.5,
+        decoration: const BoxDecoration(
+            color: Color.fromRGBO(140, 221, 161, 1),
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(70),
+              bottomLeft: Radius.circular(70),
+            )),
+        child: Row(
+          children: [
+            SizedBox(
+              height: 150,
+              width: 150,
+              child: Image.asset(plant.status == "seed"
+                  ? "assets/seed.png"
+                  : plant.status == "sprouted"
+                      ? "assets/sprouted.png"
+                      : plant.status == "small plant"
+                          ? "assets/small_plant2.png"
+                          : "assets/tree.png"),
+            ),
+            Padding(
+              padding:
+                  EdgeInsets.only(left: MediaQuery.of(context).size.width / 20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    plant.nickName,
+                    textAlign: TextAlign.right,
+                    softWrap: true,
+                    style: TextStyle(
+                        fontFamily: GoogleFonts.shadowsIntoLight().fontFamily,
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Container(
+                      child: Column(
+                    children: [
+                      rowMethod("Plant Name:", plant.name),
+                      rowMethod("Plant Type:", plant.type),
+                      rowMethod("Status:", plant.status),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.green),
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  PlantDetailScreen(plantId: plant.plantId),
+                            ));
+                          },
+                          child: const Text("View Details"))
+                    ],
+                  )),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+      // Positioned(
+      //   top: 0,
+      //   left: 0,
+      //   //right: 250,
+      //   //bottom: 0,
+      //   child: SizedBox(
+      //     height: plant.status == "seed"
+      //         ? 200
+      //         : plant.status == "sprouted"
+      //             ? 250
+      //             : plant.status == "small plant"
+      //                 ? 200
+      //                 : 200,
+      //     width: plant.status == "seed"
+      //         ? 200
+      //         : plant.status == "sprouted"
+      //             ? 250
+      //             : plant.status == "small plant"
+      //                 ? 100
+      //                 : 200,
+      //     child: Image.asset(plant.status == "seed"
+      //         ? "assets/seed.png"
+      //         : plant.status == "sprouted"
+      //             ? "assets/sprouted.png"
+      //             : plant.status == "small plant"
+      //                 ? "assets/small_plant1.png"
+      //                 : "assets/plant.png"),
+      //   ),
+      // ),
+      const SizedBox(
+        height: 20,
+      )
+    ]);
+  }
+
+  Row rowMethod(String key, String value) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          key,
+          textAlign: TextAlign.center,
+          softWrap: true,
+          style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        Text.rich(
+          TextSpan(
+            text: value,
+          ),
+          softWrap: true,
+          maxLines: 3,
+          overflow: TextOverflow.fade,
+          textAlign: TextAlign.center,
+        )
+      ],
+    );
   }
 
   Widget _buildBody(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(children: [
-        Row(
-          children: [
-            Expanded(
-                child: TextField(
-              controller: _controller,
-              decoration: const InputDecoration(hintText: "Enter task name"),
-            )),
-            TextButton(
-              child:
-                  const Text("Add Task", style: TextStyle(color: Colors.green)),
+    return Column(children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CircleAvatar(
+                    radius: 20,
+                    backgroundColor: Color.fromRGBO(140, 221, 161, 1),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.arrow_back,
+                        color: Colors.black,
+                      ),
+                    )),
+              ),
+              const Text(
+                " My Garden",
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
               onPressed: () {
-                _addTask();
+                Navigator.of(context).pushNamed(AddPlantScreen.routeName);
               },
-            )
-          ],
-        ),
-        StreamBuilder<QuerySnapshot>(
-            stream: FirebaseFirestore.instance
-                .collection("User Plants")
-                .doc("$userId Plants")
-                .collection("Plants")
-                .snapshots(),
-            builder: ((context, snapshot) {
-              if (!snapshot.hasData) return const LinearProgressIndicator();
-              print(snapshot.data);
-              return Expanded(child: _buildList(snapshot.data));
-            }))
-      ]),
-    );
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromRGBO(140, 221, 161, 1),
+              ),
+              child: const Text(
+                "Add a Plant",
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+          ),
+        ],
+      ),
+      StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance
+              .collection("User Plants")
+              .doc("$userId Plants")
+              .collection("Plants")
+              .snapshots(),
+          builder: ((context, snapshot) {
+            if (!snapshot.hasData) return const LinearProgressIndicator();
+            print(snapshot.data);
+            return Container(
+                height: MediaQuery.of(context).size.height / 1.211212121212121,
+                child: _buildList(snapshot.data));
+          }))
+    ]);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text("Garden")),
-      body: _buildBody(context),
-    );
+    return SafeArea(child: _buildBody(context));
   }
 }

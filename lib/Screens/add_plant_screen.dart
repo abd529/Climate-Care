@@ -29,7 +29,9 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _nickNameController = TextEditingController();
   final TextEditingController _sproutDaysController = TextEditingController();
-  final TextEditingController _typeController = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
+  final SingleValueDropDownController _typeController =
+      SingleValueDropDownController();
   String type = PlantType.flowering.name;
   int sproutingDays = 0;
   double lat = 0.0;
@@ -37,7 +39,7 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
   String plantStatus = PlantStatus.seed.name;
   String plantLocaion = "";
   String plant_id = DateTime.now().toString();
-
+  DateTime date = DateTime.now();
   void placeAutoComplete(String query) async {
     Uri uri = Uri.https("maps.googleapis.com",
         "maps/api/place/autocomplete/json", {"input": query, "key": apiKey});
@@ -80,6 +82,7 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
         firstDate: DateTime(2000),
         lastDate: DateTime(2101));
     if (pickedDate != null) {
+      date = pickedDate;
       print(pickedDate);
       String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate);
       print(formattedDate);
@@ -95,8 +98,20 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
 
   void submit() {
     if (_formKey.currentState!.validate()) {
-      sproutingDays = int.parse(_sproutDaysController.text.toString());
+      //sproutingDays = int.parse(_sproutDaysController.text.toString());
       final userId = FirebaseAuth.instance.currentUser!.uid;
+
+      FirebaseFirestore.instance.collection("All Plants").add({
+        "name": _nameController.text.trim(),
+        "nickName": _nickNameController.text.trim(),
+        "lat": lat,
+        "lng": lng,
+        "plantType": type,
+        "plantStatus": plantStatus,
+        "location": plantLocaion,
+        "date": date,
+        "plantId": plant_id
+      });
 
       FirebaseFirestore.instance
           .collection("User Plants") //folder
@@ -106,18 +121,18 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
           .set({
         "name": _nameController.text.trim(),
         "nickName": _nickNameController.text.trim(),
-        "sproutingDuration": sproutingDays,
         "lat": lat,
         "lng": lng,
         "plantType": type,
         "plantStatus": plantStatus,
-        "location": plantLocaion
+        "location": plantLocaion,
+        "date": date
       });
       _nameController.clear();
       _nickNameController.clear();
       _searchPlaceController.clear();
       _sproutDaysController.clear();
-      _typeController.clear();
+      _typeController.clearDropDown();
 
       //Navigator.of(context).pushNamed(GardenScreen.routeName);
     }
@@ -216,19 +231,22 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
                         const SizedBox(
                           height: 10,
                         ),
-                        heading("Days to Sprout"),
+                        heading("Sprout Date"),
                         TextFormField(
-                          controller: _sproutDaysController,
+                          readOnly: true,
+                          controller: _dateController,
                           validator: (value) {
                             if (value!.isEmpty) {
                               return "Required!";
                             }
                             return null;
                           },
-                          //readOnly: true,
-                          keyboardType: TextInputType.number,
+                          onTap: () {
+                            datePick(context, _dateController);
+                          },
                           decoration: textFeildDecoration(
-                              "eg: 7", Icons.calendar_month_outlined),
+                              "Expected date for plant to sprout",
+                              Icons.calendar_month_outlined),
                         ),
                         const SizedBox(
                           height: 10,
@@ -257,7 +275,7 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
                 Center(
                   child: SizedBox(
                     height: 50,
-                    width: 210,
+                    width: 220,
                     child: ElevatedButton(
                       onPressed: () {
                         submit();

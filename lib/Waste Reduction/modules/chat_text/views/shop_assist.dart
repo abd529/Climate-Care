@@ -7,38 +7,22 @@ import 'package:share_plus/share_plus.dart';
 import '../../../common/headers.dart';
 import '../controllers/chat_text_controller.dart';
 
-class ChatTextView extends StatefulWidget {
-  const ChatTextView({Key? key}) : super(key: key);
+class ShopAssistant extends StatefulWidget {
+  const ShopAssistant({Key? key}) : super(key: key);
 
   @override
-  State<ChatTextView> createState() => _ChatTextViewState();
+  State<ShopAssistant> createState() => _ShopAssistantState();
 }
 
-class _ChatTextViewState extends State<ChatTextView> {
+class _ShopAssistantState extends State<ShopAssistant> {
   void submit() {
     if (_formKey.currentState!.validate()) {
       if (controller_1.text.isNotEmpty) {
         print(controller_1.text);
         controller_1.clear();
       }
-      if (controller_2.text.isNotEmpty) {
-        print(controller_2.text);
-        controller_2.clear();
-      }
-      if (controller_3.text.isNotEmpty) {
-        print(controller_3.text);
-        controller_3.clear();
-      }
-      if (controller_4.text.isNotEmpty) {
-        print(controller_4.text);
-        controller_4.clear();
-      }
-      if (controller_5.text.isNotEmpty) {
-        print(controller_5.text);
-        controller_5.clear();
-      }
-      controller.getTextCompletion(controller_1.text, controller_2.text,
-          controller_3.text, controller_4.text, controller_5.text, 0);
+      controller.messages = [];
+      controller.getTextCompletion(controller_1.text, "", "", "", "", 1);
       controller.searchTextController.clear();
     }
   }
@@ -46,14 +30,6 @@ class _ChatTextViewState extends State<ChatTextView> {
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController controller_1 = TextEditingController();
-
-  TextEditingController controller_2 = TextEditingController();
-
-  TextEditingController controller_3 = TextEditingController();
-
-  TextEditingController controller_4 = TextEditingController();
-
-  TextEditingController controller_5 = TextEditingController();
 
   int value = 0;
 
@@ -66,7 +42,7 @@ class _ChatTextViewState extends State<ChatTextView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Waste Reduction Tool",
+          "Green Shopping Assistant",
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.green,
@@ -79,7 +55,7 @@ class _ChatTextViewState extends State<ChatTextView> {
                   const SizedBox(
                     width: 250,
                     child: Text(
-                      "Add one or more items that you own and want to recycle!",
+                      "Enter a product link that you want to buy for an eci friendly alternative",
                       softWrap: true,
                     ),
                   ),
@@ -93,76 +69,9 @@ class _ChatTextViewState extends State<ChatTextView> {
                   key: _formKey,
                   child: Column(
                     children: [
-                      if (value == 0) ...[
-                        TextFeildCon(controller_1)
-                      ] else if (value == 1) ...[
-                        TextFeildCon(controller_1),
-                        TextFeildCon(controller_2),
-                      ] else if (value == 2) ...[
-                        TextFeildCon(controller_1),
-                        TextFeildCon(controller_2),
-                        TextFeildCon(controller_3),
-                      ] else if (value == 3) ...[
-                        TextFeildCon(controller_1),
-                        TextFeildCon(controller_2),
-                        TextFeildCon(controller_3),
-                        TextFeildCon(controller_4),
-                      ] else if (value == 4) ...[
-                        TextFeildCon(controller_1),
-                        TextFeildCon(controller_2),
-                        TextFeildCon(controller_3),
-                        TextFeildCon(controller_4),
-                        TextFeildCon(controller_5),
-                      ],
+                      TextFeildCon(controller_1),
                     ],
                   )),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    margin: const EdgeInsets.all(15),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (value < 4) {
-                          setState(() {
-                            value++;
-                          });
-                        }
-                        print(value);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                      ),
-                      child: const Text(
-                        '+ Add more',
-                        style: TextStyle(color: Colors.black, fontSize: 11),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    alignment: Alignment.centerLeft,
-                    margin: const EdgeInsets.all(15),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if (value > 0) {
-                          setState(() {
-                            value--;
-                          });
-                        }
-                        print(value);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                      ),
-                      child: const Text(
-                        'Remove',
-                        style: TextStyle(color: Colors.red, fontSize: 11),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
               Container(
                 width: 130,
                 height: 45,

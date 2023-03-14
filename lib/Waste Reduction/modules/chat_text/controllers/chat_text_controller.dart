@@ -52,11 +52,17 @@ class ChatTextController extends GetxController {
   }
 
   getTextCompletion(String query1, String query2, String query3, String query4,
-      String query5) async {
-    text =
-        "Tell me one thing that I can make by recycling  $query1, $query2, $query3, $query4, $query5 and how can I make it";
-    searchTextController.text = text;
-    addMyMessage();
+      String query5, int check) async {
+    if (check == 0) {
+      text =
+          "Tell me one thing that I can make by recycling  $query1, $query2, $query3, $query4, $query5 and how can I make it";
+      searchTextController.text = text;
+      addMyMessage();
+    } else {
+      text = "Give me link to an eco firendly alternative product for $query1";
+      searchTextController.text = text;
+      addMyMessage();
+    }
 
     state.value = ApiState.loading;
 
