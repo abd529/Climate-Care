@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, avoid_print
 
 import 'package:climate_care/CO2%20Emission%20Calulator/progressbar.dart';
+import 'package:climate_care/Screens/plant_detail_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+
+import '../Models/plant.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -39,6 +42,105 @@ class HomeScreenState extends State<HomeScreen> {
   }
 
   bool value = false;
+
+  Widget _buildListItem(Plant plant) {
+    int growth = 0;
+    if (plant.status == "seed") {
+      growth = 25;
+    }
+    if (plant.status == "sprouted") {
+      growth = 50;
+    }
+    if (plant.status == "small plant") {
+      growth = 75;
+    }
+    if (plant.status == "adult plant") {
+      growth = 100;
+    }
+    return Column(
+      children: [
+        InkWell(
+          splashColor: Colors.green,
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (BuildContext context) =>
+                  PlantDetailScreen(plantId: plant.plantId),
+            ));
+          },
+          child: Container(
+            width: double.infinity,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                              height: 60,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                  color: Color.fromARGB(255, 185, 244, 117),
+                                  border:
+                                      Border.all(width: 5, color: Colors.green),
+                                  borderRadius: BorderRadius.circular(15)),
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child:
+                                    SvgPicture.asset("assets/plant_icon.svg"),
+                              )),
+                        ),
+                        Text(
+                          plant.name,
+                          style: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "$growth%",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    )
+                  ],
+                ),
+                proBar(growth / 100, false),
+                SizedBox(
+                  height: 10,
+                )
+              ],
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildList(QuerySnapshot<Object?>? snapshot) {
+    if (snapshot!.docs.isEmpty) {
+      return const Center(child: Text("No Plants in the garden Yet!"));
+    } else {
+      return ListView.builder(
+        itemCount: snapshot.docs.length,
+        itemBuilder: (context, index) {
+          final doc = snapshot.docs[index];
+          final task = Plant.fromSnapshot(doc);
+          return _buildListItem(task);
+        },
+      );
+    }
+  }
 
   Widget bottomTitles(double value, TitleMeta meta) {
     TextStyle style =
@@ -344,70 +446,20 @@ class HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 20,
             ),
-            heading("My Plants"),
-            SizedBox(
-              height: 5,
-            ),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(15),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.withOpacity(0.5),
-                    spreadRadius: 3,
-                    blurRadius: 5,
-                    offset: Offset(0, 0), // changes position of shadow
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                                height: 60,
-                                width: 60,
-                                decoration: BoxDecoration(
-                                    color: Color.fromARGB(255, 185, 244, 117),
-                                    border: Border.all(
-                                        width: 5, color: Colors.green),
-                                    borderRadius: BorderRadius.circular(15)),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(3.0),
-                                  child:
-                                      SvgPicture.asset("assets/plant_icon.svg"),
-                                )),
-                          ),
-                          Text(
-                            "Sprouted",
-                            style: TextStyle(
-                                fontSize: 22, fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          "20%",
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      )
-                    ],
-                  ),
-                  proBar(0.2, false),
-                  SizedBox(
-                    height: 5,
-                  )
-                ],
-              ),
-            ),
+            heading("Plants Growth Tracker"),
+            StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection("User Plants")
+                    .doc("$userId Plants")
+                    .collection("Plants")
+                    .snapshots(),
+                builder: ((context, snapshot) {
+                  if (!snapshot.hasData) return const LinearProgressIndicator();
+                  print(snapshot.data);
+                  return SizedBox(
+                      height: MediaQuery.of(context).size.height / 3,
+                      child: _buildList(snapshot.data));
+                })),
             SizedBox(
               height: 20,
             ),

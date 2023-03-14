@@ -35,8 +35,6 @@ class _GardenScreenState extends State<GardenScreen> {
   }
 
   Widget _buildListItem(Plant plant) {
-    String name = plant.nickName;
-    String plantName = plant.name;
     return Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
       Container(
         width: MediaQuery.of(context).size.width - 30,
@@ -105,35 +103,6 @@ class _GardenScreenState extends State<GardenScreen> {
           ],
         ),
       ),
-      // Positioned(
-      //   top: 0,
-      //   left: 0,
-      //   //right: 250,
-      //   //bottom: 0,
-      //   child: SizedBox(
-      //     height: plant.status == "seed"
-      //         ? 200
-      //         : plant.status == "sprouted"
-      //             ? 250
-      //             : plant.status == "small plant"
-      //                 ? 200
-      //                 : 200,
-      //     width: plant.status == "seed"
-      //         ? 200
-      //         : plant.status == "sprouted"
-      //             ? 250
-      //             : plant.status == "small plant"
-      //                 ? 100
-      //                 : 200,
-      //     child: Image.asset(plant.status == "seed"
-      //         ? "assets/seed.png"
-      //         : plant.status == "sprouted"
-      //             ? "assets/sprouted.png"
-      //             : plant.status == "small plant"
-      //                 ? "assets/small_plant1.png"
-      //                 : "assets/plant.png"),
-      //   ),
-      // ),
       const SizedBox(
         height: 20,
       )
@@ -177,7 +146,7 @@ class _GardenScreenState extends State<GardenScreen> {
                 padding: const EdgeInsets.all(8.0),
                 child: CircleAvatar(
                     radius: 20,
-                    backgroundColor: Color.fromRGBO(140, 221, 161, 1),
+                    backgroundColor: const Color.fromRGBO(140, 221, 161, 1),
                     child: IconButton(
                       onPressed: () {},
                       icon: const Icon(
@@ -199,7 +168,7 @@ class _GardenScreenState extends State<GardenScreen> {
                 Navigator.of(context).pushNamed(AddPlantScreen.routeName);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromRGBO(140, 221, 161, 1),
+                backgroundColor: const Color.fromRGBO(140, 221, 161, 1),
               ),
               child: const Text(
                 "Add a Plant",
