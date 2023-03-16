@@ -10,6 +10,7 @@ import 'package:climate_care/home.dart';
 import 'package:climate_care/onboarding/splash.dart';
 import 'Screens/add_plant_screen.dart';
 import 'Screens/settings.dart';
+import 'Screens/point_redeem.dart';
 import 'CO2 Emission Calulator/quiz_screen.dart';
 import 'Authentication/login_screen.dart';
 import 'Authentication/lsoption.dart';
