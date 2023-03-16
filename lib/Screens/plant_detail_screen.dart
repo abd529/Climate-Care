@@ -1,8 +1,10 @@
+import 'package:climate_care/Screens/update_plant.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../Models/plant.dart';
+import '../Utility/back_button.dart';
 import '../Utility/timer.dart';
 
 class PlantDetailScreen extends StatefulWidget {
@@ -34,6 +36,7 @@ class _PlantDetailScreenState extends State<PlantDetailScreen> {
   int sec = 0;
   Timestamp sproutDate = Timestamp(95, 21);
   DateTime tmTodate = DateTime.now();
+  bool isExpired = false;
 
   int daysBetween(DateTime from, DateTime to) {
     from = DateTime(from.year, from.month, from.day);
@@ -69,6 +72,9 @@ class _PlantDetailScreenState extends State<PlantDetailScreen> {
             plantId: widget.plantId,
             date: fetchedDate,
           );
+          final now = DateTime.now();
+          final expirationDate = plant.date.toDate();
+          isExpired = expirationDate.isBefore(now);
         });
         return plant;
       } else {
@@ -84,50 +90,142 @@ class _PlantDetailScreenState extends State<PlantDetailScreen> {
       WidgetsBinding.instance.addPostFrameCallback((_) => getDetails());
       num++;
     }
+    DateTime dateU = plant.date.toDate();
+    String date = "${dateU.year}-${dateU.month}-${dateU.day}";
     return Scaffold(
-      appBar: AppBar(),
       body: SafeArea(
         child: SizedBox(
           width: double.infinity,
-          child: Column(
-            children: [
-              Text(plant.name),
-              Text(plant.nickName),
-              Text(plant.location),
-              Text(plant.status),
-              Text(plant.type),
-              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(),
-                  ),
-                  child: Text("hrh"),
+          child: Stack(children: [
+            Container(
+              decoration: const BoxDecoration(
+                  color: Color.fromRGBO(233, 249, 238, 1),
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(30),
+                      bottomRight: Radius.circular(30))),
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height / 2,
+                width: double.infinity,
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const MyBackButton(),
+                        Text(
+                          plant.name,
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          width: 100,
+                          child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      isExpired ? Colors.green : Colors.grey),
+                              onPressed: () {
+                                if (isExpired) {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                      builder: (ctx) => UpdatePlant(plant)));
+                                } else {}
+                              },
+                              child: const Text("Update")),
+                        )
+                      ]),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(),
-                  ),
-                  child: Text("hrh"),
+                Column(
+                  children: [
+                    textRow("Nickname:", plant.nickName),
+                    textRow("Plant Type:", plant.type),
+                    textRow("Plant Growth Status:", plant.status),
+                    textRow("Sowed at:", plant.location),
+                    textRow("Next Update:", date)
+                  ],
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(),
+              ],
+            ),
+            Positioned(
+              right: 0,
+              bottom: MediaQuery.of(context).size.height / 2,
+              child: SizedBox(
+                  height: 170,
+                  width: 170,
+                  child: Image.asset(plant.status == "seed"
+                      ? "assets/seed.png"
+                      : plant.status == "sprouted"
+                          ? "assets/sprouted.png"
+                          : plant.status == "small plant"
+                              ? "assets/small_plant2.png"
+                              : "assets/tree.png")),
+            ),
+            Positioned(
+                bottom: MediaQuery.of(context).size.height / 2.5,
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    "Plant info",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  child: Text("hrh"),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(),
+                )),
+            Positioned(
+                bottom: MediaQuery.of(context).size.height / 5,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "Hi, I am ${plant.nickName}, I am a ${plant.name}.\nI live in ${plant.location} \nand I am ${plant.status}. \nIf you take care of me we both can make \nthis world a better place",
+                    softWrap: true,
+                    style: const TextStyle(fontSize: 16),
                   ),
-                  child: Text("hrh"),
+                )),
+            const Positioned(
+              bottom: 100,
+              child: Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  "Time for next update",
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
-              ]),
-              CountdownTimer(
-                targetDate: tmTodate,
-              )
-            ],
-          ),
+              ),
+            ),
+            Positioned(
+              bottom: 10,
+              left: 10,
+              right: 10,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 15),
+                child: CountdownTimer(
+                  targetDate: tmTodate,
+                ),
+              ),
+            ),
+          ]),
         ),
+      ),
+    );
+  }
+
+  Padding textRow(String text, String text2) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: [
+          Text(
+            text,
+            style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Text(
+            text2,
+            style: const TextStyle(fontSize: 15),
+          )
+        ],
       ),
     );
   }

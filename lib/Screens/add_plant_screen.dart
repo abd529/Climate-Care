@@ -40,6 +40,7 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
   String plantLocaion = "";
   String plant_id = DateTime.now().toString();
   DateTime date = DateTime.now();
+
   void placeAutoComplete(String query) async {
     Uri uri = Uri.https("maps.googleapis.com",
         "maps/api/place/autocomplete/json", {"input": query, "key": apiKey});
@@ -101,17 +102,17 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
       //sproutingDays = int.parse(_sproutDaysController.text.toString());
       final userId = FirebaseAuth.instance.currentUser!.uid;
 
-      FirebaseFirestore.instance.collection("All Plants").add({
-        "name": _nameController.text.trim(),
-        "nickName": _nickNameController.text.trim(),
-        "lat": lat,
-        "lng": lng,
-        "plantType": type,
-        "plantStatus": plantStatus,
-        "location": plantLocaion,
-        "date": date,
-        "plantId": plant_id
-      });
+      // FirebaseFirestore.instance.collection("All Plants").add({
+      //   "name": _nameController.text.trim(),
+      //   "nickName": _nickNameController.text.trim(),
+      //   "lat": lat,
+      //   "lng": lng,
+      //   "plantType": _typeController.dropDownValue!.value,
+      //   "plantStatus": plantStatus,
+      //   "location": plantLocaion,
+      //   "date": date,
+      //   "plantId": plant_id
+      // });
 
       FirebaseFirestore.instance
           .collection("User Plants") //folder
@@ -134,7 +135,7 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
       _sproutDaysController.clear();
       _typeController.clearDropDown();
 
-      //Navigator.of(context).pushNamed(GardenScreen.routeName);
+      Navigator.of(context).pushNamed(GardenScreen.routeName);
     }
   }
 
@@ -212,21 +213,12 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
                               return null;
                             },
                             controller: _typeController,
-                            dropDownList: [
+                            dropDownList: const [
                               DropDownValueModel(
-                                  name: "Flowering",
-                                  value: () {
-                                    setState(() {
-                                      type = PlantType.flowering.name;
-                                    });
-                                  }),
+                                  name: "Flowering", value: "Flowering"),
                               DropDownValueModel(
                                   name: "Non Flowering",
-                                  value: () {
-                                    setState(() {
-                                      type = PlantType.non_Flowering.name;
-                                    });
-                                  }),
+                                  value: "Non flowering"),
                             ]),
                         const SizedBox(
                           height: 10,

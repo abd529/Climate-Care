@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../Models/plant.dart';
+import '../Utility/back_button.dart';
 
 class GardenScreen extends StatefulWidget {
   static const routeName = "garden-screen";
@@ -38,7 +39,7 @@ class _GardenScreenState extends State<GardenScreen> {
     return Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
       Container(
         width: MediaQuery.of(context).size.width - 30,
-        height: MediaQuery.of(context).size.height / 3.5,
+        height: MediaQuery.of(context).size.height / 3,
         decoration: const BoxDecoration(
             color: Color.fromRGBO(140, 221, 161, 1),
             borderRadius: BorderRadius.only(
@@ -141,21 +142,9 @@ class _GardenScreenState extends State<GardenScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CircleAvatar(
-                    radius: 20,
-                    backgroundColor: const Color.fromRGBO(140, 221, 161, 1),
-                    child: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.black,
-                      ),
-                    )),
-              ),
-              const Text(
+            children: const [
+              Padding(padding: EdgeInsets.all(8.0), child: MyBackButton()),
+              Text(
                 " My Garden",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
@@ -168,11 +157,11 @@ class _GardenScreenState extends State<GardenScreen> {
                 Navigator.of(context).pushNamed(AddPlantScreen.routeName);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromRGBO(140, 221, 161, 1),
+                backgroundColor: Colors.green,
               ),
               child: const Text(
                 "Add a Plant",
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: Colors.white),
               ),
             ),
           ),

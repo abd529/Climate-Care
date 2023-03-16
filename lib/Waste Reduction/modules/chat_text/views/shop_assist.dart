@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
+import '../../../../Utility/header.dart';
 import '../../../common/headers.dart';
 import '../controllers/chat_text_controller.dart';
 
@@ -49,22 +50,8 @@ class _ShopAssistantState extends State<ShopAssistant> {
       ),
       body: Obx(() => SingleChildScrollView(
             child: Column(children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const SizedBox(
-                    width: 250,
-                    child: Text(
-                      "Enter a product link that you want to buy for an eci friendly alternative",
-                      softWrap: true,
-                    ),
-                  ),
-                  SizedBox(
-                      height: 80,
-                      width: 80,
-                      child: Image.asset("assets/cli-matee.png"))
-                ],
-              ),
+              const Header(
+                  "Enter a product link that you want to buy for an eci friendly alternative"),
               Form(
                   key: _formKey,
                   child: Column(
