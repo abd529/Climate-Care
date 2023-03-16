@@ -457,7 +457,7 @@ class HomeScreenState extends State<HomeScreen> {
                   if (!snapshot.hasData) return const LinearProgressIndicator();
                   print(snapshot.data);
                   return SizedBox(
-                      height: MediaQuery.of(context).size.height / 3,
+                      height: MediaQuery.of(context).size.height / 2.3,
                       child: _buildList(snapshot.data));
                 })),
             SizedBox(
