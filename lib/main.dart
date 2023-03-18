@@ -1,4 +1,5 @@
 // ignore_for_file: unused_import
+import 'package:climate_care/Screens/community_screen.dart';
 import 'package:climate_care/Screens/home_screen.dart';
 import 'package:climate_care/Screens/garden_screen.dart';
 import 'package:climate_care/Screens/plant_detail_screen.dart';
@@ -9,6 +10,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:climate_care/home.dart';
 import 'package:climate_care/onboarding/splash.dart';
 import 'Screens/add_plant_screen.dart';
+import 'Screens/add_post.dart';
 import 'Screens/settings.dart';
 import 'Screens/point_redeem.dart';
 import 'CO2 Emission Calulator/quiz_screen.dart';
@@ -40,14 +42,16 @@ class MyApp extends StatelessWidget {
               elevation: 0,
               titleTextStyle: GoogleFonts.poppins(fontSize: 18))),
       home:
-          Home(), //change this to Home screen the score value is in quiz_screen.dart>>finalscore
+          const Home(), //change this to Home screen the score value is in quiz_screen.dart>>finalscore
       routes: {
+        Home.routeName: (ctx) => const Home(),
         Signup.routeName: (ctx) => const Signup(),
         LoginScreen.routeName: (ctx) => const LoginScreen(),
         logQuiz.routeName: (ctx) => const logQuiz(),
         Option.routeName: (ctx) => const Option(),
         AddPlantScreen.routeName: (ctx) => const AddPlantScreen(),
         GardenScreen.routeName: (ctx) => const GardenScreen(),
+        AddPost.routeName: (ctx) => const AddPost()
       },
     );
   }

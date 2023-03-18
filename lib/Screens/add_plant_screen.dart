@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:climate_care/Models/plant.dart';
 import 'package:climate_care/Screens/garden_screen.dart';
+import 'package:climate_care/Utility/header.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -149,20 +150,7 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text("Add Your New Plant Buddy",
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.green)),
-                    SizedBox(
-                        height: 70,
-                        width: 70,
-                        child: Image.asset("assets/cli-matee.png")),
-                  ],
-                ),
+                const Header("Add Your New Plant Buddy"),
                 Form(
                   key: _formKey,
                   child: Padding(
@@ -321,7 +309,7 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
 
   InputDecoration textFeildDecoration(String hintText, IconData? icon) {
     return InputDecoration(
-      contentPadding: EdgeInsets.only(bottom: 15),
+      contentPadding: const EdgeInsets.only(bottom: 15),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(15),
         borderSide: const BorderSide(

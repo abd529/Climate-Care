@@ -10,10 +10,12 @@ class Header extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         SizedBox(
-          width: 250,
+          width: MediaQuery.of(context).size.width - 100,
           child: Text(
             text,
             softWrap: true,
+            style: const TextStyle(
+                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green),
           ),
         ),
         SizedBox(

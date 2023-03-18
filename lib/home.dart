@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 
+import 'Screens/community_screen.dart';
 import 'Screens/garden_screen.dart';
 
 class Home extends StatefulWidget {
@@ -32,7 +33,7 @@ class _HomeState extends State<Home> {
       const GardenScreen(),
       const PointRedeem(),
       const HomeScreen(),
-      const ProfileScreen(),
+      const Community(),
       Settings(),
       //const Text("heh")
     ];
@@ -49,7 +50,7 @@ class _HomeState extends State<Home> {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 02, vertical: 10),
             child: GNav(
               rippleColor: Theme.of(context).primaryColor,
               hoverColor: Theme.of(context).primaryColor,
@@ -62,11 +63,11 @@ class _HomeState extends State<Home> {
               color: Colors.black,
               tabs: const [
                 GButton(
-                  icon: LineIcons.tree,
+                  icon: Icons.spa_outlined,
                   text: 'Activities',
                 ),
                 GButton(
-                  icon: Icons.auto_graph_outlined,
+                  icon: Icons.emoji_events_outlined,
                   text: 'Progress',
                 ),
                 GButton(

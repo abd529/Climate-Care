@@ -36,78 +36,80 @@ class _GardenScreenState extends State<GardenScreen> {
   }
 
   Widget _buildListItem(Plant plant) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-      Container(
-        width: MediaQuery.of(context).size.width - 30,
-        height: MediaQuery.of(context).size.height / 3,
-        decoration: const BoxDecoration(
-            color: Color.fromRGBO(140, 221, 161, 1),
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(70),
-              bottomLeft: Radius.circular(70),
-            )),
-        child: Row(
-          children: [
-            SizedBox(
-              height: 150,
-              width: 150,
-              child: Image.asset(plant.status == "seed"
-                  ? "assets/seed.png"
-                  : plant.status == "sprouted"
-                      ? "assets/sprouted.png"
-                      : plant.status == "small plant"
-                          ? "assets/small_plant2.png"
-                          : "assets/tree.png"),
-            ),
-            Padding(
-              padding:
-                  EdgeInsets.only(left: MediaQuery.of(context).size.width / 20),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    plant.nickName,
-                    textAlign: TextAlign.right,
-                    softWrap: true,
-                    style: TextStyle(
-                        fontFamily: GoogleFonts.shadowsIntoLight().fontFamily,
-                        fontSize: 35,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                      child: Column(
-                    children: [
-                      rowMethod("Plant Name:", plant.name),
-                      rowMethod("Plant Type:", plant.type),
-                      rowMethod("Status:", plant.status),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.green),
-                          onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  PlantDetailScreen(plantId: plant.plantId),
-                            ));
-                          },
-                          child: const Text("View Details"))
-                    ],
-                  )),
-                ],
+    return SafeArea(
+      child: Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
+        Container(
+          width: MediaQuery.of(context).size.width - 30,
+          height: MediaQuery.of(context).size.height / 3,
+          decoration: const BoxDecoration(
+              color: Color.fromRGBO(140, 221, 161, 1),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(70),
+                bottomLeft: Radius.circular(70),
+              )),
+          child: Row(
+            children: [
+              SizedBox(
+                height: 150,
+                width: 150,
+                child: Image.asset(plant.status == "seed"
+                    ? "assets/seed.png"
+                    : plant.status == "sprouted"
+                        ? "assets/sprouted.png"
+                        : plant.status == "small plant"
+                            ? "assets/small_plant2.png"
+                            : "assets/tree.png"),
               ),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width / 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      plant.nickName,
+                      textAlign: TextAlign.right,
+                      softWrap: true,
+                      style: TextStyle(
+                          fontFamily: GoogleFonts.shadowsIntoLight().fontFamily,
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                        child: Column(
+                      children: [
+                        rowMethod("Plant Name:", plant.name),
+                        rowMethod("Plant Type:", plant.type),
+                        rowMethod("Status:", plant.status),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.green),
+                            onPressed: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    PlantDetailScreen(plantId: plant.plantId),
+                              ));
+                            },
+                            child: const Text("View Details"))
+                      ],
+                    )),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
-      const SizedBox(
-        height: 20,
-      )
-    ]);
+        const SizedBox(
+          height: 20,
+        )
+      ]),
+    );
   }
 
   Row rowMethod(String key, String value) {
