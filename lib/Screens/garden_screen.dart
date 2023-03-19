@@ -89,7 +89,8 @@ class _GardenScreenState extends State<GardenScreen> {
                         ),
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.green),
+                                backgroundColor:
+                                    Theme.of(context).primaryColor),
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                 builder: (BuildContext context) =>
@@ -159,7 +160,7 @@ class _GardenScreenState extends State<GardenScreen> {
                 Navigator.of(context).pushNamed(AddPlantScreen.routeName);
               },
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.green,
+                backgroundColor: Theme.of(context).primaryColor,
               ),
               child: const Text(
                 "Add a Plant",

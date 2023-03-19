@@ -54,7 +54,7 @@ class _HomeState extends State<Home> {
             child: GNav(
               rippleColor: Theme.of(context).primaryColor,
               hoverColor: Theme.of(context).primaryColor,
-              gap: 8,
+              gap: 6,
               activeColor: Colors.white,
               iconSize: 24,
               padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 12),
