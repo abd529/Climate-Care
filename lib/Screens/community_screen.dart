@@ -1,5 +1,8 @@
+// ignore_for_file: depend_on_referenced_packages, avoid_print, unused_element
+
 import 'package:climate_care/Models/post.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'add_post.dart';
@@ -13,6 +16,8 @@ class Community extends StatefulWidget {
 
 class _CommunityState extends State<Community> {
   bool liked = false;
+  final userId = FirebaseAuth.instance.currentUser!.uid;
+  bool isLiked = false;
 
   TextStyle dateStyle() {
     return const TextStyle(color: Colors.grey, fontSize: 12);
@@ -35,6 +40,21 @@ class _CommunityState extends State<Community> {
   }
 
   Widget _buildListItem(SocialPost post) {
+    void likeCheck() async {
+      final result = await FirebaseFirestore.instance
+          .collection("Likes")
+          .doc(userId)
+          .snapshots()
+          .contains(post.postId);
+      if (result == true) {
+        setState(() {
+          isLiked = true;
+        });
+      } else {
+        isLiked = false;
+      }
+    }
+
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -49,10 +69,10 @@ class _CommunityState extends State<Community> {
                 child: Row(
                   children: [
                     CircleAvatar(
-                      backgroundColor: Color.fromARGB(255, 183, 222, 139),
+                      backgroundColor: const Color.fromARGB(255, 183, 222, 139),
                       child: Text(
                         post.userName.characters.first,
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                       ),
                     ),
                     const SizedBox(
@@ -83,12 +103,65 @@ class _CommunityState extends State<Community> {
                 ],
               ),
               Text(post.postText),
-              Container(
+              SizedBox(
                 height: post.photo != "" ? 250 : 05,
                 width: double.infinity,
                 child:
                     post.photo != "" ? Image.network(post.photo) : Container(),
               ),
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceAround,
+              //   children: [
+              //     Center(
+              //       child: Row(
+              //         children: [
+              //           IconButton(
+              //               onPressed: () {
+              //                 if (liked == true) {
+              //                   setState(() {
+              //                     likeCheck();
+              //                     final int postLikes = post.like - 1;
+              //                     FirebaseFirestore.instance
+              //                         .collection("Social Posts")
+              //                         .doc(post.postId)
+              //                         .update({"likes": postLikes});
+              //                     FirebaseFirestore.instance
+              //                         .collection("Like")
+              //                         .doc(userId)
+              //                         .update(
+              //                             {post.postId: FieldValue.delete()});
+              //                     liked = false;
+              //                   });
+              //                 } else {
+              //                   setState(() {
+              //                     likeCheck();
+              //                     final int postLikes = post.like + 1;
+              //                     FirebaseFirestore.instance
+              //                         .collection("Social Posts")
+              //                         .doc(post.postId)
+              //                         .update({"likes": postLikes});
+              //                     FirebaseFirestore.instance
+              //                         .collection("Like")
+              //                         .doc(userId)
+              //                         .set({post.postId: true});
+              //                     liked = true;
+              //                   });
+              //                 }
+              //               },
+              //               icon: Icon(isLiked
+              //                   ? Icons.favorite
+              //                   : Icons.favorite_border)),
+              //           Text(post.like.toString()),
+              //         ],
+              //       ),
+              //     ),
+              //     ElevatedButton(
+              //         onPressed: () {
+              //           //likeCheck();
+              //         },
+              //         child: Text("check"))
+              //   ],
+              // )
             ],
           ),
         ),
@@ -141,7 +214,7 @@ class _CommunityState extends State<Community> {
               builder: ((context, snapshot) {
                 if (!snapshot.hasData) return const LinearProgressIndicator();
                 print(snapshot.data);
-                return Container(
+                return SizedBox(
                     height:
                         MediaQuery.of(context).size.height / 1.211212121212121,
                     child: _buildList(snapshot.data));

@@ -1,3 +1,5 @@
+// ignore_for_file: depend_on_referenced_packages, non_constant_identifier_names, avoid_print
+
 import 'dart:convert';
 import 'package:climate_care/Models/plant.dart';
 import 'package:climate_care/Screens/garden_screen.dart';
@@ -5,7 +7,6 @@ import 'package:climate_care/Utility/header.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -103,17 +104,17 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
       //sproutingDays = int.parse(_sproutDaysController.text.toString());
       final userId = FirebaseAuth.instance.currentUser!.uid;
 
-      // FirebaseFirestore.instance.collection("All Plants").add({
-      //   "name": _nameController.text.trim(),
-      //   "nickName": _nickNameController.text.trim(),
-      //   "lat": lat,
-      //   "lng": lng,
-      //   "plantType": _typeController.dropDownValue!.value,
-      //   "plantStatus": plantStatus,
-      //   "location": plantLocaion,
-      //   "date": date,
-      //   "plantId": plant_id
-      // });
+      FirebaseFirestore.instance.collection("All Plants").add({
+        "name": _nameController.text.trim(),
+        "nickName": _nickNameController.text.trim(),
+        "lat": lat,
+        "lng": lng,
+        "plantType": _typeController.dropDownValue!.value,
+        "plantStatus": plantStatus,
+        "location": plantLocaion,
+        "date": date,
+        "plantId": plant_id
+      });
 
       FirebaseFirestore.instance
           .collection("User Plants") //folder

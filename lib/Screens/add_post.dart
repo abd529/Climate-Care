@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_typing_uninitialized_variables, avoid_print, non_constant_identifier_names
+
 import 'dart:io';
 
 import 'package:climate_care/Models/post.dart';
@@ -29,7 +31,8 @@ class _AddPostState extends State<AddPost> {
   Future<void> _openImagePicker() async {
     final XFile? pickedImage =
         await _picker.pickImage(source: ImageSource.gallery);
-    Reference ref = FirebaseStorage.instance.ref().child("Profile Pic/$userid");
+    Reference ref =
+        FirebaseStorage.instance.ref().child("Profile Pic/${DateTime.now()}");
     _image = File(pickedImage!.path);
     await ref.putFile(_image);
     ref.getDownloadURL().then((value) async {
@@ -38,12 +41,10 @@ class _AddPostState extends State<AddPost> {
         print("this is photo link $value");
       });
     });
-    if (pickedImage != null) {
-      setState(() {
-        _image = File(pickedImage.path);
-      });
-      await FirebaseAuth.instance.currentUser!.updatePhotoURL(profilePicLink);
-    }
+    setState(() {
+      _image = File(pickedImage.path);
+    });
+    await FirebaseAuth.instance.currentUser!.updatePhotoURL(profilePicLink);
   }
 
   void Submit() {
@@ -59,16 +60,14 @@ class _AddPostState extends State<AddPost> {
     }
   }
 
-  final TextEditingController _nameController = TextEditingController();
-  final TextEditingController _dateController = TextEditingController();
   final TextEditingController _textController = TextEditingController();
-  final TextEditingController _photoController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   SocialPost post = SocialPost(
       userName: "Abd",
       date: Timestamp.fromDate(DateTime.now()),
       like: 40,
       postText: "hey this is my plant, stasy",
+      postId: DateTime.now().toString(),
       photo:
           "https://i.pinimg.com/originals/2b/2f/3b/2b2f3ba27ceb7cf7736e0071aaf8aefd.jpg");
   @override
@@ -91,6 +90,7 @@ class _AddPostState extends State<AddPost> {
                       if (value!.isEmpty) {
                         return "Required!";
                       }
+                      return null;
                     },
                     textInputAction: TextInputAction.next,
                     decoration: textFeildDecoration(
@@ -103,7 +103,7 @@ class _AddPostState extends State<AddPost> {
                   Container(
                     height: MediaQuery.of(context).size.height / 3,
                     width: double.infinity,
-                    color: Color.fromARGB(255, 228, 228, 228),
+                    color: const Color.fromARGB(255, 228, 228, 228),
                     child: Center(
                       child: _image != null
                           ? Image.file(_image, fit: BoxFit.cover)

@@ -1,3 +1,5 @@
+// ignore_for_file: cast_from_null_always_fails
+
 import 'package:climate_care/Screens/update_plant.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,7 +12,7 @@ import '../Utility/timer.dart';
 class PlantDetailScreen extends StatefulWidget {
   static const routeName = "plant-details";
   final dynamic plantId;
-  PlantDetailScreen({required this.plantId});
+  const PlantDetailScreen({super.key, required this.plantId});
 
   @override
   State<PlantDetailScreen> createState() => _PlantDetailScreenState();
@@ -56,7 +58,6 @@ class _PlantDetailScreenState extends State<PlantDetailScreen> {
         Timestamp fetchedDate = data["date"];
         //int days = data["sproutingDuration"];
         //print("days left: $days");
-        final today = DateTime.now();
         tmTodate = sproutDate.toDate();
         //today.add(Duration(days: days));
         setState(() {

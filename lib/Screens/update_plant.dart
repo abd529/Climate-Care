@@ -1,4 +1,4 @@
-// ignore_for_file: depend_on_referenced_packages
+// ignore_for_file: depend_on_referenced_packages, must_be_immutable, avoid_print
 
 import 'package:climate_care/Screens/garden_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -11,7 +11,7 @@ import '../Utility/header.dart';
 
 class UpdatePlant extends StatefulWidget {
   Plant plant;
-  UpdatePlant(this.plant);
+  UpdatePlant(this.plant, {super.key});
 
   @override
   State<UpdatePlant> createState() => _UpdatePlantState();

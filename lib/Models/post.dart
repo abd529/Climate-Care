@@ -6,20 +6,23 @@ class SocialPost {
   final String photo;
   final String postText;
   final int like;
-  SocialPost({
-    required this.userName,
-    required this.date,
-    required this.like,
-    required this.postText,
-    required this.photo,
-  });
+  final String postId;
+  SocialPost(
+      {required this.userName,
+      required this.date,
+      required this.like,
+      required this.postText,
+      required this.photo,
+      required this.postId});
   factory SocialPost.fromSnapshot(DocumentSnapshot snapshot) {
     final map = snapshot.data() as Map<String, dynamic>;
+    final postId = snapshot.id;
     return SocialPost(
         userName: map["name"],
         date: map["date"],
         like: map["likes"],
         postText: map["postText"],
-        photo: map["photoLink"]);
+        photo: map["photoLink"],
+        postId: postId);
   }
 }

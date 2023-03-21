@@ -1,13 +1,10 @@
+import 'package:climate_care/Screens/activities_screen.dart';
 import 'package:climate_care/Screens/home_screen.dart';
-import 'package:climate_care/Screens/profile_screen.dart';
 import 'package:climate_care/Screens/settings.dart';
 import 'package:climate_care/Screens/point_redeem.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:line_icons/line_icons.dart';
-
 import 'Screens/community_screen.dart';
-import 'Screens/garden_screen.dart';
 
 class Home extends StatefulWidget {
   static const routeName = "home";
@@ -30,11 +27,11 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     List<Widget> pages = [
-      const GardenScreen(),
+      const ActivitiesScreen(),
       const PointRedeem(),
       const HomeScreen(),
       const Community(),
-      Settings(),
+      const Settings(),
       //const Text("heh")
     ];
     return Scaffold(
@@ -71,7 +68,7 @@ class _HomeState extends State<Home> {
                   text: 'Progress',
                 ),
                 GButton(
-                  icon: LineIcons.home,
+                  icon: Icons.home,
                   text: 'HOME',
                 ),
                 GButton(

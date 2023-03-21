@@ -1,9 +1,15 @@
+// ignore_for_file: avoid_print
+
+import 'dart:typed_data';
+import 'dart:ui' as ui;
 import 'package:climate_care/Models/plant.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapScreen extends StatefulWidget {
+  static const routeName = "map";
   const MapScreen({super.key});
 
   @override
@@ -11,6 +17,8 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
+  BitmapDescriptor markerIcon = BitmapDescriptor.defaultMarker;
+  late GoogleMapController _controller;
   int num = 0;
   late Plant ai = Plant(
       name: "name",
@@ -22,6 +30,7 @@ class _MapScreenState extends State<MapScreen> {
       location: "location",
       plantId: "plantId",
       date: Timestamp(0, 0));
+
   Set<Marker> plantsD = {
     const Marker(
       markerId: MarkerId("marker_1"),
@@ -39,25 +48,13 @@ class _MapScreenState extends State<MapScreen> {
 
     for (final doc in documents) {
       Map data = doc.data() as Map;
-      if (data != null) {
-        Plant i = Plant(
-            name: data["name"],
-            type: data["plantType"],
-            lat: data["lat"],
-            lng: data["lng"],
-            status: data["plantStatus"],
-            nickName: data["nickName"],
-            location: data["location"],
-            plantId: data["plantId"],
-            date: data["date"]);
-      }
       print(data);
       plantsD.add(Marker(
           markerId: MarkerId(ai.name),
           position: LatLng(ai.lng, ai.lat),
           consumeTapEvents: true,
           infoWindow: InfoWindow(
-            onTap: () => Column(children: [const Text("hehe")]),
+            onTap: () => Column(children: const [Text("hehe")]),
           )));
     }
     //plantsOb.forEach(() =>
@@ -65,23 +62,111 @@ class _MapScreenState extends State<MapScreen> {
     print(plantsD);
   }
 
+  Future OnMapCreated(GoogleMapController controller) async {
+    _controller = controller;
+    String value = await DefaultAssetBundle.of(context)
+        .loadString('assets/map_style.json');
+    _controller.setMapStyle(value);
+  }
+
+  void addCustomIcon() {
+    BitmapDescriptor.fromAssetImage(
+            const ImageConfiguration(), "assets/loca.png")
+        .then(
+      (icon) {
+        setState(() {
+          markerIcon = icon;
+        });
+      },
+    );
+  }
+
   Set<Marker> _createMarker() {
     return {
-      const Marker(
-        markerId: MarkerId("marker_1"),
-        position: LatLng(31.6211127, 27.2823662),
+      Marker(
+        icon: markerIcon,
+        markerId: const MarkerId("marker_1"),
+        position: const LatLng(31.4697, 74.2824),
         infoWindow:
-            InfoWindow(title: 'Dinner at 9pm', snippet: "hhhhhhhhhhhhhhhhhhhh"),
+            const InfoWindow(title: 'Dinner at 9pm', snippet: "Johar Town"),
+        rotation: 0,
+      ),
+      Marker(
+        icon: markerIcon,
+        markerId: const MarkerId("marker_2"),
+        position: const LatLng(31.6211, 74.2728),
+        infoWindow: const InfoWindow(title: 'Dinner at 9pm', snippet: "Shadra"),
+        rotation: 0,
+      ),
+      Marker(
+        icon: markerIcon,
+        markerId: const MarkerId("marker_3"),
+        position: const LatLng(31.4914, 74.2385),
+        infoWindow: const InfoWindow(
+            title: 'Dinner at 9pm', snippet: "Thokar Niaz Baig"),
+        rotation: 0,
+      ),
+      Marker(
+        icon: markerIcon,
+        markerId: const MarkerId("marker_4"),
+        position: const LatLng(31.4164, 74.1842),
+        infoWindow:
+            const InfoWindow(title: 'Dinner at 9pm', snippet: "Izmir Town"),
+        rotation: 0,
+      ),
+      Marker(
+        icon: markerIcon,
+        markerId: const MarkerId("marker_5"),
+        position: const LatLng(31.4032, 74.2560),
+        infoWindow:
+            const InfoWindow(title: 'Dinner at 9pm', snippet: "Valencia"),
+        rotation: 0,
+      ),
+      Marker(
+        icon: markerIcon,
+        markerId: const MarkerId("marker_6"),
+        position: const LatLng(31.4625, 74.4086),
+        infoWindow:
+            const InfoWindow(title: 'Dinner at 9pm', snippet: "DHA Phae 5"),
+        rotation: 0,
+      ),
+      Marker(
+        icon: markerIcon,
+        markerId: const MarkerId("marker_7"),
+        position: const LatLng(31.5617, 74.3369),
+        infoWindow:
+            const InfoWindow(title: 'Dinner at 9pm', snippet: "Garhi Shahu"),
         rotation: 0,
       )
     };
   }
 
-  static const LatLng _kMapCenter =
-      LatLng(19.018255973653343, 72.84793849278007);
+  static Future<Uint8List> getBytesFromAsset(String path, int width) async {
+    ByteData data = await rootBundle.load(path);
+    ui.Codec codec = await ui.instantiateImageCodec(data.buffer.asUint8List(),
+        targetWidth: width);
+    ui.FrameInfo fi = await codec.getNextFrame();
+    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
+        .buffer
+        .asUint8List();
+  }
 
-  static final CameraPosition _kInitialPosition = const CameraPosition(
-      target: _kMapCenter, zoom: 11.0, tilt: 0, bearing: 0);
+  static const LatLng _kMapCenter = LatLng(31.5204, 74.3587);
+
+  static const CameraPosition _kInitialPosition =
+      CameraPosition(target: _kMapCenter, zoom: 11.0, tilt: 0, bearing: 0);
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getBytesFromAsset('assets/loca.png', 150).then((onValue) {
+      setState(() {
+        markerIcon = BitmapDescriptor.fromBytes(onValue);
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     if (num == 0) {
@@ -90,7 +175,7 @@ class _MapScreenState extends State<MapScreen> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Google Maps Demo'),
+        title: const Text('View All Plants on Map'),
       ),
       body: Stack(children: [
         GoogleMap(
@@ -98,20 +183,10 @@ class _MapScreenState extends State<MapScreen> {
           markers: _createMarker(),
           myLocationButtonEnabled: true,
           myLocationEnabled: true,
+          onMapCreated: OnMapCreated,
+          trafficEnabled: false,
+          zoomControlsEnabled: true,
         ),
-        ElevatedButton(
-            onPressed: () {
-              getMarkers();
-            },
-            child: const Text("heh")),
-        Positioned(
-          bottom: 0,
-          child: ElevatedButton(
-              onPressed: () {
-                setState(() {});
-              },
-              child: const Text("data")),
-        )
       ]),
     );
   }

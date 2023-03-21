@@ -25,10 +25,10 @@ class Plant {
   });
   factory Plant.fromSnapshot(DocumentSnapshot snapshot) {
     final map = snapshot.data() as Map<String, dynamic>;
-    final plant_id = snapshot.id;
+    final plantId = snapshot.id;
     return Plant(
         name: map["name"] as String,
-        plantId: plant_id,
+        plantId: plantId,
         lat: map["lat"],
         lng: map["lng"],
         location: map["location"],

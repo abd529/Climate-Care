@@ -51,7 +51,9 @@ class MyApp extends StatelessWidget {
         Option.routeName: (ctx) => const Option(),
         AddPlantScreen.routeName: (ctx) => const AddPlantScreen(),
         GardenScreen.routeName: (ctx) => const GardenScreen(),
-        AddPost.routeName: (ctx) => const AddPost()
+        AddPost.routeName: (ctx) => const AddPost(),
+        ShopAssistant.routeName: (ctx) => const ShopAssistant(),
+        MapScreen.routeName: (ctx) => const MapScreen()
       },
     );
   }

@@ -1,10 +1,12 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'dart:async';
 import 'package:flutter/material.dart';
 
 class CountdownTimer extends StatefulWidget {
   final DateTime targetDate;
 
-  CountdownTimer({required this.targetDate});
+  const CountdownTimer({super.key, required this.targetDate});
 
   @override
   _CountdownTimerState createState() => _CountdownTimerState();

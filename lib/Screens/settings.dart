@@ -1,17 +1,12 @@
 // ignore_for_file: avoid_print
 
-import 'dart:io';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 import 'package:climate_care/Authentication/lsoption.dart';
-import 'package:image_picker/image_picker.dart';
 
 class Settings extends StatefulWidget {
-  Settings({super.key});
+  const Settings({super.key});
 
   @override
   State<Settings> createState() => _SettingsState();
@@ -19,8 +14,6 @@ class Settings extends StatefulWidget {
 
 class _SettingsState extends State<Settings> {
   String profilePicLink = "";
-  var _image;
-  final _picker = ImagePicker();
   int num = 0;
   var userid = FirebaseAuth.instance.currentUser!.uid;
   final name = FirebaseAuth.instance.currentUser!.displayName;
@@ -95,7 +88,8 @@ class _SettingsState extends State<Settings> {
                         width: 200,
                         height: 100,
                         child: CircleAvatar(
-                            backgroundImage: AssetImage('assets/cli-matee.png'),
+                            backgroundImage:
+                                const AssetImage('assets/cli-matee.png'),
                             child: TextButton(
                               onPressed: () {},
                               child: Container(

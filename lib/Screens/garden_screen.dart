@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_print
+
 import 'package:climate_care/Screens/add_plant_screen.dart';
 import 'package:climate_care/Screens/plant_detail_screen.dart';
+import 'package:climate_care/map_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +20,6 @@ class GardenScreen extends StatefulWidget {
 
 class _GardenScreenState extends State<GardenScreen> {
   final userId = FirebaseAuth.instance.currentUser!.uid;
-
-  final TextEditingController _controller = TextEditingController();
 
   Widget _buildList(QuerySnapshot<Object?>? snapshot) {
     if (snapshot!.docs.isEmpty) {
@@ -78,8 +79,7 @@ class _GardenScreenState extends State<GardenScreen> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Container(
-                        child: Column(
+                    Column(
                       children: [
                         rowMethod("Plant Name:", plant.name),
                         rowMethod("Plant Type:", plant.type),
@@ -99,7 +99,7 @@ class _GardenScreenState extends State<GardenScreen> {
                             },
                             child: const Text("View Details"))
                       ],
-                    )),
+                    ),
                   ],
                 ),
               ),
@@ -148,7 +148,7 @@ class _GardenScreenState extends State<GardenScreen> {
             children: const [
               Padding(padding: EdgeInsets.all(8.0), child: MyBackButton()),
               Text(
-                " My Garden",
+                "My Garden",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
             ],
@@ -168,6 +168,17 @@ class _GardenScreenState extends State<GardenScreen> {
               ),
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pushNamed(MapScreen.routeName);
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green,
+                ),
+                child: const Icon(Icons.map_outlined)),
+          ),
         ],
       ),
       StreamBuilder<QuerySnapshot>(
@@ -179,8 +190,8 @@ class _GardenScreenState extends State<GardenScreen> {
           builder: ((context, snapshot) {
             if (!snapshot.hasData) return const LinearProgressIndicator();
             print(snapshot.data);
-            return Container(
-                height: MediaQuery.of(context).size.height / 1.211212121212121,
+            return SizedBox(
+                height: MediaQuery.of(context).size.height / 1.15,
                 child: _buildList(snapshot.data));
           }))
     ]);
@@ -188,6 +199,6 @@ class _GardenScreenState extends State<GardenScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(child: _buildBody(context));
+    return Scaffold(body: SafeArea(child: _buildBody(context)));
   }
 }
