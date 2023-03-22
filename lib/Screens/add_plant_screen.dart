@@ -1,4 +1,4 @@
-// ignore_for_file: depend_on_referenced_packages, non_constant_identifier_names, avoid_print
+// ignore_for_file: depend_on_referenced_packages, non_constant_identifier_names, avoid_print, use_build_context_synchronously
 
 import 'dart:convert';
 import 'package:climate_care/Models/plant.dart';
@@ -99,7 +99,7 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
     }
   }
 
-  void submit() {
+  void submit() async {
     if (_formKey.currentState!.validate()) {
       //sproutingDays = int.parse(_sproutDaysController.text.toString());
       final userId = FirebaseAuth.instance.currentUser!.uid;
@@ -136,8 +136,73 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
       _searchPlaceController.clear();
       _sproutDaysController.clear();
       _typeController.clearDropDown();
-
-      Navigator.of(context).pushNamed(GardenScreen.routeName);
+      double reduced = 0;
+      int coins = 0;
+      final docSnapshotCoin = await FirebaseFirestore.instance
+          .collection("Green Coins")
+          .doc("$userId Coins")
+          .get();
+      if (docSnapshotCoin.exists) {
+        Map<String, dynamic>? data = docSnapshotCoin.data();
+        var value = data?['coins'];
+        print(value);
+        setState(() {
+          coins = value;
+        });
+      }
+      final docSnapshot = await FirebaseFirestore.instance
+          .collection("Reduced Emission")
+          .doc("$userId Reduced")
+          .get();
+      if (docSnapshot.exists) {
+        Map<String, dynamic>? data = docSnapshot.data();
+        var value = data?['reduced'];
+        print(value);
+        setState(() {
+          reduced = value;
+        });
+      }
+      final totalRe = reduced + 30;
+      FirebaseFirestore.instance
+          .collection("Reduced Emission")
+          .doc("$userId Reduced")
+          .update({"reduced": reduced + 30});
+      FirebaseFirestore.instance
+          .collection("Green Coins")
+          .doc("$userId Coins")
+          .update({"coins": coins + 50});
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                backgroundColor: Colors.lightGreen[100],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                title: Row(
+                  children: [
+                    const Text("Congratulations!"),
+                    SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: Image.asset("assets/cli-matee.png"),
+                    )
+                  ],
+                ),
+                content: Text(
+                  "You just added a new plant and \nreduced $reduced kg CO2 Emissions. \nAnd you earned 50 Green Coins",
+                  softWrap: true,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                actions: [
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text("Jump to Garden"))
+                ],
+              ));
     }
   }
 

@@ -2,6 +2,7 @@
 import 'package:climate_care/Screens/community_screen.dart';
 import 'package:climate_care/Screens/home_screen.dart';
 import 'package:climate_care/Screens/garden_screen.dart';
+import 'package:climate_care/Screens/partner_detail_screen.dart';
 import 'package:climate_care/Screens/plant_detail_screen.dart';
 import 'package:climate_care/map_screen.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
         GardenScreen.routeName: (ctx) => const GardenScreen(),
         AddPost.routeName: (ctx) => const AddPost(),
         ShopAssistant.routeName: (ctx) => const ShopAssistant(),
-        MapScreen.routeName: (ctx) => const MapScreen()
+        MapScreen.routeName: (ctx) => const MapScreen(),
       },
     );
   }
