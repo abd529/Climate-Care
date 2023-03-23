@@ -2,6 +2,7 @@ import 'package:climate_care/Screens/partner_detail_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 import '../Models/partners.dart';
 
@@ -99,9 +100,9 @@ class _PointRedeemState extends State<PointRedeem> {
               const Text(
                 'Your Green Coins',
                 style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                ),
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.green),
               ),
               Container(
                 margin: const EdgeInsets.only(top: 10, bottom: 25),
@@ -109,20 +110,18 @@ class _PointRedeemState extends State<PointRedeem> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: 50,
-                      height: 50,
-                      margin: const EdgeInsets.only(right: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30),
-                        color: Theme.of(context).primaryColor,
-                      ),
-                      child: const Icon(
-                        Icons.emoji_nature,
-                        color: Colors.white,
-                        size: 24,
-                      ),
+                        // width: 50,
+                        // height: 50,
+                        margin: const EdgeInsets.only(right: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        child: SvgPicture.asset("assets/coin.svg")),
+                    Text(
+                      coins.toString(),
+                      style: const TextStyle(fontSize: 18),
                     ),
-                    Text(coins.toString()),
                   ],
                 ),
               ),
@@ -132,7 +131,7 @@ class _PointRedeemState extends State<PointRedeem> {
                 child: const Text(
                   'Redeem Coins:',
                   style: TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -143,7 +142,7 @@ class _PointRedeemState extends State<PointRedeem> {
                     itemCount: partners.length,
                     itemBuilder: (context, index) => _redeenCards(
                         partners[index],
-                        Colors.yellow,
+                        partners[index].logoColor,
                         partners[index].logo,
                         "Get 50% discount on all items")),
               ),

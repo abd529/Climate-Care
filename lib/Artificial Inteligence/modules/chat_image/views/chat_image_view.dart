@@ -1,4 +1,4 @@
-import 'package:climate_care/Waste Reduction/modules/chat_image/views/widgets/image_card.dart';
+import 'package:climate_care/Artificial%20Inteligence/modules/chat_image/views/widgets/image_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../common/headers.dart';

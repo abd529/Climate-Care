@@ -171,6 +171,10 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
           .collection("Green Coins")
           .doc("$userId Coins")
           .update({"coins": coins + 50});
+      FirebaseFirestore.instance
+          .collection("EmissionLevel")
+          .doc(userId)
+          .update({"planted": true});
       showDialog(
           context: context,
           builder: (context) => AlertDialog(

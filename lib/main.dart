@@ -4,12 +4,13 @@ import 'package:climate_care/Screens/home_screen.dart';
 import 'package:climate_care/Screens/garden_screen.dart';
 import 'package:climate_care/Screens/partner_detail_screen.dart';
 import 'package:climate_care/Screens/plant_detail_screen.dart';
-import 'package:climate_care/map_screen.dart';
+import 'package:climate_care/Screens/map_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:climate_care/home.dart';
 import 'package:climate_care/onboarding/splash.dart';
+import 'Artificial Inteligence/modules/chat_text/views/shop_assist.dart';
 import 'Screens/add_plant_screen.dart';
 import 'Screens/add_post.dart';
 import 'Screens/settings.dart';
@@ -19,7 +20,6 @@ import 'Authentication/login_screen.dart';
 import 'Authentication/lsoption.dart';
 import 'Authentication/signup_screen.dart';
 import 'Screens/update_plant.dart';
-import 'Waste Reduction/modules/chat_text/views/shop_assist.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

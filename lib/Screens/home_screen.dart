@@ -26,6 +26,9 @@ class HomeScreen extends StatefulWidget {
 class HomeScreenState extends State<HomeScreen> {
   var userId = FirebaseAuth.instance.currentUser!.uid;
   double emission = 0;
+  bool planted = false;
+  bool recycled = false;
+  bool shopped = false;
   int num = 0;
   void getEmissionLevel(BuildContext context) async {
     //double emission = 0;
@@ -33,10 +36,16 @@ class HomeScreenState extends State<HomeScreen> {
     var docSnapshot = await collection.doc(userId).get();
     if (docSnapshot.exists) {
       Map<String, dynamic>? data = docSnapshot.data();
-      var value = data?['Emission'];
-      print(value);
+      var value1 = data?["Emission"];
+      var value2 = data?["planted"];
+      var value3 = data?["recycled"];
+      var value4 = data?["shopped"];
+      print(value1);
       setState(() {
-        emission = value;
+        emission = value1 / 2000;
+        planted = value2;
+        recycled = value3;
+        shopped = value4;
       });
     }
   }
@@ -83,8 +92,8 @@ class HomeScreenState extends State<HomeScreen> {
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Container(
-                              height: 60,
-                              width: 60,
+                              height: 50,
+                              width: 50,
                               decoration: BoxDecoration(
                                   color: Color.fromARGB(255, 185, 244, 117),
                                   border:
@@ -99,7 +108,7 @@ class HomeScreenState extends State<HomeScreen> {
                         Text(
                           plant.name,
                           style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.bold),
+                              fontSize: 18, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
@@ -234,7 +243,7 @@ class HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 15,
             ),
-            heading("Carbon Footprint Tracker"),
+            heading("CO2 Emissions Footprint Tracker"),
             AspectRatio(
               aspectRatio: 1.26,
               child: Padding(
@@ -276,15 +285,15 @@ class HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           gridData: FlGridData(
-                            show: true,
-                            checkToShowHorizontalLine: (value) =>
-                                value % 10 == 0,
-                            getDrawingHorizontalLine: (value) => FlLine(
-                              //color: AppColors.borderColor.withOpacity(0.1),
-                              strokeWidth: 1,
-                            ),
-                            drawVerticalLine: false,
-                          ),
+                              show: true,
+                              //checkToShowHorizontalLine: (value) =>
+                              //value % 10 == 0,
+                              getDrawingHorizontalLine: (value) => FlLine(
+                                    //color: AppColors.borderColor.withOpacity(0.1),
+                                    strokeWidth: 1,
+                                  ),
+                              drawVerticalLine: false,
+                              drawHorizontalLine: true),
                           borderData: FlBorderData(
                             show: false,
                           ),
@@ -327,7 +336,7 @@ class HomeScreenState extends State<HomeScreen> {
                       children: [
                         Text("Plant a seed"),
                         Checkbox(
-                          value: true,
+                          value: planted,
                           fillColor: MaterialStateProperty.resolveWith<Color>(
                               (Set<MaterialState> states) {
                             if (states.contains(MaterialState.disabled)) {
@@ -344,9 +353,9 @@ class HomeScreenState extends State<HomeScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Recycle a news paper"),
+                        Text("Recycled useless stuff"),
                         Checkbox(
-                          value: value,
+                          value: recycled,
                           fillColor: MaterialStateProperty.resolveWith<Color>(
                               (Set<MaterialState> states) {
                             if (states.contains(MaterialState.disabled)) {
@@ -365,7 +374,7 @@ class HomeScreenState extends State<HomeScreen> {
                       children: [
                         Text("Use eco friendly product"),
                         Checkbox(
-                          value: value,
+                          value: shopped,
                           fillColor: MaterialStateProperty.resolveWith<Color>(
                               (Set<MaterialState> states) {
                             if (states.contains(MaterialState.disabled)) {
@@ -413,10 +422,10 @@ class HomeScreenState extends State<HomeScreen> {
                                 padding: EdgeInsets.only(
                                     right: 0, left: 5, bottom: 5),
                                 child: Text(
-                                  "This is a very motivational quote for a climate change movement",
+                                  "We do not inherit the Earth from our ancestors, we borrow it from our children",
                                   softWrap: true,
                                   style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 13,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
@@ -506,17 +515,19 @@ class HomeScreenState extends State<HomeScreen> {
         barsSpace: 0,
         barRods: [
           BarChartRodData(
+            backDrawRodData: BackgroundBarChartRodData(
+                color: Colors.green, toY: 20, fromY: 50),
             toY: emission,
-            color: Colors.blue,
-            rodStackItems: [
-              BarChartRodStackItem(
-                0,
-                30,
-                widget.dark,
-              ),
-              BarChartRodStackItem(20, 120, widget.dark),
-              BarChartRodStackItem(120, emission, widget.dark),
-            ],
+            color: Colors.green,
+            // rodStackItems: [
+            //   BarChartRodStackItem(
+            //     0,
+            //     30,
+            //     widget.dark,
+            //   ),
+            //   BarChartRodStackItem(0, emission / 2, Colors.blue),
+            //   BarChartRodStackItem(emission / 2, emission / 3, Colors.yellow),
+            // ],
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(05), topRight: Radius.circular(05)),
             width: barsWidth,
@@ -525,15 +536,16 @@ class HomeScreenState extends State<HomeScreen> {
       ),
       BarChartGroupData(
         x: 1,
-        barsSpace: 0,
+        barsSpace: 50.5,
         barRods: [
           BarChartRodData(
-              toY: 7000,
-              rodStackItems: [
-                BarChartRodStackItem(0, 130, widget.normal),
-                BarChartRodStackItem(130, 140, widget.normal),
-                BarChartRodStackItem(140, 7000, widget.normal),
-              ],
+              toY: 4.8,
+              color: Colors.orange,
+              // rodStackItems: [
+              //   BarChartRodStackItem(0, 4.8 / 2, widget.normal),
+              //   BarChartRodStackItem(130, 140, widget.normal),
+              //   BarChartRodStackItem(140, 7000, widget.normal),
+              // ],
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(05), topRight: Radius.circular(05)),
               width: barsWidth),
@@ -544,12 +556,13 @@ class HomeScreenState extends State<HomeScreen> {
         barsSpace: 0,
         barRods: [
           BarChartRodData(
-              toY: 5000,
-              rodStackItems: [
-                BarChartRodStackItem(0, 60.5, widget.light),
-                BarChartRodStackItem(60.5, 180, widget.light),
-                BarChartRodStackItem(180, 5000, widget.light),
-              ],
+              toY: 1.2,
+              color: Colors.red,
+              // rodStackItems: [
+              //   BarChartRodStackItem(0, 60.5, widget.light),
+              //   BarChartRodStackItem(60.5, 180, widget.light),
+              //   BarChartRodStackItem(180, 5000, widget.light),
+              // ],
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(05), topRight: Radius.circular(05)),
               width: barsWidth),

@@ -7,8 +7,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import '../Waste Reduction/modules/chat_text/controllers/chat_text_controller.dart';
-import '../Waste Reduction/modules/chat_text/views/chat_text_view.dart';
+import '../Artificial Inteligence/modules/chat_text/controllers/chat_text_controller.dart';
+import '../Artificial Inteligence/modules/chat_text/views/chat_text_view.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});

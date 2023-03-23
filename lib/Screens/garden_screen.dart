@@ -2,7 +2,7 @@
 
 import 'package:climate_care/Screens/add_plant_screen.dart';
 import 'package:climate_care/Screens/plant_detail_screen.dart';
-import 'package:climate_care/map_screen.dart';
+import 'package:climate_care/Screens/map_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

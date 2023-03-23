@@ -1,10 +1,9 @@
 import 'package:climate_care/Screens/garden_screen.dart';
-import 'package:climate_care/Waste%20Reduction/modules/chat_text/views/chat_text_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../Waste Reduction/modules/chat_text/controllers/chat_text_controller.dart';
-import '../Waste Reduction/modules/chat_text/views/shop_assist.dart';
+import '../Artificial Inteligence/modules/chat_text/controllers/chat_text_controller.dart';
+import '../Artificial Inteligence/modules/chat_text/views/chat_text_view.dart';
+import '../Artificial Inteligence/modules/chat_text/views/shop_assist.dart';
 
 class ActivitiesScreen extends StatelessWidget {
   const ActivitiesScreen({super.key});
