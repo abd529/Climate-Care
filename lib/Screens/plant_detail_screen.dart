@@ -117,7 +117,7 @@ class _PlantDetailScreenState extends State<PlantDetailScreen> {
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const MyBackButton(),
+                        MyBackButton(),
                         Text(
                           plant.name,
                           style: const TextStyle(

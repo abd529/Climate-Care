@@ -69,6 +69,7 @@ dependencies:
   flutter_pdfview: ^1.2.2
   path_provider: ^2.0.10    
   open_filex: ^4.3.2
+  simple_circular_progress_bar: ^1.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

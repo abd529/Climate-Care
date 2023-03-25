@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class MyBackButton extends StatelessWidget {
-  const MyBackButton({super.key});
+  String routeName = "";
+  MyBackButton({this.routeName = ""});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +11,12 @@ class MyBackButton extends StatelessWidget {
             color: Colors.green, borderRadius: BorderRadius.circular(15)),
         child: IconButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              if (routeName == "") {
+                Navigator.of(context).pop();
+              } else {
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    routeName, (Route<dynamic> route) => false);
+              }
             },
             icon: const Icon(
               Icons.arrow_back,

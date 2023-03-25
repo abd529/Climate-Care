@@ -1,7 +1,7 @@
 import 'package:climate_care/Screens/activities_screen.dart';
 import 'package:climate_care/Screens/home_screen.dart';
 import 'package:climate_care/Screens/settings.dart';
-import 'package:climate_care/Screens/point_redeem.dart';
+import 'package:climate_care/Screens/progress_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'Screens/community_screen.dart';

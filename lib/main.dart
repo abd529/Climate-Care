@@ -2,7 +2,7 @@
 import 'package:climate_care/Screens/community_screen.dart';
 import 'package:climate_care/Screens/home_screen.dart';
 import 'package:climate_care/Screens/garden_screen.dart';
-import 'package:climate_care/Screens/partner_detail_screen.dart';
+import 'package:climate_care/Screens/redeem_screen.dart';
 import 'package:climate_care/Screens/plant_detail_screen.dart';
 import 'package:climate_care/Screens/map_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +13,9 @@ import 'package:climate_care/onboarding/splash.dart';
 import 'Artificial Inteligence/modules/chat_text/views/shop_assist.dart';
 import 'Screens/add_plant_screen.dart';
 import 'Screens/add_post.dart';
+import 'Screens/coming_soon.dart';
 import 'Screens/settings.dart';
-import 'Screens/point_redeem.dart';
+import 'Screens/progress_screen.dart';
 import 'CO2 Emission Calulator/quiz_screen.dart';
 import 'Authentication/login_screen.dart';
 import 'Authentication/lsoption.dart';
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+          //useMaterial3: true,
           primaryColor: const Color.fromRGBO(71, 191, 83, 1),
           textTheme: TextTheme(bodyLarge: GoogleFonts.poppins()),
           fontFamily: GoogleFonts.poppins().fontFamily,
@@ -55,6 +57,7 @@ class MyApp extends StatelessWidget {
         AddPost.routeName: (ctx) => const AddPost(),
         ShopAssistant.routeName: (ctx) => const ShopAssistant(),
         MapScreen.routeName: (ctx) => const MapScreen(),
+        ComingSoon.routeName: (ctx) => const ComingSoon()
       },
     );
   }

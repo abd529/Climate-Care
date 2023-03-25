@@ -1,5 +1,7 @@
-// ignore_for_file: avoid_print, non_constant_identifier_names
+// ignore_for_file: avoid_print, non_constant_identifier_names, use_build_context_synchronously
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -18,7 +20,11 @@ class ShopAssistant extends StatefulWidget {
 }
 
 class _ShopAssistantState extends State<ShopAssistant> {
-  void submit() {
+  final userId = FirebaseAuth.instance.currentUser!.uid;
+  double reduced = 0.0;
+  double totalRe = 0.0;
+  int coins = 0;
+  void submit() async {
     if (_formKey.currentState!.validate()) {
       if (controller_1.text.isNotEmpty) {
         print(controller_1.text);
@@ -28,6 +34,71 @@ class _ShopAssistantState extends State<ShopAssistant> {
       controller.getTextCompletion(controller_1.text, "", "", "", "", 1);
       controller.searchTextController.clear();
     }
+    final docSnapshotRed = await FirebaseFirestore.instance
+        .collection("Reduced Emission")
+        .doc("$userId Reduced")
+        .get();
+    if (docSnapshotRed.exists) {
+      Map<String, dynamic>? data = docSnapshotRed.data();
+      var value = data?['reduced'];
+      print(value);
+      setState(() {
+        reduced = value;
+      });
+    }
+    final docSnapshotCoin = await FirebaseFirestore.instance
+        .collection("Green Coins")
+        .doc("$userId Coins")
+        .get();
+    if (docSnapshotCoin.exists) {
+      Map<String, dynamic>? data = docSnapshotCoin.data();
+      var value = data?['coins'];
+      print(value);
+      setState(() {
+        coins = value;
+      });
+    }
+    FirebaseFirestore.instance
+        .collection("Reduced Emission")
+        .doc("$userId Reduced")
+        .update({"reduced": reduced + 1.25});
+    FirebaseFirestore.instance
+        .collection("Green Coins")
+        .doc("$userId Coins")
+        .update({"coins": coins + 20});
+
+    showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+              backgroundColor: Colors.lightGreen[100],
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              title: Row(
+                children: [
+                  const Text("Congratulations!"),
+                  SizedBox(
+                    height: 50,
+                    width: 50,
+                    child: Image.asset("assets/cli-matee.png"),
+                  )
+                ],
+              ),
+              content: const Text(
+                "You just reduced approximately \n1.25 kg CO2 Emissions. \nAnd you earned 20 Green Coins",
+                softWrap: true,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              actions: [
+                ElevatedButton(
+                    style:
+                        ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text("Read the Response"))
+              ],
+            ));
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -54,10 +125,11 @@ class _ShopAssistantState extends State<ShopAssistant> {
             child: SafeArea(
               child: Column(children: [
                 Row(
-                  children: const [
+                  children: [
                     Padding(
-                        padding: EdgeInsets.all(8.0), child: MyBackButton()),
-                    Text(
+                        padding: const EdgeInsets.all(8.0),
+                        child: MyBackButton()),
+                    const Text(
                       "Shopping Assistant",
                       style:
                           TextStyle(fontSize: 22, fontWeight: FontWeight.bold),

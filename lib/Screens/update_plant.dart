@@ -1,4 +1,4 @@
-// ignore_for_file: depend_on_referenced_packages, must_be_immutable, avoid_print
+// ignore_for_file: depend_on_referenced_packages, must_be_immutable, avoid_print, use_build_context_synchronously
 
 import 'package:climate_care/Screens/garden_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,11 +23,13 @@ class _UpdatePlantState extends State<UpdatePlant> {
   final _formKey = GlobalKey<FormState>();
   final SingleValueDropDownController _statusController =
       SingleValueDropDownController();
-
   final TextEditingController _dateController = TextEditingController();
   final userId = FirebaseAuth.instance.currentUser!.uid;
+  double reduced = 0.0;
+  double totalRe = 0.0;
+  int coins = 0;
 
-  void submit() {
+  void submit() async {
     if (_formKey.currentState!.validate()) {
       FirebaseFirestore.instance
           .collection("User Plants")
@@ -38,7 +40,74 @@ class _UpdatePlantState extends State<UpdatePlant> {
         "plantStatus": _statusController.dropDownValue!.value,
         "date": date
       });
-      Navigator.of(context).pushNamed(GardenScreen.routeName);
+      final docSnapshotRed = await FirebaseFirestore.instance
+          .collection("Reduced Emission")
+          .doc("$userId Reduced")
+          .get();
+      if (docSnapshotRed.exists) {
+        Map<String, dynamic>? data = docSnapshotRed.data();
+        var value = data?['reduced'];
+        print(value);
+        setState(() {
+          reduced = value;
+        });
+      }
+      final docSnapshotCoin = await FirebaseFirestore.instance
+          .collection("Green Coins")
+          .doc("$userId Coins")
+          .get();
+      if (docSnapshotCoin.exists) {
+        Map<String, dynamic>? data = docSnapshotCoin.data();
+        var value = data?['coins'];
+        print(value);
+        setState(() {
+          coins = value;
+        });
+      }
+      FirebaseFirestore.instance
+          .collection("Reduced Emission")
+          .doc("$userId Reduced")
+          .update({"reduced": reduced + 30});
+      FirebaseFirestore.instance
+          .collection("Green Coins")
+          .doc("$userId Coins")
+          .update({"coins": coins + 50});
+
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                backgroundColor: Colors.lightGreen[100],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                title: Row(
+                  children: [
+                    const Text("Congratulations!"),
+                    SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: Image.asset("assets/cli-matee.png"),
+                    )
+                  ],
+                ),
+                content: const Text(
+                  "You updated your plant status and reduced approximately \n30kg CO2 Emissions. \nAnd you earned 50 Green Coins",
+                  softWrap: true,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                actions: [
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green),
+                      onPressed: () {
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => const GardenScreen()),
+                            (route) => false);
+                      },
+                      child: const Text("Jump to Garden"))
+                ],
+              ));
     }
   }
 
@@ -107,6 +176,8 @@ class _UpdatePlantState extends State<UpdatePlant> {
                               return null;
                             },
                             controller: _statusController,
+                            textFieldDecoration: const InputDecoration(
+                                hintText: "Select Current Stage"),
                             dropDownList: const [
                               DropDownValueModel(
                                   name: "Sprouted", value: "sprouted"),
@@ -125,7 +196,7 @@ class _UpdatePlantState extends State<UpdatePlant> {
                     onPressed: () {
                       submit();
                     },
-                    child: const Text("Update data")),
+                    child: const Text("Update Status")),
               ),
             ],
           ),

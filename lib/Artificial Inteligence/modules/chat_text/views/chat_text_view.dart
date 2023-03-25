@@ -1,6 +1,9 @@
-// ignore_for_file: avoid_print, non_constant_identifier_names
+// ignore_for_file: avoid_print, non_constant_identifier_names, use_build_context_synchronously
 
 import 'package:climate_care/Utility/header.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dropdown_textfield/dropdown_textfield.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -17,7 +20,11 @@ class ChatTextView extends StatefulWidget {
 }
 
 class _ChatTextViewState extends State<ChatTextView> {
-  void submit() {
+  final userId = FirebaseAuth.instance.currentUser!.uid;
+  double reduced = 0.0;
+  double totalRe = 0.0;
+  int coins = 0;
+  void submit() async {
     if (_formKey.currentState!.validate()) {
       if (controller_1.text.isNotEmpty) {
         print(controller_1.text);
@@ -42,6 +49,107 @@ class _ChatTextViewState extends State<ChatTextView> {
       controller.getTextCompletion(controller_1.text, controller_2.text,
           controller_3.text, controller_4.text, controller_5.text, 0);
       controller.searchTextController.clear();
+
+      final docSnapshotRed = await FirebaseFirestore.instance
+          .collection("Reduced Emission")
+          .doc("$userId Reduced")
+          .get();
+      if (docSnapshotRed.exists) {
+        Map<String, dynamic>? data = docSnapshotRed.data();
+        var value = data?['reduced'];
+        print(value);
+        setState(() {
+          reduced = value;
+        });
+      }
+      final docSnapshotCoin = await FirebaseFirestore.instance
+          .collection("Green Coins")
+          .doc("$userId Coins")
+          .get();
+      if (docSnapshotCoin.exists) {
+        Map<String, dynamic>? data = docSnapshotCoin.data();
+        var value = data?['coins'];
+        print(value);
+        setState(() {
+          coins = value;
+        });
+      }
+      if (value == 0) {
+        print("value 1 ${dropController1.dropDownValue!.value.toString()}");
+        totalRe = dropController1.dropDownValue!.value;
+      }
+
+      if (value == 1) {
+        print("value 2 ${dropController2.dropDownValue!.value.toString()}");
+        totalRe = dropController1.dropDownValue!.value +
+            dropController2.dropDownValue!.value;
+      }
+
+      if (value == 2) {
+        print("value 3 ${dropController3.dropDownValue!.value.toString()}");
+        totalRe = dropController1.dropDownValue!.value +
+            dropController2.dropDownValue!.value +
+            dropController3.dropDownValue!.value;
+      }
+
+      if (value == 3) {
+        print("value 4 ${dropController4.dropDownValue!.value.toString()}");
+        totalRe = dropController1.dropDownValue!.value +
+            dropController2.dropDownValue!.value +
+            dropController3.dropDownValue!.value +
+            dropController4.dropDownValue!.value;
+      }
+
+      if (value == 4) {
+        print("value 5 ${dropController5.dropDownValue!.value.toString()}");
+        totalRe = dropController1.dropDownValue!.value +
+            dropController2.dropDownValue!.value +
+            dropController3.dropDownValue!.value +
+            dropController4.dropDownValue!.value +
+            dropController5.dropDownValue!.value;
+      }
+
+      FirebaseFirestore.instance
+          .collection("Reduced Emission")
+          .doc("$userId Reduced")
+          .update({"reduced": reduced + totalRe});
+      FirebaseFirestore.instance
+          .collection("Green Coins")
+          .doc("$userId Coins")
+          .update({"coins": coins + 20});
+
+      showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+                backgroundColor: Colors.lightGreen[100],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                title: Row(
+                  children: [
+                    const Text("Congratulations!"),
+                    SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: Image.asset("assets/cli-matee.png"),
+                    )
+                  ],
+                ),
+                content: Text(
+                  "You just reduced approximately \n$totalRe kg CO2 Emissions. \nAnd you earned 20 Green Coins",
+                  softWrap: true,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                actions: [
+                  ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.green),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text("Read the Response"))
+                ],
+              ));
     }
   }
 
@@ -57,21 +165,38 @@ class _ChatTextViewState extends State<ChatTextView> {
 
   TextEditingController controller_5 = TextEditingController();
 
+  SingleValueDropDownController dropController1 =
+      SingleValueDropDownController();
+
+  SingleValueDropDownController dropController2 =
+      SingleValueDropDownController();
+
+  SingleValueDropDownController dropController3 =
+      SingleValueDropDownController();
+
+  SingleValueDropDownController dropController4 =
+      SingleValueDropDownController();
+
+  SingleValueDropDownController dropController5 =
+      SingleValueDropDownController();
+
   int value = 0;
 
   ChatTextController controller = ChatTextController();
 
   @override
   Widget build(BuildContext context) {
+    //print(dropController1.dropDownValue!.value);
     return Scaffold(
       body: Obx(() => SingleChildScrollView(
             child: SafeArea(
               child: Column(children: [
                 Row(
-                  children: const [
+                  children: [
                     Padding(
-                        padding: EdgeInsets.all(8.0), child: MyBackButton()),
-                    Text(
+                        padding: const EdgeInsets.all(8.0),
+                        child: MyBackButton()),
+                    const Text(
                       "Waste Reduction Tool",
                       style:
                           TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
@@ -85,25 +210,25 @@ class _ChatTextViewState extends State<ChatTextView> {
                     child: Column(
                       children: [
                         if (value == 0) ...[
-                          TextFeildCon(controller_1)
+                          TextFeildCon(controller_1, dropController1)
                         ] else if (value == 1) ...[
-                          TextFeildCon(controller_1),
-                          TextFeildCon(controller_2),
+                          TextFeildCon(controller_1, dropController1),
+                          TextFeildCon(controller_2, dropController2),
                         ] else if (value == 2) ...[
-                          TextFeildCon(controller_1),
-                          TextFeildCon(controller_2),
-                          TextFeildCon(controller_3),
+                          TextFeildCon(controller_1, dropController1),
+                          TextFeildCon(controller_2, dropController2),
+                          TextFeildCon(controller_3, dropController3),
                         ] else if (value == 3) ...[
-                          TextFeildCon(controller_1),
-                          TextFeildCon(controller_2),
-                          TextFeildCon(controller_3),
-                          TextFeildCon(controller_4),
+                          TextFeildCon(controller_1, dropController1),
+                          TextFeildCon(controller_2, dropController2),
+                          TextFeildCon(controller_3, dropController3),
+                          TextFeildCon(controller_4, dropController4),
                         ] else if (value == 4) ...[
-                          TextFeildCon(controller_1),
-                          TextFeildCon(controller_2),
-                          TextFeildCon(controller_3),
-                          TextFeildCon(controller_4),
-                          TextFeildCon(controller_5),
+                          TextFeildCon(controller_1, dropController1),
+                          TextFeildCon(controller_2, dropController2),
+                          TextFeildCon(controller_3, dropController3),
+                          TextFeildCon(controller_4, dropController4),
+                          TextFeildCon(controller_5, dropController5),
                         ],
                       ],
                     )),
@@ -239,32 +364,63 @@ class _ChatTextViewState extends State<ChatTextView> {
     );
   }
 
-  Widget TextFeildCon(TextEditingController controller) {
+  Widget TextFeildCon(TextEditingController controller,
+      SingleValueDropDownController controller2) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: TextFormField(
-        controller: controller,
-        validator: (value) {
-          if (value!.isEmpty) {
-            return "Required Feild";
-          }
-          return null;
-        },
-        decoration: InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
-              borderSide: const BorderSide(
-                strokeAlign: BorderSide.strokeAlignOutside,
+      child: Row(
+        children: [
+          Flexible(
+            child: TextFormField(
+              controller: controller,
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "Required Feild";
+                }
+                return null;
+              },
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: const BorderSide(
+                      strokeAlign: BorderSide.strokeAlignOutside,
+                    ),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: const BorderSide(color: Colors.green),
+                  ),
+                  hintText: 'Item Name',
+                  hintStyle: const TextStyle(
+                    fontSize: 14,
+                  )),
+            ),
+          ),
+          const SizedBox(
+            width: 5,
+          ),
+          Flexible(
+            child: DropDownTextField(
+              validator: (value) {
+                if (value!.isEmpty) {
+                  return "Required Feild";
+                }
+                return null;
+              },
+              controller: controller2,
+              textFieldDecoration: const InputDecoration(
+                hintText: "Select Material",
               ),
+              dropDownList: const [
+                DropDownValueModel(name: "Alumunium", value: 0.15),
+                DropDownValueModel(name: "Glass", value: 0.32),
+                DropDownValueModel(name: "Plastic", value: 0.11),
+                DropDownValueModel(name: "Paper", value: 0.41),
+                DropDownValueModel(name: "Cardboard", value: 0.15 / 1000),
+              ],
             ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
-              borderSide: const BorderSide(color: Colors.green),
-            ),
-            hintText: '#item',
-            hintStyle: const TextStyle(
-              fontSize: 14,
-            )),
+          ),
+        ],
       ),
     );
   }

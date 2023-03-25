@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 
 import 'package:climate_care/Authentication/lsoption.dart';
 
+import 'coming_soon.dart';
+
 class Settings extends StatefulWidget {
   const Settings({super.key});
 
@@ -31,25 +33,30 @@ class _SettingsState extends State<Settings> {
 
   Widget settingButton(String btext, int check) {
     if (check == 1) {
-      return Container(
-        decoration: const BoxDecoration(
-          border: Border(
-            bottom: BorderSide(
-              width: 1,
-              color: Colors.black26,
+      return InkWell(
+        onTap: () {
+          Navigator.of(context).pushNamed(ComingSoon.routeName);
+        },
+        child: Container(
+          decoration: const BoxDecoration(
+            border: Border(
+              bottom: BorderSide(
+                width: 1,
+                color: Colors.black26,
+              ),
             ),
           ),
-        ),
-        child: Row(
-          children: [
-            TextButton(
-              style: TextButton.styleFrom(foregroundColor: Colors.black),
-              onPressed: () {},
-              child: Text(btext),
-            ),
-            const Spacer(),
-            const Icon(Icons.arrow_forward_ios_rounded)
-          ],
+          child: Row(
+            children: [
+              TextButton(
+                style: TextButton.styleFrom(foregroundColor: Colors.black),
+                onPressed: () {},
+                child: Text(btext),
+              ),
+              const Spacer(),
+              const Icon(Icons.arrow_forward_ios_rounded)
+            ],
+          ),
         ),
       );
     }
@@ -59,7 +66,7 @@ class _SettingsState extends State<Settings> {
           TextButton(
             style: TextButton.styleFrom(foregroundColor: Colors.black),
             onPressed: () {},
-            child: const Text('Change Language'),
+            child: Text(btext),
           ),
           const Spacer(),
           const Icon(Icons.arrow_forward_ios_rounded)

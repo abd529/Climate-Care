@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../Models/plant.dart';
 import '../Utility/back_button.dart';
+import '../home.dart';
 
 class GardenScreen extends StatefulWidget {
   static const routeName = "garden-screen";
@@ -145,9 +146,13 @@ class _GardenScreenState extends State<GardenScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
-            children: const [
-              Padding(padding: EdgeInsets.all(8.0), child: MyBackButton()),
-              Text(
+            children: [
+              Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: MyBackButton(
+                    routeName: Home.routeName,
+                  )),
+              const Text(
                 "My Garden",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),

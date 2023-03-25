@@ -192,17 +192,20 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
                     )
                   ],
                 ),
-                content: Text(
-                  "You just added a new plant and \nreduced $reduced kg CO2 Emissions. \nAnd you earned 50 Green Coins",
+                content: const Text(
+                  "You just added a new plant and approximately \nreduced 30kg CO2 Emissions. \nAnd you earned 50 Green Coins",
                   softWrap: true,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 actions: [
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.green),
                       onPressed: () {
-                        Navigator.of(context).pop();
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => const GardenScreen()),
+                            (route) => false);
                       },
                       child: const Text("Jump to Garden"))
                 ],
