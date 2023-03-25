@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class Header extends StatelessWidget {
   final String text;
-  const Header(this.text, {super.key});
+  final double fontSize;
+  const Header(this.text, {this.fontSize = 20, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +15,10 @@ class Header extends StatelessWidget {
           child: Text(
             text,
             softWrap: true,
-            style: const TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.green),
+            style: TextStyle(
+                fontSize: fontSize,
+                fontWeight: FontWeight.bold,
+                color: Colors.green),
           ),
         ),
         SizedBox(
