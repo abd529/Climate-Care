@@ -90,15 +90,9 @@ class _PointRedeemState extends State<PointRedeem> {
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection("All Plants").get();
     final allData = querySnapshot.docs.map((doc) => doc.data()).toList();
-    plantsNum = allData.length;
-    // if (docPlant.exists) {
-    //   Map<String, dynamic>? data = docPlant.data();
-    //   setState(() {
-    //     plantsNum = data!.length;
-    //     print("total plants: $plantsNum");
-    //   });
-    // }
-
+    setState(() {
+      plantsNum = allData.length;
+    });
     final docSnapshotEm = await FirebaseFirestore.instance
         .collection('EmissionLevel')
         .doc(userId)
@@ -111,7 +105,6 @@ class _PointRedeemState extends State<PointRedeem> {
         totalEm = value;
       });
     }
-
     final docSnapshotReduced = await FirebaseFirestore.instance
         .collection("Reduced Emission")
         .doc("$userId Reduced")
@@ -271,8 +264,9 @@ class _PointRedeemState extends State<PointRedeem> {
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SimpleCircularProgressBar(
-                      valueNotifier:
-                          plantsNum == 0 ? ValueNotifier(0) : ValueNotifier(40),
+                      valueNotifier: plantsNum == 0
+                          ? ValueNotifier(30)
+                          : ValueNotifier(40),
                       mergeMode: true,
                       fullProgressColor: Colors.blue,
                       backColor: Colors.blueGrey,

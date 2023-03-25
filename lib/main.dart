@@ -14,6 +14,7 @@ import 'Artificial Inteligence/modules/chat_text/views/shop_assist.dart';
 import 'Screens/add_plant_screen.dart';
 import 'Screens/add_post.dart';
 import 'Screens/coming_soon.dart';
+import 'Screens/energy_calculator.dart';
 import 'Screens/settings.dart';
 import 'Screens/progress_screen.dart';
 import 'CO2 Emission Calulator/quiz_screen.dart';
@@ -45,7 +46,7 @@ class MyApp extends StatelessWidget {
               elevation: 0,
               titleTextStyle: GoogleFonts.poppins(fontSize: 18))),
       home:
-          const Home(), //change this to Home screen the score value is in quiz_screen.dart>>finalscore
+          const EnergyCalculator(), //change this to Home screen the score value is in quiz_screen.dart>>finalscore
       routes: {
         Home.routeName: (ctx) => const Home(),
         Signup.routeName: (ctx) => const Signup(),

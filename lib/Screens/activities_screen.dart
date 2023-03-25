@@ -14,9 +14,11 @@ class ActivitiesScreen extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             const Text(
               "Activites",
+              textAlign: TextAlign.left,
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             InkWell(
@@ -25,7 +27,7 @@ class ActivitiesScreen extends StatelessWidget {
               },
               splashColor: Colors.green,
               child: rowMethod(context, "assets/Plant growth.png",
-                  "Plant Growth Tracker keep record of your app status and it's conditions. It will help you take care of many palnts at the same time"),
+                  "The Plant Growth Tracker simplifies plant care and provides timely reminders for optimal growth. Enjoy healthy, thriving plants with ease."),
             ),
             InkWell(
               onTap: () {
@@ -35,7 +37,7 @@ class ActivitiesScreen extends StatelessWidget {
               },
               splashColor: Colors.green,
               child: rowMethod(context, "assets/Wastage.png",
-                  "Waste Reduction Tool helps you recycle those things that are waste for you"),
+                  "Just enter your items and materials, and get suggestions on what to recycle. Reduce waste and help the environment with ease!"),
             ),
             InkWell(
               onTap: () {
@@ -43,7 +45,7 @@ class ActivitiesScreen extends StatelessWidget {
               },
               splashColor: Colors.green,
               child: rowMethod(context, "assets/shopping.png",
-                  "Waste Reduction Tool helps you recycle those things that are waste for you"),
+                  "Just enter a product URL and get suggestions for eco-friendly alternatives. Make a positive impact on the planet with ease!"),
             ),
             InkWell(
               onTap: () {},
