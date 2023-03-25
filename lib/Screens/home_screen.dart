@@ -29,6 +29,7 @@ class HomeScreenState extends State<HomeScreen> {
   bool planted = false;
   bool recycled = false;
   bool shopped = false;
+  bool energy = false;
   int num = 0;
   void getEmissionLevel(BuildContext context) async {
     //double emission = 0;
@@ -40,12 +41,14 @@ class HomeScreenState extends State<HomeScreen> {
       var value2 = data?["planted"];
       var value3 = data?["recycled"];
       var value4 = data?["shopped"];
+      var value5 = data?["energy"];
       print(value1);
       setState(() {
         emission = value1 / 2000;
         planted = value2;
         recycled = value3;
         shopped = value4;
+        energy = value5;
       });
     }
   }
@@ -227,12 +230,7 @@ class HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 IconButton(
-                    onPressed: () {
-                      setState(() {
-                        //getEmissionLevel();
-                        //emission = 0;
-                      });
-                    },
+                    onPressed: () => Scaffold.of(context).openDrawer(),
                     icon: Icon(
                       Icons.menu_rounded,
                       size: 40,
@@ -243,7 +241,7 @@ class HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 15,
             ),
-            heading("CO2 Emissions Footprint Tracker"),
+            heading("CO2 Emissions Footprint"),
             AspectRatio(
               aspectRatio: 1.26,
               child: Padding(
@@ -307,7 +305,7 @@ class HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 20,
             ),
-            heading("Weekly Steps to be Eco Friendly"),
+            heading("Initial Steps to be Eco Friendly"),
             SizedBox(
               height: 5,
             ),
@@ -353,7 +351,7 @@ class HomeScreenState extends State<HomeScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text("Recycled useless stuff"),
+                        Text("Recycle useless stuff"),
                         Checkbox(
                           value: recycled,
                           fillColor: MaterialStateProperty.resolveWith<Color>(
@@ -375,6 +373,25 @@ class HomeScreenState extends State<HomeScreen> {
                         Text("Use eco friendly product"),
                         Checkbox(
                           value: shopped,
+                          fillColor: MaterialStateProperty.resolveWith<Color>(
+                              (Set<MaterialState> states) {
+                            if (states.contains(MaterialState.disabled)) {
+                              return Colors.green.withOpacity(.32);
+                            }
+                            return Colors.green;
+                          }),
+                          onChanged: (bool? newValue) {
+                            setState(() {});
+                          },
+                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Evaluate Energy Consumption"),
+                        Checkbox(
+                          value: energy,
                           fillColor: MaterialStateProperty.resolveWith<Color>(
                               (Set<MaterialState> states) {
                             if (states.contains(MaterialState.disabled)) {

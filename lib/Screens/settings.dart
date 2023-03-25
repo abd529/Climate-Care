@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: avoid_print, use_build_context_synchronously
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -184,13 +184,14 @@ class _SettingsState extends State<Settings> {
                                   //to set border radius to button
                                   borderRadius: BorderRadius.circular(20)),
                             ),
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (_) => const Option(),
-                                ),
-                              );
+                            onPressed: () async {
+                              await FirebaseAuth.instance.signOut();
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const Option(),
+                                  ),
+                                  (Route<dynamic> route) => false);
                             },
                             child: Row(
                               children: const [

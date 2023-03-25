@@ -1,11 +1,15 @@
 // ignore_for_file: avoid_print
 
+import 'package:climate_care/Utility/header.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:validators/validators.dart';
 
+import '../Utility/back_button.dart';
+
 class EnergyCalculator extends StatefulWidget {
+  static const routeName = "energy-screen";
   const EnergyCalculator({super.key});
 
   @override
@@ -37,10 +41,6 @@ class _EnergyCalculatorState extends State<EnergyCalculator> {
   TextEditingController devName5 = TextEditingController();
   TextEditingController devUsage5 = TextEditingController();
   TextEditingController devHours5 = TextEditingController();
-
-  TextEditingController devName6 = TextEditingController();
-  TextEditingController devUsage6 = TextEditingController();
-  TextEditingController devHours6 = TextEditingController();
 
   void submit() {
     if (_formKey.currentState!.validate()) {
@@ -105,6 +105,20 @@ class _EnergyCalculatorState extends State<EnergyCalculator> {
       body: SafeArea(
           child: SingleChildScrollView(
         child: Column(children: [
+          Row(
+            children: [
+              Padding(
+                  padding: const EdgeInsets.all(8.0), child: MyBackButton()),
+              const Text(
+                "Energy Conspumtion Reducer",
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+            ],
+          ),
+          const Header(
+            "Add your device info and evaluate your enrgy consumption",
+            fontSize: 18,
+          ),
           Form(
               key: _formKey,
               child: Column(
@@ -137,34 +151,66 @@ class _EnergyCalculatorState extends State<EnergyCalculator> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                ElevatedButton(
-                    onPressed: () {
-                      if (index < 4) {
-                        setState(() {
-                          index++;
-                        });
-                      }
-                      print(index);
-                    },
-                    child: const Text("Add")),
-                ElevatedButton(
-                    onPressed: () {
-                      if (index > 0) {
-                        setState(() {
-                          index--;
-                        });
+                SizedBox(
+                  height: 40,
+                  width: 100,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        if (index < 4) {
+                          setState(() {
+                            index++;
+                          });
+                        }
                         print(index);
-                      }
-                    },
-                    child: const Text("Subtract")),
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white),
+                      child: const Text(
+                        "+ Add",
+                        style: TextStyle(color: Colors.black),
+                      )),
+                ),
+                SizedBox(
+                  height: 40,
+                  width: 100,
+                  child: ElevatedButton(
+                      onPressed: () {
+                        if (index > 0) {
+                          setState(() {
+                            index--;
+                          });
+                          print(index);
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white),
+                      child: const Text(
+                        "Remove",
+                        style: TextStyle(color: Colors.red),
+                      )),
+                ),
               ],
             ),
           ),
-          ElevatedButton(
-              onPressed: () {
-                submit();
-              },
-              child: const Text("Submit")),
+          SizedBox(
+            height: 50,
+            width: 120,
+            child: ElevatedButton(
+                onPressed: () {
+                  submit();
+                },
+                style: ElevatedButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(22)),
+                    backgroundColor: Colors.green),
+                child: const Text(
+                  "Calculate",
+                  style: TextStyle(fontSize: 17),
+                )),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
           EnergyDetails(
             usage: totalUsage,
             hours: totalHours,
@@ -347,7 +393,7 @@ class _EnergyDetailsState extends State<EnergyDetails> {
     int perDay = wattsPerDay();
     double kiloPerDay = convertToKilo(perDay);
     double monthlyUse = monthlyUsage(kiloPerDay);
-    double savedEn = avgUsage - monthlyUse;
+    //double savedEn = avgUsage - monthlyUse;
     print("monthly: $monthlyUse");
     return Container(
       decoration: BoxDecoration(
@@ -378,12 +424,17 @@ class _EnergyDetailsState extends State<EnergyDetails> {
                                 FirebaseFirestore.instance
                                     .collection("Reduced Emission")
                                     .doc("$userId Reduced")
-                                    .update(
-                                        {"reduced": reduced + (savedEn * 2)});
+                                    .update({
+                                  "reduced": reduced + (monthlyUse * 0.5)
+                                });
                                 FirebaseFirestore.instance
                                     .collection("Green Coins")
                                     .doc("$userId Coins")
                                     .update({"coins": coins + 50});
+                                FirebaseFirestore.instance
+                                    .collection("EmissionLevel")
+                                    .doc(userId)
+                                    .update({"energy": true});
                                 showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
@@ -405,7 +456,7 @@ class _EnergyDetailsState extends State<EnergyDetails> {
                                             ],
                                           ),
                                           content: Text(
-                                            "You just reduced approximately \n${savedEn * 2} kg CO2 Emissions. \nAnd you earned 50 Green Coins",
+                                            "You just reduced approximately \n${monthlyUse * 0.5} kg CO2 Emissions. \nAnd you earned 50 Green Coins",
                                             softWrap: true,
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.bold),
