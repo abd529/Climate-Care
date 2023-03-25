@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
               elevation: 0,
               titleTextStyle: GoogleFonts.poppins(fontSize: 18))),
       home:
-          const EnergyCalculator(), //change this to Home screen the score value is in quiz_screen.dart>>finalscore
+          const Home(), //change this to Home screen the score value is in quiz_screen.dart>>finalscore
       routes: {
         Home.routeName: (ctx) => const Home(),
         Signup.routeName: (ctx) => const Signup(),
@@ -58,7 +58,8 @@ class MyApp extends StatelessWidget {
         AddPost.routeName: (ctx) => const AddPost(),
         ShopAssistant.routeName: (ctx) => const ShopAssistant(),
         MapScreen.routeName: (ctx) => const MapScreen(),
-        ComingSoon.routeName: (ctx) => const ComingSoon()
+        ComingSoon.routeName: (ctx) => const ComingSoon(),
+        EnergyCalculator.routeName: (ctx) => const EnergyCalculator(),
       },
     );
   }

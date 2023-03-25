@@ -1,3 +1,4 @@
+import 'package:climate_care/Screens/energy_calculator.dart';
 import 'package:climate_care/Screens/garden_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,7 +38,7 @@ class ActivitiesScreen extends StatelessWidget {
               },
               splashColor: Colors.green,
               child: rowMethod(context, "assets/Wastage.png",
-                  "Just enter your items and materials, and get suggestions on what to recycle. Reduce waste and help the environment with ease!"),
+                  "Recycle your stuff, just enter your items and materials, and get suggestions on what to recycle. Reduce waste and help the environment with ease!"),
             ),
             InkWell(
               onTap: () {
@@ -45,11 +46,14 @@ class ActivitiesScreen extends StatelessWidget {
               },
               splashColor: Colors.green,
               child: rowMethod(context, "assets/shopping.png",
-                  "Just enter a product URL and get suggestions for eco-friendly alternatives. Make a positive impact on the planet with ease!"),
+                  "Get Eco Friendly products, just enter a product URL and get suggestions for eco-friendly alternatives. Make a positive impact on the planet with ease!"),
             ),
             InkWell(
-              onTap: () {},
-              child: rowMethod(context, "assets/ene.png", "energy"),
+              onTap: () {
+                Navigator.of(context).pushNamed(EnergyCalculator.routeName);
+              },
+              child: rowMethod(context, "assets/ene.png",
+                  "Track your electricity usage, just enter device info and see if you're above or below average consumption. Save money and live sustainably with ease!"),
             )
           ],
         ),
