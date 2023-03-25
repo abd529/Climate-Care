@@ -162,7 +162,6 @@ class _AddPlantScreenState extends State<AddPlantScreen> {
           reduced = value;
         });
       }
-      final totalRe = reduced + 30;
       FirebaseFirestore.instance
           .collection("Reduced Emission")
           .doc("$userId Reduced")

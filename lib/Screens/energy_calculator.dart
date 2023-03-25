@@ -111,13 +111,13 @@ class _EnergyCalculatorState extends State<EnergyCalculator> {
                   padding: const EdgeInsets.all(8.0), child: MyBackButton()),
               const Text(
                 "Energy Conspumtion Reducer",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               ),
             ],
           ),
           const Header(
             "Add your device info and evaluate your enrgy consumption",
-            fontSize: 18,
+            fontSize: 17,
           ),
           Form(
               key: _formKey,
@@ -194,7 +194,7 @@ class _EnergyCalculatorState extends State<EnergyCalculator> {
           ),
           SizedBox(
             height: 50,
-            width: 120,
+            width: 130,
             child: ElevatedButton(
                 onPressed: () {
                   submit();

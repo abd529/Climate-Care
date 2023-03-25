@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:climate_care/Screens/redeem_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -192,7 +194,7 @@ class _PointRedeemState extends State<PointRedeem> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    "Total Number of \nCarbon Emissions Reduced",
+                    "Total Number of \nCarbon Emissions \nReduced",
                     softWrap: true,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
@@ -257,7 +259,7 @@ class _PointRedeemState extends State<PointRedeem> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Text(
-                    "Total Number of \nPlants planted by our users",
+                    "Total Number of \nPlants planted by \nour users",
                     softWrap: true,
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),

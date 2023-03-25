@@ -91,7 +91,7 @@ class _ShopAssistantState extends State<ShopAssistant> {
               content: const Text(
                 "You just reduced approximately \n1.25 kg CO2 Emissions. \nAnd you earned 20 Green Coins",
                 softWrap: true,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
               actions: [
                 ElevatedButton(

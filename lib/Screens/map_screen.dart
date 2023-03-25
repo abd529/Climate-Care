@@ -1,6 +1,5 @@
 // ignore_for_file: avoid_print
 
-import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:climate_care/Models/plant.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -62,7 +61,7 @@ class _MapScreenState extends State<MapScreen> {
     print(plantsD);
   }
 
-  Future OnMapCreated(GoogleMapController controller) async {
+  Future onMapCreated(GoogleMapController controller) async {
     _controller = controller;
     String value = await DefaultAssetBundle.of(context)
         .loadString('assets/map_style.json');
@@ -158,7 +157,6 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     getBytesFromAsset('assets/loca.png', 150).then((onValue) {
       setState(() {
@@ -183,7 +181,7 @@ class _MapScreenState extends State<MapScreen> {
           markers: _createMarker(),
           myLocationButtonEnabled: true,
           myLocationEnabled: true,
-          onMapCreated: OnMapCreated,
+          onMapCreated: onMapCreated,
           trafficEnabled: false,
           zoomControlsEnabled: true,
         ),

@@ -3,7 +3,6 @@
 import 'package:climate_care/CO2%20Emission%20Calulator/quiz_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import '../Models/register_view_model.dart';
 
@@ -34,7 +33,7 @@ class _SignupState extends State<Signup> {
       isRegistered = await _registerVM.register(_emailController.text,
           _passwordController.text, _fNameController.text, profilePicLink);
       if (isRegistered) {
-        final userId = await FirebaseAuth.instance.currentUser!.uid;
+        final userId = FirebaseAuth.instance.currentUser!.uid;
         FirebaseFirestore.instance
             .collection("Reduced Emission")
             .doc("$userId Reduced")
