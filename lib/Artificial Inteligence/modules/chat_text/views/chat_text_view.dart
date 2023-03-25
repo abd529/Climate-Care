@@ -117,6 +117,10 @@ class _ChatTextViewState extends State<ChatTextView> {
           .collection("Green Coins")
           .doc("$userId Coins")
           .update({"coins": coins + 20});
+      FirebaseFirestore.instance
+          .collection("EmissionLevel")
+          .doc(userId)
+          .update({"recycled": true});
 
       showDialog(
           context: context,
@@ -204,7 +208,9 @@ class _ChatTextViewState extends State<ChatTextView> {
                   ],
                 ),
                 const Header(
-                    "Add one or more items that you own and want to recycle!"),
+                  "Add one or more items that you own and want to recycle!",
+                  fontSize: 18,
+                ),
                 Form(
                     key: _formKey,
                     child: Column(

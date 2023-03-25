@@ -66,6 +66,10 @@ class _ShopAssistantState extends State<ShopAssistant> {
         .collection("Green Coins")
         .doc("$userId Coins")
         .update({"coins": coins + 20});
+    FirebaseFirestore.instance
+        .collection("EmissionLevel")
+        .doc(userId)
+        .update({"shopped": true});
 
     showDialog(
         context: context,
@@ -111,16 +115,7 @@ class _ShopAssistantState extends State<ShopAssistant> {
 
   @override
   Widget build(BuildContext context) {
-    // WidgetsBinding.instance
-    //     .addPostFrameCallback((_) => value = controller.creator);
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text(
-      //     "Green Shopping Assistant",
-      //     style: TextStyle(color: Colors.white),
-      //   ),
-      //   backgroundColor: Colors.green,
-      // ),
       body: Obx(() => SingleChildScrollView(
             child: SafeArea(
               child: Column(children: [
@@ -137,7 +132,9 @@ class _ShopAssistantState extends State<ShopAssistant> {
                   ],
                 ),
                 const Header(
-                    "Enter a product link that you want to buy for an eco friendly alternative"),
+                  "Enter a product link that you want to buy for an eco friendly alternative",
+                  fontSize: 18,
+                ),
                 Form(
                     key: _formKey,
                     child: Column(

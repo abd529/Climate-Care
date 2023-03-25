@@ -133,7 +133,8 @@ class _logQuizState extends State<logQuiz> {
         "Emission": finalscore,
         "planted": false,
         "recycled": false,
-        "shopped": false
+        "shopped": false,
+        "energy": false
       });
     }
   }
