@@ -87,38 +87,37 @@ class _MapScreenState extends State<MapScreen> {
         markerId: const MarkerId("marker_1"),
         position: const LatLng(31.4697, 74.2824),
         infoWindow:
-            const InfoWindow(title: 'Dinner at 9pm', snippet: "Johar Town"),
+            const InfoWindow(title: 'Indian Bech Tree', snippet: "Johar Town"),
         rotation: 0,
       ),
       Marker(
         icon: markerIcon,
         markerId: const MarkerId("marker_2"),
         position: const LatLng(31.6211, 74.2728),
-        infoWindow: const InfoWindow(title: 'Dinner at 9pm', snippet: "Shadra"),
+        infoWindow: const InfoWindow(
+            title: 'Azadirachta indica A. Juss', snippet: "Shadra"),
         rotation: 0,
       ),
       Marker(
         icon: markerIcon,
         markerId: const MarkerId("marker_3"),
         position: const LatLng(31.4914, 74.2385),
-        infoWindow: const InfoWindow(
-            title: 'Dinner at 9pm', snippet: "Thokar Niaz Baig"),
+        infoWindow:
+            const InfoWindow(title: 'Rose', snippet: "Thokar Niaz Baig"),
         rotation: 0,
       ),
       Marker(
         icon: markerIcon,
         markerId: const MarkerId("marker_4"),
         position: const LatLng(31.4164, 74.1842),
-        infoWindow:
-            const InfoWindow(title: 'Dinner at 9pm', snippet: "Izmir Town"),
+        infoWindow: const InfoWindow(title: 'Sunflower', snippet: "Izmir Town"),
         rotation: 0,
       ),
       Marker(
         icon: markerIcon,
         markerId: const MarkerId("marker_5"),
         position: const LatLng(31.4032, 74.2560),
-        infoWindow:
-            const InfoWindow(title: 'Dinner at 9pm', snippet: "Valencia"),
+        infoWindow: const InfoWindow(title: 'Alovera', snippet: "Valencia"),
         rotation: 0,
       ),
       Marker(
@@ -126,15 +125,14 @@ class _MapScreenState extends State<MapScreen> {
         markerId: const MarkerId("marker_6"),
         position: const LatLng(31.4625, 74.4086),
         infoWindow:
-            const InfoWindow(title: 'Dinner at 9pm', snippet: "DHA Phae 5"),
+            const InfoWindow(title: 'Mango Tree', snippet: "DHA Phae 5"),
         rotation: 0,
       ),
       Marker(
         icon: markerIcon,
         markerId: const MarkerId("marker_7"),
         position: const LatLng(31.5617, 74.3369),
-        infoWindow:
-            const InfoWindow(title: 'Dinner at 9pm', snippet: "Garhi Shahu"),
+        infoWindow: const InfoWindow(title: 'Jasmin', snippet: "Garhi Shahu"),
         rotation: 0,
       )
     };
