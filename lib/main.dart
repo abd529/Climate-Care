@@ -5,6 +5,7 @@ import 'package:climate_care/Screens/garden_screen.dart';
 import 'package:climate_care/Screens/redeem_screen.dart';
 import 'package:climate_care/Screens/plant_detail_screen.dart';
 import 'package:climate_care/Screens/map_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -45,8 +46,9 @@ class MyApp extends StatelessWidget {
               backgroundColor: const Color.fromRGBO(71, 191, 83, 1.0),
               elevation: 0,
               titleTextStyle: GoogleFonts.poppins(fontSize: 18))),
-      home:
-          const Home(), //change this to Home screen the score value is in quiz_screen.dart>>finalscore
+      home: (FirebaseAuth.instance.currentUser != null)
+          ? const Home()
+          : const SplashScreen(),
       routes: {
         Home.routeName: (ctx) => const Home(),
         Signup.routeName: (ctx) => const Signup(),
