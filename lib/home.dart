@@ -69,7 +69,7 @@ class _HomeState extends State<Home> {
               leading: const Icon(Icons.workspace_premium),
               title: const Text(' Achievements '),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.of(context).pushNamed(ComingSoon.routeName);
               },
             ),
             ListTile(
