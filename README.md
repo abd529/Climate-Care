@@ -1,16 +1,21 @@
-# Climate Care
+Dyslexic App 🔥
+Designed for Childrens
+To view live How to run this app, click here
 
-A new Flutter project.
+##Sections 📚
 
-## Getting Started
+✔️ Onboarding Screens
+✔️ Login/SignUp
+✔️ Diagnostic Screen
+✔️ Activity Screen (RLW Sceen)
+✔️ Dyslexic Games
+✔️ Dashboard Screen
+✔️ Deep Progress
+✔️ Chat Messenger (Psychologist Screen)
+✔️ Dyslexic News
+✔️ Profile Screen
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Getting Started....
+The app is completely built on flutter framework of dart and that's why we need flutter sdk and much more do your flutter setup by going to the folloewing link
+https://docs.flutter.dev/get-started/install/windows
+, after the successful of setup installation, clone the repository into your local system using below command:
