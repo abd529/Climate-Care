@@ -1,8 +1,18 @@
-<h1 align="center"> Project Title 🍀</h1>
+<h1 align="center"> Climate Care 🍀</h1>
 
-One Paragraph of project description goes here
+Climate Care is a mobile application that aims to provide a solution to climate change. It offers various tools to its users to help them make a positive impact on the environment. In return, users can earn points that can be redeemed for exclusive coupons from different brands.
 
-## Getting Started
+## App Modules
+1. Onboarding 🌿
+2. Login/Signup 🌿
+3. Home Screen 🌿
+4. Activities 🌿
+5. Plant Growth Tracker 🌿
+6. Waste Reduction Tool (Artificial Intelligence) 🌿
+7. Sustainable Shopping Assistant (Artificial Intelligence) 🌿
+8. Progress Screen 🌿
+9. Social Community Page 🌿
+10. Settings 🌿
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
@@ -85,3 +95,30 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 * Hat tip to anyone whose code was used
 * Inspiration
 * etc
+
+
+Climate Care
+Climate Care is a mobile application that aims to provide a solution to climate change. It offers various tools to its users to help them make a positive impact on the environment. In return, users can earn points that can be redeemed for exclusive coupons from different brands.
+
+Sections
+The following sections are available in this app:
+
+Onboarding
+Login/Signup
+Home Screen
+Activities
+Progress Screen
+Social Community Page
+Settings
+Prerequisites
+To run this app, you need to have Flutter installed on your system. If you don't have Flutter installed, you can follow the official documentation to install it.
+
+How to Run the App
+To run this app on your system, follow these steps:
+
+Clone this repository to your local machine.
+Open the terminal and navigate to the project directory.
+Run flutter pub get to install the required packages.
+Connect your mobile device or start an emulator.
+Run flutter run to start the app.
+That's it! You should now be able to run the Climate Care app on your device.
