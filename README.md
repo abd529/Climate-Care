@@ -1,16 +1,47 @@
-# Climate Care
+<h1 align="center"> Climate Care 🍀</h1>
 
-A new Flutter project.
+Climate Care is a mobile application that aims to provide a solution to climate change. It offers various tools to its users to help them make a positive impact on the environment. In return, users can earn points that can be redeemed for exclusive coupons from different brands.
 
-## Getting Started
+## App Sections
+1. 🌿 Onboarding 
+2. 🌿 Login/Signup 
+3. 🌿 Home Screen 
+4. 🌿 Plant Growth Tracker
+5. 🌿 Waste Reduction Tool (Artificial Intelligence)
+6. 🌿 Sustainable Shopping Assistant (Artificial Intelligence)
+7. 🌿 Progress Screen
+8. 🌿 Social Community Page
+9. 🌿 Settings
 
-This project is a starting point for a Flutter application.
+## Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+To run this app, you need to have Flutter installed on your system. If you don't have Flutter installed, you can follow the [official documentation](https://flutter.dev/docs/get-started/install) to install it.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## How to Run the App
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+To run this app on your system, follow these steps:
+
+1. Clone this repository to your local machine.
+2. Open the terminal and navigate to the project directory.
+3. Run `flutter pub get` to install the required packages.
+4. Connect your mobile device or start an emulator.
+5. Run `flutter run` to start the app.
+
+That's it! You should now be able to run the Climate Care app on your device.
+
+## Built With
+
+* Flutter ([https://flutter.dev/](https://flutter.dev/)) - The frontend framework used
+* Firebase Auth([https://firebase.google.com/docs/auth](https://firebase.google.com/docs/auth)) - The Firebase service used for authenticating users
+* Fiirebase Cloud Firestore([https://firebase.google.com/products/firestore](https://firebase.google.com/products/firestore?gclid=CjwKCAjw_YShBhAiEiwAMomsEAJh_XIisUnhrUWi29MhxQDMkGo-VAWPxTUFpdTJXu-yOAQ6bU28ZxoCIKsQAvD_BwE&gclsrc=aw.ds)) - The Firebase service to store data
+* Fiirebase Cloud Storage([https://firebase.google.com/docs/storage](https://firebase.google.com/docs/storage)) - The Firebase service used to save image files on cloud
+* Google Maps Platform ([https://mapsplatform.google.com/](https://mapsplatform.google.com/)) - The Google Maps platform api used to show places and map in the app
+
+
+## Facing an issue while running the app
+
+Get in touch with us.
+* [abdullahayaz529@gmail.com](mailto:abdullahayaz529@gmail.com)
+* [alirazamunir2003@gmail.com](mailto:alirazamunir2003@gmail.com) 
+
+#### Install the apk fo the app
