@@ -3,9 +3,9 @@
 Climate Care is a mobile application that aims to provide a solution to climate change. It offers various tools to its users to help them make a positive impact on the environment. In return, users can earn points that can be redeemed for exclusive coupons from different brands.
 
 ## App Sections
-1.🌿 Onboarding 
-2.🌿 Login/Signup 
-3.🌿 Home Screen 
+1. 🌿 Onboarding 
+2. 🌿 Login/Signup 
+3. 🌿 Home Screen 
 4.🌿 Activities
 5.🌿 Plant Growth Tracker
 6.🌿 Waste Reduction Tool (Artificial Intelligence)
