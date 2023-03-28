@@ -132,7 +132,7 @@ class _OnbordingState extends State<Onbording> {
                   child: Stack(
                     children: const <Widget>[
                       Align(
-                        alignment: Alignment(-30, 0),
+                        alignment: Alignment(0, 0),
                         child: Icon(
                           Icons.arrow_forward_sharp,
                           size: 36,
