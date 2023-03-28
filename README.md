@@ -41,7 +41,7 @@ That's it! You should now be able to run the Climate Care app on your device.
 ## Facing an issue while running the app
 
 Get in touch with us.
-1. [abdullahayaz529@gmail.com](mailto:abdullahayaz529@gmail.com)
-2. [alirazamunir2003@gmail.com](mailto:alirazamunir2003@gmail.com) 
+* [abdullahayaz529@gmail.com](mailto:abdullahayaz529@gmail.com)
+* [alirazamunir2003@gmail.com](mailto:alirazamunir2003@gmail.com) 
 
 #### Install the apk fo the app
