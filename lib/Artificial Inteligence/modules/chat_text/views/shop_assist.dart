@@ -26,13 +26,13 @@ class _ShopAssistantState extends State<ShopAssistant> {
   int coins = 0;
   void submit() async {
     if (_formKey.currentState!.validate()) {
+      controller.messages = [];
+      controller.getTextCompletion(controller_1.text, "", "", "", "", 1);
+      controller.searchTextController.clear();
       if (controller_1.text.isNotEmpty) {
         print(controller_1.text);
         controller_1.clear();
       }
-      controller.messages = [];
-      controller.getTextCompletion(controller_1.text, "", "", "", "", 1);
-      controller.searchTextController.clear();
     }
     final docSnapshotRed = await FirebaseFirestore.instance
         .collection("Reduced Emission")
