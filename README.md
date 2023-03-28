@@ -13,7 +13,7 @@ Climate Care is a mobile application that aims to provide a solution to climate 
 8. 🌿 Social Community Page
 9. 🌿 Settings
 
-### Prerequisites
+## Prerequisites
 
 To run this app, you need to have Flutter installed on your system. If you don't have Flutter installed, you can follow the [official documentation](https://flutter.dev/docs/get-started/install) to install it.
 
@@ -41,7 +41,7 @@ That's it! You should now be able to run the Climate Care app on your device.
 ## Facing an issue while running the app
 
 Get in touch with us.
-([abdullahayaz529@gmail.com](mailto:abdullahayaz529@gmail.com))
-([alirazamunir2003@gmail.com](mailto:alirazamunir2003@gmail.com)) 
+1. [abdullahayaz529@gmail.com](mailto:abdullahayaz529@gmail.com)
+2. [alirazamunir2003@gmail.com](mailto:alirazamunir2003@gmail.com) 
 
-####Install the apk fo the app
+#### Install the apk fo the app
