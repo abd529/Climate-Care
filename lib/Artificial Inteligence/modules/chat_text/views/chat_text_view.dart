@@ -26,6 +26,9 @@ class _ChatTextViewState extends State<ChatTextView> {
   int coins = 0;
   void submit() async {
     if (_formKey.currentState!.validate()) {
+      controller.getTextCompletion(controller_1.text, controller_2.text,
+          controller_3.text, controller_4.text, controller_5.text, 0);
+      controller.searchTextController.clear();
       if (controller_1.text.isNotEmpty) {
         print(controller_1.text);
         controller_1.clear();
@@ -46,9 +49,6 @@ class _ChatTextViewState extends State<ChatTextView> {
         print(controller_5.text);
         controller_5.clear();
       }
-      controller.getTextCompletion(controller_1.text, controller_2.text,
-          controller_3.text, controller_4.text, controller_5.text, 0);
-      controller.searchTextController.clear();
 
       final docSnapshotRed = await FirebaseFirestore.instance
           .collection("Reduced Emission")
