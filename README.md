@@ -6,13 +6,12 @@ Climate Care is a mobile application that aims to provide a solution to climate 
 1. 🌿 Onboarding 
 2. 🌿 Login/Signup 
 3. 🌿 Home Screen 
-4.🌿 Activities
-5.🌿 Plant Growth Tracker
-6.🌿 Waste Reduction Tool (Artificial Intelligence)
-7.🌿 Sustainable Shopping Assistant (Artificial Intelligence)
-8.🌿 Progress Screen
-9.🌿 Social Community Page
-10.🌿 Settings
+4. 🌿 Plant Growth Tracker
+5. 🌿 Waste Reduction Tool (Artificial Intelligence)
+6. 🌿 Sustainable Shopping Assistant (Artificial Intelligence)
+7. 🌿 Progress Screen
+8. 🌿 Social Community Page
+9. 🌿 Settings
 
 ### Prerequisites
 
