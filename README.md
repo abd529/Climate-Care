@@ -32,9 +32,10 @@ That's it! You should now be able to run the Climate Care app on your device.
 ## Built With
 
 * Flutter ([https://flutter.dev/](https://flutter.dev/)) - The frontend framework used
-* Firebase Auth(https://maven.apache.org/) - The Firebase service used for authenticating users
-* Fiirebase Firestore(https://rometools.github.io/rome/) - The Firebase service to store data
-* Fiirebase Cloud Storage(https://rometools.github.io/rome/) - The Firebase service used to save image files on cloud
+* Firebase Auth([https://firebase.google.com/docs/auth](https://firebase.google.com/docs/auth)) - The Firebase service used for authenticating users
+* Fiirebase Cloud Firestore([https://firebase.google.com/products/firestore](https://firebase.google.com/products/firestore?gclid=CjwKCAjw_YShBhAiEiwAMomsEAJh_XIisUnhrUWi29MhxQDMkGo-VAWPxTUFpdTJXu-yOAQ6bU28ZxoCIKsQAvD_BwE&gclsrc=aw.ds)) - The Firebase service to store data
+* Fiirebase Cloud Storage([https://firebase.google.com/docs/storage](https://firebase.google.com/docs/storage)) - The Firebase service used to save image files on cloud
+* Google Maps Platform ([https://mapsplatform.google.com/](https://mapsplatform.google.com/))
 
 
 <!-- # Climate Care
