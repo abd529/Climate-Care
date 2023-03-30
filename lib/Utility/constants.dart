@@ -6,4 +6,4 @@ class Constants {
   static String EMAIL_ALREADY_IN_USE = "Email is already in use";
 }
 
-const String apiKey = "AIzaSyATM0ok3Nn_739JDsbyMO8KFTdD4jgU85Q";
+const String apiKey = "";
