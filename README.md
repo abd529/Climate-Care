@@ -20,7 +20,7 @@ To run this app, you need to have Flutter installed on your system. If you don't
 ## How to Run the App
 
 <h4>First of all you'll need to have an API from OpenAI, for that just follow the following steps:</h4>
-1. Jump on to [Open AI Platform](https://platform.openai.com)
+1. Jump on to Open AI Platform (https://platform.openai.com)
 
 
 ![Screenshot (27)](https://user-images.githubusercontent.com/106861398/229074622-f9639949-5ad2-44ec-bb18-ad0a6d48b306.png)
@@ -67,9 +67,9 @@ That's it! You should now be able to run the Climate Care app on your device.
 
 ## Facing an issue while running the app
 
-Get in touch with us.
+### Get in touch with us
 * [abdullahayaz529@gmail.com](mailto:abdullahayaz529@gmail.com)
 * [alirazamunir2003@gmail.com](mailto:alirazamunir2003@gmail.com) 
 
 #### Install the apk of the app
-[Download APK](https://drive.google.com/file/d/1vBR7XVcAlyb9yAR5f2doZCVuH3cGDTM5/view?usp=share_link)
+* [Download APK](https://drive.google.com/file/d/1vBR7XVcAlyb9yAR5f2doZCVuH3cGDTM5/view?usp=share_link)
