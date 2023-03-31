@@ -20,17 +20,30 @@ To run this app, you need to have Flutter installed on your system. If you don't
 ## How to Run the App
 
 <h4>First of all you'll need to have an API from OpenAI, for that just follow the following steps:</h4>
-1. Jump on to [Open AI Platform](https://platform.openai.com) 
+1. Jump on to [Open AI Platform](https://platform.openai.com)
+
+
 ![Screenshot (27)](https://user-images.githubusercontent.com/106861398/229074622-f9639949-5ad2-44ec-bb18-ad0a6d48b306.png)
+
 2. Login or Signup using your credientials
+
 3. Tap on Personal on the top right corner and go to "View API Keys"
- ![Screenshot (28)](https://user-images.githubusercontent.com/106861398/229075508-7b9203af-ccf7-4dd3-a87b-1b3da508bfe9.png)
-4. Tap on the button that says "+ Creat new secret key" to create your API key
+
+![Screenshot (28)](https://user-images.githubusercontent.com/106861398/229075508-7b9203af-ccf7-4dd3-a87b-1b3da508bfe9.png)
+
+4. Tap on the button that says "Creat new secret key" to create your API key
+
 ![Screenshot (29)](https://user-images.githubusercontent.com/106861398/229076416-7220a8df-40e9-4143-805a-36266a2a3dd3.png)
+
 5. Copy Your API key
+
 ![Screenshot (30)](https://user-images.githubusercontent.com/106861398/229077116-a294fc16-910e-4df1-99fe-b7bd8e57d1b6.png)
-6. Paste the key in to the string value of OPEN_AI_KEY variable in the headers.dart file. The address of the file is Climate-Care\lib\Artificial Inteligence\common\headers.dart
-![Screenshot (31)](https://user-images.githubusercontent.com/106861398/229078494-37f1a0d1-c8be-4cde-93b8-9b2fd325d508.png)
+
+6. Paste the key in to the string value of OPEN_AI_KEY variable in the headers.dart file. The address of the file is Climate-Care\lib\Artificial 
+Inteligence\common\headers.dart
+
+![Screenshot (31)](https://user-images.githubusercontent.com/106861398/229080192-80d330a6-5fcb-444f-89e9-9e1484ee2d08.png)
+
 7. Now run the app :)
 
 <h4>To run this app on your system, follow these steps:</h4>
