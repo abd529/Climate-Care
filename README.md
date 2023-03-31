@@ -45,3 +45,4 @@ Get in touch with us.
 * [alirazamunir2003@gmail.com](mailto:alirazamunir2003@gmail.com) 
 
 #### Install the apk fo the app
+[Download APK](https://drive.google.com/file/d/1vBR7XVcAlyb9yAR5f2doZCVuH3cGDTM5/view?usp=share_link)
