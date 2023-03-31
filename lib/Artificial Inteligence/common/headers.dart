@@ -1,7 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-const String OPEN_AI_KEY =
-    "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";
+const String OPEN_AI_KEY = "GET YOUR OWN KEY FROM OPEN AI";
 
 const String baseURL = "https://api.openai.com/v1";
 
